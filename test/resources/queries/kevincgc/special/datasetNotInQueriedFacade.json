@@ -1,6 +1,6 @@
 {
   "errorMsg": "Database not in selected InsightFacade",
-  "title": "Should return true",
+  "title": "datasetNotInQueriedFacade",
   "input": {
     "WHERE": {
       "GT": {

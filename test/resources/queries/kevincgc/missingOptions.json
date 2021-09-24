@@ -1,6 +1,6 @@
 {
   "errorMsg": "Missing OPTIONS",
-  "title": "Should return true",
+  "title": "missingOptions",
   "input": {
     "WHERE": {
       "GT": {

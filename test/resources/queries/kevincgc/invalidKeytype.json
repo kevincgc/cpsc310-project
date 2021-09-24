@@ -1,6 +1,6 @@
 {
   "errorMsg": "Invalid key type in EQ",
-  "title": "Should return true",
+  "title": "invalidKeytype",
   "input": {
     "WHERE": {
       "AND": [

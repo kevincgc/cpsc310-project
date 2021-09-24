@@ -1,6 +1,6 @@
 {
   "errorMsg": "Invalid key courses__dept in IS",
-  "title": "Should return true",
+  "title": "doubleUnderscore",
   "input": {
     "WHERE": {
       "AND": [

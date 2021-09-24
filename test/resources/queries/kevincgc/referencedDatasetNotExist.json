@@ -1,6 +1,6 @@
 {
   "errorMsg": "Referenced dataset \"thisdoesntexist\" not added yet",
-  "title": "Should return true",
+  "title": "referencedDatasetNotExist",
   "input": {
     "WHERE": {
       "AND": [

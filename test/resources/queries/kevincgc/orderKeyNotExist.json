@@ -1,6 +1,6 @@
 {
   "errorMsg": "ORDER key must be in COLUMNS",
-  "title": "Should return true",
+  "title": "orderKeyNotExist",
   "input": {
     "WHERE": {
       "GT": {

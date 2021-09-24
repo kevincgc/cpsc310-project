@@ -1,6 +1,6 @@
 {
   "errorMsg": "Invalid key type in IS",
-  "title": "Should return true",
+  "title": "invalidKeytypeReversed",
   "input": {
     "WHERE": {
       "IS": {

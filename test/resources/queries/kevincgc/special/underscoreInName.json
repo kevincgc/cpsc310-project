@@ -1,6 +1,6 @@
 {
   "errorMsg": "Invalid underscore in id",
-  "title": "Should return true",
+  "title": "underscoreInName",
   "input": {
     "WHERE": {
       "GT": {

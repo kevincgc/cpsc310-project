@@ -1,6 +1,6 @@
 {
   "errorMsg": "AND should only have 1 key, has 0",
-  "title": "Should return true",
+  "title": "blankOptions",
   "input": {
     "WHERE": {
       "AND": [

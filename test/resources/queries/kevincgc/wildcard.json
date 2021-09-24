@@ -1,5 +1,5 @@
 {
-  "title": "Should return true",
+  "title": "wildcard",
   "input": {
     "WHERE": {
       "AND": [

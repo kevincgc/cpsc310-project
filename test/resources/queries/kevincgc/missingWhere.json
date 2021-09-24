@@ -1,6 +1,6 @@
 {
   "errorMsg": "Missing WHERE",
-  "title": "Should return true",
+  "title": "missingWhere",
   "input": {
     "OPTIONS": {
       "COLUMNS": [

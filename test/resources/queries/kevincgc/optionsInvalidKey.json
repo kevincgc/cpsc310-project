@@ -1,6 +1,6 @@
 {
   "errorMsg": "Invalid keys in OPTIONS",
-  "title": "Should return true",
+  "title": "optionsInvalidKey",
   "input": {
     "WHERE": {
       "GT": {

@@ -1,5 +1,5 @@
 {
-  "title": "Should return true",
+  "title": "allFieldsUsed",
   "input": {
     "WHERE": {
       "AND": [
