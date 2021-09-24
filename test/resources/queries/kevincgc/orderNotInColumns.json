@@ -1,0 +1,29 @@
+{
+  "errorMsg": "ORDER key must be in COLUMNS",
+  "title": "Should return true",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "IS": {
+            "courses_dept": "aps*"
+          }
+        },
+        {
+          "IS": {
+            "courses_id": "*4*"
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_avg"
+      ],
+      "ORDER": "courses_id"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

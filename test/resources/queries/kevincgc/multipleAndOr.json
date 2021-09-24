@@ -1,0 +1,104 @@
+{
+  "title": "Should return true",
+  "input": {
+    "WHERE": {
+      "OR": [
+        {
+          "AND": [
+            {
+              "GT": {
+                "courses_avg": 80
+              }
+            },
+            {
+              "IS": {
+                "courses_dept": "cpsc"
+              }
+            },
+            {
+              "IS": {
+                "courses_id": "2*"
+              }
+            },
+            {
+              "GT": {
+                "courses_year": 2010
+              }
+            }
+          ]
+        },
+        {
+          "EQ": {
+            "courses_avg": 100
+          }
+        },
+        {
+          "EQ": {
+            "courses_avg": 0
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_id",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_dept": "lfs",
+      "courses_id": "100",
+      "courses_avg": 0
+    },
+    {
+      "courses_dept": "lfs",
+      "courses_id": "100",
+      "courses_avg": 0
+    },
+    {
+      "courses_dept": "frst",
+      "courses_id": "202",
+      "courses_avg": 0
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_id": "210",
+      "courses_avg": 81
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_id": "210",
+      "courses_avg": 81.5
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_id": "213",
+      "courses_avg": 81.76
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_id": "221",
+      "courses_avg": 82.45
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_id": "221",
+      "courses_avg": 85.87
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_id": "210",
+      "courses_avg": 86.15
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_id": "221",
+      "courses_avg": 86.47
+    }
+  ]
+}
