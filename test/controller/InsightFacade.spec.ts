@@ -95,8 +95,10 @@ describe("InsightFacade", function () {
 			(input): Promise<any[]> => insightFacade.performQuery(input),
 			"./test/resources/queries",
 			{
-				assertOnResult(expected, actual){
-					expect(actual).to.deep.equal(expected);
+				assertOnResult(expected: any[], actual: any, input: any){
+					expect(actual).to.be.an.instanceOf(Array);
+					expect(actual).to.have.deep.members(expected);
+					expect(actual).to.have.length(expected.length);
 				},
 				errorValidator: (error): error is PQErrorKind =>
 					error === "ResultTooLargeError" || error === "InsightError",
@@ -419,7 +421,9 @@ describe("kevincgc c0 tests", function() {
 			"./test/resources/queries/kevincgc",
 			{
 				assertOnResult(expected, actual){
-					expect(actual).to.deep.equal(expected);
+					expect(actual).to.be.an.instanceOf(Array);
+					expect(actual).to.have.deep.members(expected);
+					expect(actual).to.have.length(expected.length);
 				},
 				errorValidator: (error): error is PQErrorKind =>
 					error === "ResultTooLargeError" || error === "InsightError",
@@ -444,7 +448,6 @@ describe("kevincgc c0 tests", function() {
 
 			await insightFacade.addDataset("courses a", courses10, InsightDatasetKind.Courses);
 			await insightFacade.addDataset("courses b", courses8, InsightDatasetKind.Courses);
-			await insightFacade.addDataset("courses_b", courses16, InsightDatasetKind.Courses);
 			await insightFacadeUnused.addDataset("courses", courses, InsightDatasetKind.Courses);
 		});
 
@@ -454,7 +457,9 @@ describe("kevincgc c0 tests", function() {
 			"./test/resources/queries/kevincgc/special",
 			{
 				assertOnResult(expected, actual){
-					expect(actual).to.deep.equal(expected);
+					expect(actual).to.be.an.instanceOf(Array);
+					expect(actual).to.have.deep.members(expected);
+					expect(actual).to.have.length(expected.length);
 				},
 				errorValidator: (error): error is PQErrorKind =>
 					error === "ResultTooLargeError" || error === "InsightError",
