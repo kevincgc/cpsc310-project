@@ -413,7 +413,7 @@ describe("kevincgc c0 tests", function() {
 		type PQErrorKind = "ResultTooLargeError" | "InsightError";
 
 		testFolder<any, any[], PQErrorKind>(
-			"Dynamic InsightFacade PerformQuery tests",
+			"Normal Queries",
 			(input) => insightFacade.performQuery(input),
 			"./test/resources/queries/kevincgc",
 			{
@@ -447,7 +447,7 @@ describe("kevincgc c0 tests", function() {
 		type PQErrorKind = "ResultTooLargeError" | "InsightError";
 
 		testFolder<any, any[], PQErrorKind>(
-			"Dynamic InsightFacade PerformQuery tests",
+			"Special Queries",
 			(input) => insightFacade.performQuery(input),
 			"./test/resources/queries/kevincgc/special",
 			{
