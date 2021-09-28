@@ -106,22 +106,6 @@ describe("InsightFacade", function () {
 				},
 			}
 		);
-		testFolder<any, any[], PQErrorKind>(
-			"Dynamic InsightFacade PerformQuery tests",
-			(input) => insightFacade.performQuery(input),
-			"./test/resources/queries/kevincgc",
-			{
-				errorValidator: (error): error is PQErrorKind =>
-					error === "ResultTooLargeError" || error === "InsightError",
-				assertOnError(expected, actual) {
-					if (expected === "ResultTooLargeError") {
-						expect(actual).to.be.instanceof(ResultTooLargeError);
-					} else {
-						expect(actual).to.be.instanceof(InsightError);
-					}
-				},
-			}
-		);
 	});
 });
 
@@ -434,8 +418,44 @@ describe("kevincgc c0 tests", function() {
 		//     expect(insightDatasets).to.have.length(2);
 		// });
 	});
-
 	describe("Queries", function() {
+		let insightFacade: InsightFacade;
+		describe("PerformQuery", () => {
+			before(function () {
+				clearDisk();
+				insightFacade = new InsightFacade();
+				const loadDatasetPromises = [
+					insightFacade.addDataset("courses", courses, InsightDatasetKind.Courses),
+				];
+				return Promise.all(loadDatasetPromises);
+			});
+
+			after(function () {
+				clearDisk();
+			});
+
+			type PQErrorKind1 = "ResultTooLargeError" | "InsightError";
+
+			testFolder<any, any[], PQErrorKind1>(
+				"Dynamic InsightFacade PerformQuery tests",
+				(input) => insightFacade.performQuery(input),
+				"./test/resources/queries/kevincgc",
+				{
+					errorValidator: (error): error is PQErrorKind1 =>
+						error === "ResultTooLargeError" || error === "InsightError",
+					assertOnError(expected, actual) {
+						if (expected === "ResultTooLargeError") {
+							expect(actual).to.be.instanceof(ResultTooLargeError);
+						} else {
+							expect(actual).to.be.instanceof(InsightError);
+						}
+					},
+				}
+			);
+		});
+	});
+
+	describe("Special Queries", function() {
 		let insightFacade: InsightFacade;
 		let insightFacadeUnused: InsightFacade;
 		describe("PerformQuery", () => {
@@ -443,6 +463,7 @@ describe("kevincgc c0 tests", function() {
 				clearDisk();
 				console.info(`Before: ${this.test?.parent?.title}`);
 				insightFacade = new InsightFacade();
+				insightFacadeUnused = new InsightFacade();
 
 				// Load the datasets specified in datasetsToQuery and add them to InsightFacade.
 				// Will *fail* if there is a problem reading ANY dataset.
