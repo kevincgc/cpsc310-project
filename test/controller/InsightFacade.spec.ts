@@ -7,6 +7,8 @@ import {clearDisk, getContentFromArchives } from "../resources/TestUtil";
 import {testFolder} from "@ubccpsc310/folder-test";
 import {expect} from "chai";
 
+type PQErrorKind = "ResultTooLargeError" | "InsightError";
+
 describe("InsightFacade", function () {
 	let insightFacade: InsightFacade;
 
@@ -88,13 +90,14 @@ describe("InsightFacade", function () {
 			fs.removeSync(persistDir);
 		});
 
-		type PQErrorKind = "ResultTooLargeError" | "InsightError";
-
 		testFolder<any, any[], PQErrorKind>(
 			"Dynamic InsightFacade PerformQuery tests",
-			(input) => insightFacade.performQuery(input),
+			(input): Promise<any[]> => insightFacade.performQuery(input),
 			"./test/resources/queries",
 			{
+				assertOnResult(expected, actual){
+					expect(actual).to.deep.equal(expected);
+				},
 				errorValidator: (error): error is PQErrorKind =>
 					error === "ResultTooLargeError" || error === "InsightError",
 				assertOnError(expected, actual) {
@@ -410,13 +413,14 @@ describe("kevincgc c0 tests", function() {
 			await insightFacade.addDataset("courses", courses, InsightDatasetKind.Courses);
 		});
 
-		type PQErrorKind = "ResultTooLargeError" | "InsightError";
-
 		testFolder<any, any[], PQErrorKind>(
 			"Normal Queries",
-			(input) => insightFacade.performQuery(input),
+			(input): Promise<any[]> => insightFacade.performQuery(input),
 			"./test/resources/queries/kevincgc",
 			{
+				assertOnResult(expected, actual){
+					expect(actual).to.deep.equal(expected);
+				},
 				errorValidator: (error): error is PQErrorKind =>
 					error === "ResultTooLargeError" || error === "InsightError",
 				assertOnError(expected, actual) {
@@ -444,13 +448,14 @@ describe("kevincgc c0 tests", function() {
 			await insightFacadeUnused.addDataset("courses", courses, InsightDatasetKind.Courses);
 		});
 
-		type PQErrorKind = "ResultTooLargeError" | "InsightError";
-
 		testFolder<any, any[], PQErrorKind>(
 			"Special Queries",
-			(input) => insightFacade.performQuery(input),
+			(input): Promise<any[]> => insightFacade.performQuery(input),
 			"./test/resources/queries/kevincgc/special",
 			{
+				assertOnResult(expected, actual){
+					expect(actual).to.deep.equal(expected);
+				},
 				errorValidator: (error): error is PQErrorKind =>
 					error === "ResultTooLargeError" || error === "InsightError",
 				assertOnError(expected, actual) {
