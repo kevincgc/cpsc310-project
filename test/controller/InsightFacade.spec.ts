@@ -116,12 +116,14 @@ describe("kevincgc c0 tests", function() {
 	let courses: string;
 	let courses16: string;
 	let courses10: string;
+	let courses8: string;
 	let coursesNotAllJson: string;
 	let coursesJsonOutsideFolder: string;
 	before(function () {
 		courses = getContentFromArchives("courses.zip");
 		courses16 = getContentFromArchives("courses_16.zip");
 		courses10 = getContentFromArchives("courses_10.zip");
+		courses8 = getContentFromArchives("courses_8.zip");
 		coursesNotAllJson = getContentFromArchives("not_all_json.zip");
 		coursesJsonOutsideFolder = getContentFromArchives("courses_only_64612_should_be_considered.zip");
 	});
@@ -399,107 +401,66 @@ describe("kevincgc c0 tests", function() {
 			expect(insightDatasetCourses3).to.exist;
 			expect(insightDatasetCourses4).to.exist;
 		});
-		// it("should LDS pass 5 datasets", async function() {
-		//     let courses2 = getContentFromArchives("courses.zip");
-		//     let courses10 = getContentFromArchives("courses.zip");
-		//     let courses16 = getContentFromArchives("courses.zip");
-		//     let ads1:string[] = await facade.addDataset("asdfghsfdfytry09898987878d6fg???...........", courses2, InsightDatasetKind.Courses);
-		//     let ads2:string[] = await facade.addDataset("bgU&^nJ6e$V#i!qe", courses10, InsightDatasetKind.Rooms);
-		//     let ads3:string[] = await facade.addDataset("[zv]GIcFYQfBxx?p5-=", courses16, InsightDatasetKind.Courses);
-		//     let ads4:string[] = await facade.addDataset("sad4636trtyd@#FSdFG", courses2, InsightDatasetKind.Rooms);
-		//     expect(ads1).to.have.length(1);
-		//     expect(ads1[0]).to.equal("asdfghsfdfytry09898987878d6fg???...........");
-		//
-		//     const insightDatasets = await facade.listDatasets();
-		//     const insightDatasetCourses = insightDatasets.find((dataset) => dataset.id === "courses");
-		//     expect(insightDatasetCourses).to.exist;
-		//     const insightDatasetCourses1 = insightDatasets.find((dataset) => dataset.id === "courses2");
-		//     expect(insightDatasetCourses1).to.exist;
-		//     expect(insightDatasets).to.have.length(2);
-		// });
 	});
-	describe("Queries", function() {
+	describe("Normal Queries", function() {
 		let insightFacade: InsightFacade;
-		describe("PerformQuery", () => {
-			before(function () {
-				clearDisk();
-				insightFacade = new InsightFacade();
-				const loadDatasetPromises = [
-					insightFacade.addDataset("courses", courses, InsightDatasetKind.Courses),
-				];
-				return Promise.all(loadDatasetPromises);
-			});
-
-			after(function () {
-				clearDisk();
-			});
-
-			type PQErrorKind1 = "ResultTooLargeError" | "InsightError";
-
-			testFolder<any, any[], PQErrorKind1>(
-				"Dynamic InsightFacade PerformQuery tests",
-				(input) => insightFacade.performQuery(input),
-				"./test/resources/queries/kevincgc",
-				{
-					errorValidator: (error): error is PQErrorKind1 =>
-						error === "ResultTooLargeError" || error === "InsightError",
-					assertOnError(expected, actual) {
-						if (expected === "ResultTooLargeError") {
-							expect(actual).to.be.instanceof(ResultTooLargeError);
-						} else {
-							expect(actual).to.be.instanceof(InsightError);
-						}
-					},
-				}
-			);
+		before(async function () {
+			clearDisk();
+			insightFacade = new InsightFacade();
+			await insightFacade.addDataset("courses", courses, InsightDatasetKind.Courses);
 		});
+
+		type PQErrorKind = "ResultTooLargeError" | "InsightError";
+
+		testFolder<any, any[], PQErrorKind>(
+			"Dynamic InsightFacade PerformQuery tests",
+			(input) => insightFacade.performQuery(input),
+			"./test/resources/queries/kevincgc",
+			{
+				errorValidator: (error): error is PQErrorKind =>
+					error === "ResultTooLargeError" || error === "InsightError",
+				assertOnError(expected, actual) {
+					if (expected === "ResultTooLargeError") {
+						expect(actual).to.be.instanceof(ResultTooLargeError);
+					} else {
+						expect(actual).to.be.instanceof(InsightError);
+					}
+				},
+			}
+		);
 	});
 
 	describe("Special Queries", function() {
 		let insightFacade: InsightFacade;
 		let insightFacadeUnused: InsightFacade;
-		describe("PerformQuery", () => {
-			before(function () {
-				clearDisk();
-				console.info(`Before: ${this.test?.parent?.title}`);
-				insightFacade = new InsightFacade();
-				insightFacadeUnused = new InsightFacade();
+		before(async function () {
+			clearDisk();
+			insightFacade = new InsightFacade();
+			insightFacadeUnused = new InsightFacade();
 
-				// Load the datasets specified in datasetsToQuery and add them to InsightFacade.
-				// Will *fail* if there is a problem reading ANY dataset.
-				const loadDatasetPromises = [
-					insightFacade.addDataset("courses a", courses10, InsightDatasetKind.Courses),
-					insightFacade.addDataset("courses b", courses10, InsightDatasetKind.Courses),
-					insightFacade.addDataset("courses_b", courses16, InsightDatasetKind.Courses),
-					insightFacadeUnused.addDataset("courses", courses, InsightDatasetKind.Courses),
-				];
-
-				return Promise.all(loadDatasetPromises);
-			});
-
-			after(function () {
-				console.info(`After: ${this.test?.parent?.title}`);
-				clearDisk();
-			});
-
-			type PQErrorKind = "ResultTooLargeError" | "InsightError";
-
-			testFolder<any, any[], PQErrorKind>(
-				"Dynamic InsightFacade PerformQuery tests",
-				(input) => insightFacade.performQuery(input),
-				"./test/resources/queries/kevincgc/special",
-				{
-					errorValidator: (error): error is PQErrorKind =>
-						error === "ResultTooLargeError" || error === "InsightError",
-					assertOnError(expected, actual) {
-						if (expected === "ResultTooLargeError") {
-							expect(actual).to.be.instanceof(ResultTooLargeError);
-						} else {
-							expect(actual).to.be.instanceof(InsightError);
-						}
-					},
-				}
-			);
+			await insightFacade.addDataset("courses a", courses10, InsightDatasetKind.Courses);
+			await insightFacade.addDataset("courses b", courses8, InsightDatasetKind.Courses);
+			await insightFacade.addDataset("courses_b", courses16, InsightDatasetKind.Courses);
+			await insightFacadeUnused.addDataset("courses", courses, InsightDatasetKind.Courses);
 		});
+
+		type PQErrorKind = "ResultTooLargeError" | "InsightError";
+
+		testFolder<any, any[], PQErrorKind>(
+			"Dynamic InsightFacade PerformQuery tests",
+			(input) => insightFacade.performQuery(input),
+			"./test/resources/queries/kevincgc/special",
+			{
+				errorValidator: (error): error is PQErrorKind =>
+					error === "ResultTooLargeError" || error === "InsightError",
+				assertOnError(expected, actual) {
+					if (expected === "ResultTooLargeError") {
+						expect(actual).to.be.instanceof(ResultTooLargeError);
+					} else {
+						expect(actual).to.be.instanceof(InsightError);
+					}
+				},
+			}
+		);
 	});
 });
