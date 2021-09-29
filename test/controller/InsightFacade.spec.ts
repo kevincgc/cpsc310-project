@@ -132,7 +132,7 @@ describe("kevincgc c0 tests", function() {
 		coursesNotAllJson = getContentFromArchives("not_all_json.zip");
 		coursesJsonOutsideFolder = getContentFromArchives("courses_only_64612_should_be_considered.zip");
 	});
-	describe("Tutorial add 0/1/multi DS", function() {
+	describe("Tutorial add 0/1/multi DS", function () {
 		let facade: IInsightFacade = new InsightFacade();
 		beforeEach(function () {
 			clearDisk();
@@ -199,7 +199,7 @@ describe("kevincgc c0 tests", function() {
 				});
 		});
 	});
-	describe("Add dataset exceptions", function() {
+	describe("Add dataset exceptions", function () {
 		let facade: IInsightFacade = new InsightFacade();
 		beforeEach(function () {
 			clearDisk();
@@ -287,7 +287,7 @@ describe("kevincgc c0 tests", function() {
 		});
 	});
 
-	describe("List Datasets", function() {
+	describe("List Datasets", function () {
 		let facade: IInsightFacade;
 		beforeEach(function () {
 			clearDisk();
@@ -310,14 +310,14 @@ describe("kevincgc c0 tests", function() {
 				numRows: 64612,
 			}]);
 		});
-		it("should RDS pass add then remove", async function() {
+		it("should RDS pass add then remove", async function () {
 			await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
 			let removedID = await facade.removeDataset("courses");
 			const insightDatasets = await facade.listDatasets();
 			expect(insightDatasets).to.have.length(0);
 			expect(removedID).to.equal("courses");
 		});
-		it("should RDS fail add remove twice", async function() {
+		it("should RDS fail add remove twice", async function () {
 			await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
 			await facade.removeDataset("courses");
 			try {
@@ -329,7 +329,7 @@ describe("kevincgc c0 tests", function() {
 			const insightDatasets = await facade.listDatasets();
 			expect(insightDatasets).to.have.length(0);
 		});
-		it("should RDS fail id has underscore", async function() {
+		it("should RDS fail id has underscore", async function () {
 			await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
 			try {
 				await facade.removeDataset("courses_fail");
@@ -345,7 +345,7 @@ describe("kevincgc c0 tests", function() {
 				numRows: 64612,
 			}]);
 		});
-		it("should RDS fail id is all white spaces", async function() {
+		it("should RDS fail id is all white spaces", async function () {
 			await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
 			try {
 				await facade.removeDataset("       ");
@@ -361,7 +361,7 @@ describe("kevincgc c0 tests", function() {
 				numRows: 64612,
 			}]);
 		});
-		it("should RDS pass remove 1 of 3", async function() {
+		it("should RDS pass remove 1 of 3", async function () {
 			await facade.addDataset("courses0", courses, InsightDatasetKind.Courses);
 			await facade.addDataset("courses1", courses16, InsightDatasetKind.Courses);
 			await facade.addDataset("courses2", courses10, InsightDatasetKind.Courses);
@@ -378,7 +378,7 @@ describe("kevincgc c0 tests", function() {
 			expect(insightDatasetCourses3).to.exist;
 			expect(insightDatasets3).to.have.length(1);
 		});
-		it("should LDS pass 5 datasets", async function() {
+		it("should LDS pass 5 datasets", async function () {
 			const names: string[] = [
 				"asdfghsfdfytry09898987878d6fg???...........",
 				"bgU&^nJ6e$V#i!qe",
@@ -394,9 +394,9 @@ describe("kevincgc c0 tests", function() {
 			let ads4: string[] = await facade.addDataset(names[3], courses, InsightDatasetKind.Courses);
 			const insightDatasets4 = await facade.listDatasets();
 			expect(ads1).to.deep.include.members([names[0]]);
-			expect(ads2).to.deep.include.members([names[0],names[1]]);
-			expect(ads3).to.deep.include.members([names[0],names[1],names[2]]);
-			expect(ads4).to.deep.include.members([names[0],names[1],names[2],names[3]]);
+			expect(ads2).to.deep.include.members([names[0], names[1]]);
+			expect(ads3).to.deep.include.members([names[0], names[1], names[2]]);
+			expect(ads4).to.deep.include.members([names[0], names[1], names[2], names[3]]);
 			const insightDatasetCourses1 = insightDatasets4.find((dataset) => dataset.id === names[0]);
 			const insightDatasetCourses2 = insightDatasets4.find((dataset) => dataset.id === names[1]);
 			const insightDatasetCourses3 = insightDatasets4.find((dataset) => dataset.id === names[2]);
@@ -407,7 +407,7 @@ describe("kevincgc c0 tests", function() {
 			expect(insightDatasetCourses4).to.exist;
 		});
 	});
-	describe("Normal Queries", function() {
+	describe("Normal Queries", function () {
 		let insightFacade: InsightFacade;
 		before(async function () {
 			clearDisk();
@@ -420,7 +420,7 @@ describe("kevincgc c0 tests", function() {
 			(input): Promise<any[]> => insightFacade.performQuery(input),
 			"./test/resources/queries/kevincgc",
 			{
-				assertOnResult(expected, actual){
+				assertOnResult(expected, actual) {
 					expect(actual).to.be.an.instanceOf(Array);
 					expect(actual).to.have.deep.members(expected);
 					expect(actual).to.have.length(expected.length);
@@ -438,17 +438,13 @@ describe("kevincgc c0 tests", function() {
 		);
 	});
 
-	describe("Special Queries", function() {
+	describe("Special Queries", function () {
 		let insightFacade: InsightFacade;
-		let insightFacadeUnused: InsightFacade;
 		before(async function () {
 			clearDisk();
 			insightFacade = new InsightFacade();
-			insightFacadeUnused = new InsightFacade();
-
 			await insightFacade.addDataset("courses a", courses, InsightDatasetKind.Courses);
 			await insightFacade.addDataset("courses b", courses8, InsightDatasetKind.Courses);
-			await insightFacadeUnused.addDataset("courses", courses10, InsightDatasetKind.Courses);
 		});
 
 		testFolder<any, any[], PQErrorKind>(
@@ -456,7 +452,7 @@ describe("kevincgc c0 tests", function() {
 			(input): Promise<any[]> => insightFacade.performQuery(input),
 			"./test/resources/queries/kevincgc/special",
 			{
-				assertOnResult(expected, actual){
+				assertOnResult(expected, actual) {
 					expect(actual).to.be.an.instanceOf(Array);
 					expect(actual).to.have.deep.members(expected);
 					expect(actual).to.have.length(expected.length);
@@ -473,4 +469,41 @@ describe("kevincgc c0 tests", function() {
 			}
 		);
 	});
+	describe("Special Queries", function () {
+		let insightFacade: InsightFacade;
+		let insightFacade2: InsightFacade;
+		before(async function () {
+			clearDisk();
+			insightFacade = new InsightFacade();
+			insightFacade2 = new InsightFacade();
+
+			await insightFacade.addDataset("courses a", courses16, InsightDatasetKind.Courses);
+			await insightFacade.addDataset("courses b", courses8, InsightDatasetKind.Courses);
+			await insightFacade2.addDataset("courses", courses, InsightDatasetKind.Courses);
+		});
+		let datasetNotInQueriedFacade = {
+			WHERE: {
+				GT: {
+					courses_avg: 97
+				}
+			},
+			OPTIONS: {
+				COLUMNS: [
+					"courses_dept",
+					"courses_avg"
+				],
+				ORDER: "courses_avg"
+			}
+		};
+		it("should test datasetNotInQueriedFacade", async function() {
+			let returnedQuery;
+			try {
+				returnedQuery = await insightFacade.performQuery(datasetNotInQueriedFacade);
+				expect.fail("Should have rejected!");
+			} catch (err) {
+				expect(err).to.be.instanceof(InsightError);
+			}
+		});
+	});
 });
+
