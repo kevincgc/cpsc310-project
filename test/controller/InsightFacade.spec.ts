@@ -207,7 +207,7 @@ describe("kevincgc c0 tests", function() {
 		});
 		it("should DS reject, not a zip", async function () {
 			try {
-				let data = fs.readFileSync("test/resources/archives/" + "not_a_zip.txt").toString("base64");
+				let data = getContentFromArchives("not_a_zip.txt");
 				await facade.addDataset("courses", data, InsightDatasetKind.Courses);
 				expect.fail("Should have rejected!");
 			} catch (err) {
@@ -216,7 +216,7 @@ describe("kevincgc c0 tests", function() {
 		});
 		it("should DS reject, no course sections", async function () {
 			try {
-				let data = fs.readFileSync("test/resources/archives/" + "no_course_sections.zip").toString("base64");
+				let data = getContentFromArchives("no_course_sections.zip");
 				await facade.addDataset("courses", data, InsightDatasetKind.Courses);
 				expect.fail("Should have rejected!");
 			} catch (err) {
@@ -225,7 +225,7 @@ describe("kevincgc c0 tests", function() {
 		});
 		it("should DS reject, no courses folder", async function () {
 			try {
-				let data = fs.readFileSync("test/resources/archives/" + "no_courses_folder.zip").toString("base64");
+				let data = getContentFromArchives("no_courses_folder.zip");
 				await facade.addDataset("courses", data, InsightDatasetKind.Courses);
 				expect.fail("Should have rejected!");
 			} catch (err) {
@@ -446,9 +446,9 @@ describe("kevincgc c0 tests", function() {
 			insightFacade = new InsightFacade();
 			insightFacadeUnused = new InsightFacade();
 
-			await insightFacade.addDataset("courses a", courses10, InsightDatasetKind.Courses);
+			await insightFacade.addDataset("courses a", courses, InsightDatasetKind.Courses);
 			await insightFacade.addDataset("courses b", courses8, InsightDatasetKind.Courses);
-			await insightFacadeUnused.addDataset("courses", courses, InsightDatasetKind.Courses);
+			await insightFacadeUnused.addDataset("courses", courses10, InsightDatasetKind.Courses);
 		});
 
 		testFolder<any, any[], PQErrorKind>(
