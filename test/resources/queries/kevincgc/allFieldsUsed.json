@@ -1,0 +1,84 @@
+{
+  "title": "allFieldsUsed",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 80
+          }
+        },
+        {
+          "IS": {
+            "courses_dept": "cpsc"
+          }
+        },
+        {
+          "IS": {
+            "courses_id": "2*"
+          }
+        },
+        {
+          "GT": {
+            "courses_year": 2010
+          }
+        },
+        {
+          "GT": {
+            "courses_year": 20
+          }
+        },
+        {
+          "IS": {
+            "courses_uuid": "*7*"
+          }
+        },
+        {
+          "IS": {
+            "courses_instructor": "*t*"
+          }
+        },
+        {
+          "IS": {
+            "courses_title": "*a*"
+          }
+        },
+        {
+          "EQ": {
+            "courses_audit": 0
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_id",
+        "courses_avg",
+        "courses_instructor",
+        "courses_title",
+        "courses_pass",
+        "courses_fail",
+        "courses_audit",
+        "courses_uuid",
+        "courses_year"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_dept": "cpsc",
+      "courses_id": "221",
+      "courses_avg": 82.45,
+      "courses_instructor": "wolfman, steven",
+      "courses_title": "basic alg&data",
+      "courses_pass": 110,
+      "courses_fail": 5,
+      "courses_audit": 0,
+      "courses_uuid": "1275",
+      "courses_year": 2014
+    }
+  ]
+}

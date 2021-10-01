@@ -1,0 +1,29 @@
+{
+  "errorMsg": "Referenced dataset \"thisdoesntexist\" not added yet",
+  "title": "referencedDatasetNotExist",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "IS": {
+            "courses_dept": "aps*"
+          }
+        },
+        {
+          "IS": {
+            "courses_id": "*4*"
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "thisdoesntexist_dept",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

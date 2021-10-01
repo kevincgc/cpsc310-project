@@ -1,0 +1,20 @@
+{
+  "errorMsg": "Invalid underscore in id",
+  "title": "underscoreInName",
+  "input": {
+    "WHERE": {
+      "GT": {
+        "courses_b_avg": 97
+      }
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_b_dept",
+        "courses_b_avg"
+      ],
+      "ORDER": "courses_b_avg"
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
