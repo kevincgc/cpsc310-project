@@ -98,7 +98,7 @@ describe("tests", function() {
 	describe("Add dataset exceptions", function () {
 		let facade: IInsightFacade = new InsightFacade();
 		beforeEach(function () {
-			clearDisk();
+			fs.removeSync("./data");
 			facade = new InsightFacade();
 		});
 		it("should DS reject, not a zip", async function () {
@@ -123,8 +123,11 @@ describe("tests", function() {
 			try {
 				let data = getContentFromArchives("no_courses_folder.zip");
 				await facade.addDataset("courses", data, InsightDatasetKind.Courses);
+				let f = facade as InsightFacade;
+				console.log(f.currentCourses.length);
 				expect.fail("Should have rejected!");
 			} catch (err) {
+				console.log(err);
 				expect(err).to.be.instanceof(InsightError);
 			}
 		});
@@ -178,6 +181,7 @@ describe("tests", function() {
 				await facade.addDataset("courses", courses, InsightDatasetKind.Rooms);
 				expect.fail("Should have rejected!");
 			} catch (err) {
+				console.log(err);
 				expect(err).to.be.instanceof(InsightError);
 			}
 		});
@@ -207,6 +211,7 @@ describe("tests", function() {
 			}]);
 		});
 		it("should RDS pass add then remove", async function () {
+			this.timeout(10000);
 			await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
 			let removedID = await facade.removeDataset("courses");
 			const insightDatasets = await facade.listDatasets();

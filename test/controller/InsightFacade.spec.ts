@@ -115,6 +115,7 @@ describe("InsightFacade", function () {
 });
 
 describe("kevincgc c0 tests", function() {
+	this.timeout(15000);
 	// From the tutorial recording
 	// https://ubc.zoom.us/rec/share/HFvuZ0YgHZOQyGTD3I_fmnIhu-Lii890c4qotR6z0jmFSamZ
 	// _T51uHAdFVxQQF1h.BS6IZmx4ydr4nG2_?startTime=1631826093000
@@ -374,7 +375,7 @@ describe("kevincgc c0 tests", function() {
 			expect(insightDatasets).to.have.length(2);
 			await facade.removeDataset("courses2");
 			const insightDatasets3 = await facade.listDatasets();
-			const insightDatasetCourses3 = insightDatasets3.find((dataset) => dataset.id === "courses");
+			const insightDatasetCourses3 = insightDatasets3.find((dataset) => dataset.id === "courses0");
 			expect(insightDatasetCourses3).to.exist;
 			expect(insightDatasets3).to.have.length(1);
 		});

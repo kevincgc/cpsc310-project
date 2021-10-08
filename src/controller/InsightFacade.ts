@@ -1,5 +1,6 @@
 import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFoundError} from "./IInsightFacade";
-import JSZip, {JSZipObject} from "jszip";
+import JSZip from "jszip";
+
 const fs = require("fs-extra");
 // const jsZip = require("jszip");
 /**
@@ -8,9 +9,9 @@ const fs = require("fs-extra");
  *
  */
 export default class InsightFacade implements IInsightFacade {
-	private datasets: InsightDataset[];
-	private currentCourses: JSON[];
-	private currentDatasetId: string;
+	public datasets: InsightDataset[];
+	public currentCourses: JSON[];
+	public currentDatasetId: string;
 	constructor() {
 		this.datasets = [];
 		this.currentCourses = [];
@@ -38,31 +39,45 @@ export default class InsightFacade implements IInsightFacade {
 		});
 	}
 
-	private static isValidNewId(id: string, datasets: InsightDataset[]): boolean {
+	private static isValidId (id: string): [boolean, string] {
 		if (id.includes("_") || id.match(/^[ ]+$/)) {
-			return false;
+			return [false, "invalid id: can't have underscore or be all spaces"];
+		}
+		return [true, ""];
+	}
+
+	private static addDatasetValidate(id: string,
+		datasets: InsightDataset[], kind: InsightDatasetKind): [boolean, string] {
+		const jsZip = new JSZip();
+		if (kind === InsightDatasetKind.Rooms) {
+			return [false, "InsightDatasetKind.Rooms not implemented"];
+		}
+		let [result, str] = InsightFacade.isValidId(id);
+		if (result === false) {
+			return [result, str];
 		}
 		for (let dataset of datasets) {
 			if (dataset.id === id) {
-				return false;
+				return [false, "id already added"];
 			}
 		}
-		return true;
+		return [true, ""];
 	}
 
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		const jsZip = new JSZip();
 		return new Promise<string[]>((resolve, reject) => {
-			if (!InsightFacade.isValidNewId(id, this.datasets)) {
-				reject(new InsightError("addDataset Invalid ID"));
+			let [isValid, errorString] = InsightFacade.addDatasetValidate(id, this.datasets, kind);
+			if (!isValid) {
+				reject(new InsightError(errorString));
 			}
 			let courses: any[] = [];
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			jsZip.folder("courses").loadAsync(content, {base64: true}).then((zip: JSZip) => {
+			jsZip.loadAsync(content, {base64: true}).then((zip: JSZip) => {
 				const fileStrings: any[] = [];
 				zip.forEach((relativePath, file) => {
-					fileStrings.push(file.async("text"));
+					if (relativePath.startsWith("courses/")) {
+						fileStrings.push(file.async("text"));
+					}
 				});
 				Promise.all(fileStrings).then(async function (files) {
 					let fileJsons: any[] = [];
@@ -108,7 +123,23 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public removeDataset(id: string): Promise<string> {
-		return Promise.reject("Not implemented.");
+		return new Promise<string>((resolve, reject) => {
+			let [isValid, errorString] = InsightFacade.isValidId(id);
+			if (!isValid) {
+				reject(new InsightError(errorString));
+			}
+			const results: any[] = [];
+			for (let i = 0; i < this.datasets.length; i++) {
+				if (this.datasets[i].id === id) {
+					this.datasets.splice(i, 1);
+					fs.remove("data/" + id + ".json").catch((err: any) => {
+						reject(new InsightError(err));
+					});
+					resolve(id);
+				}
+			}
+			reject(new NotFoundError("removeDataset File Not Found"));
+		});
 	}
 
 	public performQuery(query: any): Promise<any[]> {
@@ -117,10 +148,6 @@ export default class InsightFacade implements IInsightFacade {
 
 	public listDatasets(): Promise<InsightDataset[]> {
 		return new Promise<InsightDataset[]>((resolve, reject) => {
-			// let datasets: InsightDataset[] = [];
-			// for (let dataset of this.datasets) {
-			// 	datasets.push({id: dataset.id, kind: dataset.kind, numRows: dataset.numRows});
-			// }
 			resolve(this.datasets);
 		});
 	}

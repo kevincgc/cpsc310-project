@@ -28,30 +28,16 @@ describe("tests", function() {
 	describe("Tutorial add 0/1/multi DS", function () {
 		let facade: IInsightFacade = new InsightFacade();
 		beforeEach(function () {
-			fs.removeSync("data");
+			// fs.removeSync("data");
 			facade = new InsightFacade();
 		});
-		it("should list no datasets", function () {
-			return facade.listDatasets()
-				.then((insightDatasets) => {
-					// expect(insightDatasets).to.deep.equal([]);
-					expect(insightDatasets).to.be.an.instanceOf(Array);
-					expect(insightDatasets).to.have.length(0);
-				});
-		});
-		it("should list one datasets", function () {
-			this.timeout(900000);
-			return facade.addDataset("courses", courses, InsightDatasetKind.Courses)
-				.then(() => {
-					return facade.listDatasets();
-				})
-				.then((insightDatasets) => {
-					expect(insightDatasets).to.deep.equal([{
-						id: "courses",
-						kind: InsightDatasetKind.Courses,
-						numRows: 64612,
-					}]);
-				});
+		it("should RDS pass add then remove", async function () {
+			this.timeout(10000);
+			await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
+			let removedID = await facade.removeDataset("courses");
+			const insightDatasets = await facade.listDatasets();
+			expect(insightDatasets).to.have.length(0);
+			expect(removedID).to.equal("courses");
 		});
 		// it("should list one datasets", function () {
 		// 	return facade.addDataset("courses", courses8, InsightDatasetKind.Courses)
