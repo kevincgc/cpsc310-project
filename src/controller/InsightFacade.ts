@@ -14,7 +14,7 @@ export default class InsightFacade implements IInsightFacade {
 		this.datasets = [];
 		this.datasetsJson = [];
 	}
-	private isValidCourses(jsonObject: JSON) {
+	private static isValidCourses(jsonObject: JSON) {
 		if ("Title" in jsonObject &&
 			"tier_eighty_five" in jsonObject) {
 			return true;
@@ -23,7 +23,7 @@ export default class InsightFacade implements IInsightFacade {
 		}
 	}
 
-	private parseJsonAsync (jsonString: string): Promise<JSON> {
+	private static parseJsonAsync (jsonString: string): Promise<JSON> {
 		return new Promise((resolve, reject) => {
 			setTimeout(() => {
 				try {
@@ -32,7 +32,6 @@ export default class InsightFacade implements IInsightFacade {
 				} catch (e) {
 					reject("not a json");
 				}
-				// resolve(JSON.parse(jsonString));
 			});
 		});
 	}
@@ -49,14 +48,16 @@ export default class InsightFacade implements IInsightFacade {
 
 				Promise.all(fileStrings).then(async function (files) {
 					let fileJsons: any[] = [];
+
 					for (let file of files) {
-						if (file.length < 10) {
-							continue;
-						}
-						fileJsons.push(JSON.parse(file));
+						fileJsons.push(InsightFacade.parseJsonAsync(file));
 					}
-					console.log(fileJsons[1500]);
-					console.log(fileJsons.length);
+					// Start of code based on https://stackoverflow.com/a/46024590
+					const results = await Promise.all(fileJsons.map((p) => p.catch((e: Error) => e)));
+					const validResults = results.filter((result) => !(result instanceof Error));
+					// End of code based on https://stackoverflow.com/a/46024590
+					console.log(validResults[1500]);
+					console.log(validResults.length);
 					// const fileJsons: any[] = [];
 					// for (let file of files) {
 					// 	fileJsons.push(this.parseJsonAsync(file));
