@@ -40,6 +40,7 @@ describe("tests", function() {
 				});
 		});
 		it("should list one datasets", function () {
+			this.timeout(900000);
 			return facade.addDataset("courses", courses, InsightDatasetKind.Courses)
 				.then(() => {
 					return facade.listDatasets();
@@ -65,15 +66,15 @@ describe("tests", function() {
 		// 			}]);
 		// 		});
 		// });
-		it("should list one datasets", function () {
-			fs.removeSync("data");
-		});
-		after(function () {
-			fs.removeSync("data");
-		});
+		// it("should list one datasets", function () {
+		// 	fs.removeSync("data");
+		// });
+		// after(function () {
+		// 	fs.removeSync("data");
+		// });
 	});
-	after(function () {
-		fs.removeSync("data");
-	});
+	// after(function () {
+	// 	fs.removeSync("data");
+	// });
 });
 
