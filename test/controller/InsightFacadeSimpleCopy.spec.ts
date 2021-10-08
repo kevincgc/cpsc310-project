@@ -45,7 +45,7 @@ describe("tests", function() {
 							},
 							{
 								IS: {
-									courses_id: "2*"
+									courses_id: "*"
 								}
 							},
 							{
@@ -64,7 +64,7 @@ describe("tests", function() {
 					,
 					{
 						EQ: {
-							courses_avg: 0
+							courses_avg: 123
 						}
 					}
 				]
@@ -75,7 +75,7 @@ describe("tests", function() {
 					"courses_id",
 					"courses_avg"
 				],
-				ORDER: "courses_avg"
+				ORDER: "courses_avg",
 			}
 		};
 		let q2 = {
@@ -88,6 +88,21 @@ describe("tests", function() {
 				ORDER: "courses_avg"
 			}
 		};
+		let q3 = {
+			WHERE: {
+				EQ: {
+					courses_avg: 123
+				}
+			},
+			OPTIONS: {
+				COLUMNS: [
+					"courses_dept",
+					"courses_id",
+					"courses_avg"
+				],
+				ORDER: "courses_avg",
+			}
+		};
 		beforeEach(function () {
 			fs.removeSync("data");
 			facade = new InsightFacade();
@@ -97,6 +112,7 @@ describe("tests", function() {
 			// await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
 			console.log(isValidQuery(q));
 			console.log(isValidQuery(q2));
+			console.log(isValidQuery(q3));
 		});
 		// it("should list one datasets", function () {
 		// 	return facade.addDataset("courses", courses8, InsightDatasetKind.Courses)

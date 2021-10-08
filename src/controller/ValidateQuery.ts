@@ -40,7 +40,8 @@ function isValidMComparison (input: any): boolean {
 		for (let m in input[key]) {
 			keyCount++;
 			isValid = isValidMKey(m);
-			isValid = isValid && !isNaN(input[key][m]);
+			isValid = isValid && !isNaN(input[key][m]) &&
+				!(typeof input[key][m] === "string" || input[key][m] instanceof String);
 		}
 	}
 	return isValid && keyCount === 2;
