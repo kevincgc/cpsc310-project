@@ -6,6 +6,7 @@ import * as fs from "fs-extra";
 import {clearDisk, getContentFromArchives } from "../resources/TestUtil";
 import {testFolder} from "@ubccpsc310/folder-test";
 import {expect} from "chai";
+import {isValidQuery} from "../../src/controller/ValidateQuery";
 
 type PQErrorKind = "ResultTooLargeError" | "InsightError";
 

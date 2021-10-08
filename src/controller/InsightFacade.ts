@@ -1,5 +1,6 @@
 import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFoundError} from "./IInsightFacade";
 import JSZip from "jszip";
+import {isValidQuery} from "./ValidateQuery";
 
 const fs = require("fs-extra");
 // const jsZip = require("jszip");
@@ -148,95 +149,11 @@ export default class InsightFacade implements IInsightFacade {
 		});
 	}
 
-	private static isValidQueryKey(id: string, key: string): boolean {
-		const validKeys: string[] =
-			["dept", "id", "avg", "instructor", "title", "pass", "fail", "audit", "uuid", "year"];
-		let regexs: any[] = [];
-		for (let k of validKeys) {
-			regexs.push(new RegExp("#" + id + "_" + k + "#", "i"));
-		}
-		for (let regex of regexs) {
-			if (key.match(regex)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	public static isValidLogicComparison (input: any): boolean {
-		if (!(input["AND"] || input["OR"])) {
-			return false;
-		}
-		let isValid = true;
-		for (let key in input) {
-			isValid = isValid && this.isValidFilter(input[key]);
-		}
-		return isValid;
-	}
-	public static isValidMComparison (input: any): boolean {
-		if (!(input["LT"] || input["GT"] || input["EQ"])) {
-			return false;
-		}
-		const validMKeys = [/^[^_]+_avg$/, /[^_]+_pass$/, /[^_]+_fail$/, /[^_]+_audit$/, /[^_]+_year$/];
-		let keyCount = 0;
-		let isValid = false;
-		for (let key in input) {
-			keyCount++;
-			for (let m in input[key]) {
-				keyCount++;
-				isValid = validMKeys.some((rx) => rx.test(m));
-				isValid = isValid && !isNaN(input[key][m]);
-			}
-		}
-		return isValid && keyCount === 2;
-	}
-
-	public static isValidSComparison (input: any): boolean {
-		if (!input["IS"]) {
-			return false;
-		}
-		const validSKeys = [/^[^_]+_dept$/, /[^_]+_id$/, /[^_]+_instructor$/, /[^_]+_title$/, /[^_]+_uuid$/];
-		let keyCount = 0;
-		let isValid = false;
-		for (let key in input) {
-			keyCount++;
-			for (let m in input[key]) {
-				keyCount++;
-				isValid = validSKeys.some((rx) => rx.test(m));
-				isValid = isValid && (typeof input[key][m] === "string" || input[key][m] instanceof String);
-			}
-		}
-		return isValid && keyCount === 2;
-	}
-	public static isValidNegation (input: any): boolean {
-		if (!input["NOT"]) {
-			return false;
-		}
-		return InsightFacade.isValidFilter(input["NOT"]);
-	}
-
-	public static isValidFilter (input: any) {
-		return InsightFacade.isValidLogicComparison(input) || InsightFacade.isValidMComparison(input) ||
-			InsightFacade.isValidSComparison(input) || InsightFacade.isValidNegation(input);
-	}
-
-	public static isValidWhere (input: any) {
-		return Object.keys(input).length === 0 || InsightFacade.isValidFilter(input);
-	}
-
-	public static isValidOptions (input: any) {
-		let isValid = true;
-		return isValid;
-	}
-
-	public static isValidQuery(query: any): boolean {
-		return this.isValidWhere(query["WHERE"]) && this.isValidOptions(query["OPTIONS"]);
-	}
-
 	public performQuery(query: any): Promise<any[]> {
 		return new Promise<any[]>((resolve, reject) => {
-			let where: any = query["WHERE"];
-			let options: any = query["OPTIONS"];
+			if (!isValidQuery(query)) {
+				reject(new InsightError("performQuery Invalid Query Grammar"));
+			}
 		});
 	}
 }

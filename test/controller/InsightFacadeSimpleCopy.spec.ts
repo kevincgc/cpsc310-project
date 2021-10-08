@@ -9,6 +9,7 @@ import InsightFacade from "../../src/controller/InsightFacade";
 import {clearDisk, getContentFromArchives} from "../resources/TestUtil";
 import {expect} from "chai";
 import * as fs from "fs-extra";
+import {isValidQuery} from "../../src/controller/ValidateQuery";
 
 describe("tests", function() {
 	let courses: string;
@@ -78,8 +79,13 @@ describe("tests", function() {
 			}
 		};
 		let q2 = {
-			IS: {
-				courses_id: "2*"
+			OPTIONS: {
+				COLUMNS: [
+					"courses_dept",
+					"courses_id",
+					"courses_avg"
+				],
+				ORDER: "courses_avg"
 			}
 		};
 		beforeEach(function () {
@@ -89,10 +95,8 @@ describe("tests", function() {
 		it("should RDS pass add then remove", async function () {
 			this.timeout(10000);
 			// await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
-			console.log(InsightFacade.isValidMComparison(q2));
-			console.log(InsightFacade.isValidSComparison(q2));
-			console.log(InsightFacade.isValidLogicComparison(q.WHERE.OR[0]));
-			console.log(InsightFacade.isValidQuery(q));
+			console.log(isValidQuery(q));
+			console.log(isValidQuery(q2));
 		});
 		// it("should list one datasets", function () {
 		// 	return facade.addDataset("courses", courses8, InsightDatasetKind.Courses)

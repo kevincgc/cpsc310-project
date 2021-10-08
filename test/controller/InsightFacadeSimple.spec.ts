@@ -9,6 +9,7 @@ import InsightFacade from "../../src/controller/InsightFacade";
 import {clearDisk, getContentFromArchives} from "../resources/TestUtil";
 import {expect} from "chai";
 import * as fs from "fs-extra";
+import {isValidQuery} from "../../src/controller/ValidateQuery";
 
 describe("tests", function() {
 	let courses: string;
