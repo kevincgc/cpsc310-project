@@ -9,6 +9,19 @@ const fs = require("fs-extra");
  * Method documentation is in IInsightFacade
  *
  */
+const keyDict: {[index: string]: string} = {
+	dept: "Subject",
+	id: "Course",
+	avg: "Avg",
+	instructor: "Professor",
+	title: "Title",
+	pass: "Pass",
+	fail: "Fail",
+	audit: "Audit",
+	uuid: "id",
+	year: "year"
+};
+
 export default class InsightFacade implements IInsightFacade {
 	public datasets: InsightDataset[];
 	public currentCourses: JSON[];
@@ -149,11 +162,59 @@ export default class InsightFacade implements IInsightFacade {
 		});
 	}
 
+	public executeFilter(object: any, dataInput: any[]): any[] {
+		if (dataInput.length === 0) {
+			dataInput = this.currentCourses;
+		}
+		console.log("original", dataInput.length);
+		let data = [];
+		let operator = "";
+		for (let key in object) {
+			operator = key;
+		}
+		for (let key in object[operator]) {
+			let field = key.split("_")[1];
+			switch (operator) {
+			case "EQ":
+				data = dataInput.filter((a) => a[keyDict[field]] === object[operator][key]);
+				break;
+			case "IS": {
+				let wcStart: boolean = object[operator][key][0] === "*" ? true : false;
+				let wcEnd: boolean = object[operator][key][object[operator][key].length - 1] === "*" ? true : false;
+				if (wcStart && wcEnd && (object[operator][key].length === 1 || object[operator][key].length === 2)) {
+					data = dataInput;
+					break;
+				}
+				let definite = object[operator][key].replace(/[*]/g, "");
+				let regex = new RegExp("^" + (wcStart ? ".*" : "") + definite + (wcEnd ? ".*" : "") + "$");
+				console.log(wcStart);
+				console.log(wcEnd);
+				console.log(definite);
+				console.log(regex);
+				data = dataInput.filter((a) => regex.test(a[keyDict[field]]));
+				break;
+			}
+			case "GT":
+				data = dataInput.filter((a) => a[keyDict[field]] > object[operator][key]);
+				break;
+			case "LT":
+				data = dataInput.filter((a) => a[keyDict[field]] < object[operator][key]);
+				break;
+			case "NOT":
+				data = this.currentCourses.filter((val) => !dataInput.includes(val));
+			}
+		}
+		console.log("filtered", data.length);
+		return data;
+	}
+
 	public performQuery(query: any): Promise<any[]> {
 		return new Promise<any[]>((resolve, reject) => {
 			if (!isValidQuery(query)) {
 				reject(new InsightError("performQuery Invalid Query Grammar"));
 			}
+
+			reject(new InsightError("performQuery Not Fully Implemented"));
 		});
 	}
 }
