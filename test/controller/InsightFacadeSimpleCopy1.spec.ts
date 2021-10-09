@@ -79,9 +79,23 @@ describe("tests", function() {
 			}
 		};
 		let q2 = {
-			GT: {
-				courses_avg: 60
-			}
+			OR: [
+				{
+					GT: {
+						courses_avg: 80
+					}
+				},
+				{
+					IS: {
+						courses_dept: "cpsc"
+					}
+				},
+				{
+					GT: {
+						courses_year: 2015
+					}
+				}
+			]
 		};
 		let q3 = {
 			NOT: {
@@ -101,7 +115,7 @@ describe("tests", function() {
 			this.timeout(10000);
 			await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
 			let f = facade as InsightFacade;
-			let a = f.executeFilter(q4, []);
+			let a = f.executeLogic(q2, []);
 			// let b = f.executeFilter(q3, a);
 			console.log(a.length);
 			// console.log(b.length);

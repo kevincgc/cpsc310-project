@@ -19,8 +19,10 @@ const keyDict: {[index: string]: string} = {
 	fail: "Fail",
 	audit: "Audit",
 	uuid: "id",
-	year: "year"
+	year: "Year"
 };
+const filter: string[] = ["GT", "LT", "EQ", "NOT", "IS"];
+const logic: string[] = ["AND", "OR"];
 
 export default class InsightFacade implements IInsightFacade {
 	public datasets: InsightDataset[];
@@ -162,11 +164,8 @@ export default class InsightFacade implements IInsightFacade {
 		});
 	}
 
-	public executeFilter(object: any, dataInput: any[]): any[] {
-		if (dataInput.length === 0) {
-			dataInput = this.currentCourses;
-		}
-		console.log("original", dataInput.length);
+	public executeFilter(object: any, dataInput: any[] = this.currentCourses): any[] {
+		// return new Promise<any[]>((resolve, reject) => {
 		let data = [];
 		let operator = "";
 		for (let key in object) {
@@ -175,25 +174,22 @@ export default class InsightFacade implements IInsightFacade {
 		for (let key in object[operator]) {
 			let field = key.split("_")[1];
 			switch (operator) {
-			case "EQ":
-				data = dataInput.filter((a) => a[keyDict[field]] === object[operator][key]);
-				break;
 			case "IS": {
 				let wcStart: boolean = object[operator][key][0] === "*" ? true : false;
 				let wcEnd: boolean = object[operator][key][object[operator][key].length - 1] === "*" ? true : false;
-				if (wcStart && wcEnd && (object[operator][key].length === 1 || object[operator][key].length === 2)) {
+				if (wcStart && wcEnd && (object[operator][key].length === 1 ||
+					object[operator][key].length === 2)) {
 					data = dataInput;
 					break;
 				}
 				let definite = object[operator][key].replace(/[*]/g, "");
 				let regex = new RegExp("^" + (wcStart ? ".*" : "") + definite + (wcEnd ? ".*" : "") + "$");
-				console.log(wcStart);
-				console.log(wcEnd);
-				console.log(definite);
-				console.log(regex);
 				data = dataInput.filter((a) => regex.test(a[keyDict[field]]));
 				break;
 			}
+			case "EQ":
+				data = dataInput.filter((a) => a[keyDict[field]] === object[operator][key]);
+				break;
 			case "GT":
 				data = dataInput.filter((a) => a[keyDict[field]] > object[operator][key]);
 				break;
@@ -202,10 +198,58 @@ export default class InsightFacade implements IInsightFacade {
 				break;
 			case "NOT":
 				data = this.currentCourses.filter((val) => !dataInput.includes(val));
+				break;
+			// default:
+			//	reject(new Error("executeFilter Invalid Operator"));
 			}
 		}
-		console.log("filtered", data.length);
 		return data;
+		// resolve(data);
+		// });
+	}
+
+	public executeLogic(object: any, dataInput: any[]): any[] {
+		let results: any[] = [];
+		let operator = "";
+		for (let key in object) {
+			operator = key;
+		}
+		for (let key in object[operator]) {
+			// results.push(this.executeNode(object, this.currentCourses));
+			results.push(this.executeFilter(object[operator][key], this.currentCourses));
+		}
+		for (let key of results) {
+			console.log(key.length);
+		}
+		let data: any[] = results[0];
+		if (operator === "AND") {
+			for (let result of results) {
+				data = data.filter((val) => result.includes(val));
+			}
+		}
+		if (operator === "OR") {
+			for (let result of results) {
+				let combined = data.concat(result);
+				combined = [...new Set([...data,...result])];
+				data = combined;
+			}
+		}
+		console.log("len ", data.length);
+		return data;
+	}
+
+	public executeNode(object: any, dataInput: any[]): any[] {
+		let operator = "";
+		for (let key in object) {
+			operator = key;
+		}
+		if (filter.find((a) => a === operator)) {
+			return this.executeFilter(object, dataInput);
+		} else if (logic.find((a) => a === operator)) {
+			return this.executeLogic(object, dataInput);
+		} else {
+			return [];
+		}
 	}
 
 	public performQuery(query: any): Promise<any[]> {
