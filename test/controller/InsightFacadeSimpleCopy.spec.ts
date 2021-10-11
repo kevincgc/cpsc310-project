@@ -9,6 +9,7 @@ import InsightFacade from "../../src/controller/InsightFacade";
 import {clearDisk, getContentFromArchives} from "../resources/TestUtil";
 import {expect} from "chai";
 import * as fs from "fs-extra";
+import {isValidQuery} from "../../src/controller/ValidateQuery";
 
 describe("tests", function() {
 	let courses: string;
@@ -27,17 +28,91 @@ describe("tests", function() {
 	});
 	describe("Tutorial add 0/1/multi DS", function () {
 		let facade: IInsightFacade = new InsightFacade();
+		let q = {
+			WHERE: {
+				OR: [
+					{
+						AND: [
+							{
+								GT: {
+									courses_avg: 80
+								}
+							},
+							{
+								IS: {
+									courses_dept: "cpsc"
+								}
+							},
+							{
+								IS: {
+									courses_id: "*"
+								}
+							},
+							{
+								GT: {
+									courses_year: 2010
+								}
+							}
+
+						]
+					},
+					{
+						EQ: {
+							courses_avg: 100
+						}
+					}
+					,
+					{
+						EQ: {
+							courses_avg: 123
+						}
+					}
+				]
+			},
+			OPTIONS: {
+				COLUMNS: [
+					"courses_dept",
+					"courses_id",
+					"courses_avg"
+				],
+				ORDER: "courses_avg",
+			}
+		};
+		let q2 = {
+			OPTIONS: {
+				COLUMNS: [
+					"courses_dept",
+					"courses_id",
+					"courses_avg"
+				],
+				ORDER: "courses_avg"
+			}
+		};
+		let q3 = {
+			WHERE: {
+				EQ: {
+					courses_avg: 123
+				}
+			},
+			OPTIONS: {
+				COLUMNS: [
+					"courses_dept",
+					"courses_id",
+					"courses_avg"
+				],
+				ORDER: "courses_avg",
+			}
+		};
 		beforeEach(function () {
-			// fs.removeSync("data");
+			fs.removeSync("data");
 			facade = new InsightFacade();
 		});
 		it("should RDS pass add then remove", async function () {
 			this.timeout(10000);
-			await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
-			let removedID = await facade.removeDataset("courses");
-			const insightDatasets = await facade.listDatasets();
-			expect(insightDatasets).to.have.length(0);
-			expect(removedID).to.equal("courses");
+			// await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
+			console.log(isValidQuery(q));
+			console.log(isValidQuery(q2));
+			console.log(isValidQuery(q3));
 		});
 		// it("should list one datasets", function () {
 		// 	return facade.addDataset("courses", courses8, InsightDatasetKind.Courses)

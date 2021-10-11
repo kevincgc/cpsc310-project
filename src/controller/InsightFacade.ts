@@ -1,5 +1,6 @@
 import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFoundError} from "./IInsightFacade";
 import JSZip from "jszip";
+import {isValidQuery} from "./ValidateQuery";
 
 const fs = require("fs-extra");
 // const jsZip = require("jszip");
@@ -142,13 +143,17 @@ export default class InsightFacade implements IInsightFacade {
 		});
 	}
 
-	public performQuery(query: any): Promise<any[]> {
-		return Promise.reject("Not implemented.");
-	}
-
 	public listDatasets(): Promise<InsightDataset[]> {
 		return new Promise<InsightDataset[]>((resolve, reject) => {
 			resolve(this.datasets);
+		});
+	}
+
+	public performQuery(query: any): Promise<any[]> {
+		return new Promise<any[]>((resolve, reject) => {
+			if (!isValidQuery(query)) {
+				reject(new InsightError("performQuery Invalid Query Grammar"));
+			}
 		});
 	}
 }
