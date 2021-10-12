@@ -58,13 +58,13 @@ describe("tests", function() {
 					},
 					{
 						EQ: {
-							courses_avg: 100
+							courses_avg: 68
 						}
 					}
 					,
 					{
 						EQ: {
-							courses_avg: 123
+							courses_avg: 63
 						}
 					}
 				]
@@ -136,7 +136,7 @@ describe("tests", function() {
 			this.timeout(10000);
 			await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
 			let f = facade as InsightFacade;
-			let a = f.executeLogic(q2);
+			let a = await f.performQuery(q);
 			// let b = f.executeFilter(q3, a);
 			console.log(a.length);
 			// console.log(b.length);

@@ -1,29 +1,16 @@
-import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFoundError} from "./IInsightFacade";
+import {IInsightFacade, InsightDataset,	InsightDatasetKind,	InsightError, NotFoundError,
+	ResultTooLargeError} from "./IInsightFacade";
 import JSZip from "jszip";
 import {isValidQuery} from "./ValidateQuery";
-
+import {keyDict, filter, logic, features} from "./Const";
 const fs = require("fs-extra");
-// const jsZip = require("jszip");
+import {addDatasetValidate, isValidId, isValidCourses, getValidCourses, parseJsonAsync} from "./addDataset Helpers";
+
 /**
  * This is the main programmatic entry point for the project.
  * Method documentation is in IInsightFacade
  *
  */
-const keyDict: {[index: string]: string} = {
-	dept: "Subject",
-	id: "Course",
-	avg: "Avg",
-	instructor: "Professor",
-	title: "Title",
-	pass: "Pass",
-	fail: "Fail",
-	audit: "Audit",
-	uuid: "id",
-	year: "Year"
-};
-const filter: string[] = ["GT", "LT", "EQ", "NOT", "IS"];
-const logic: string[] = ["AND", "OR"];
-
 export default class InsightFacade implements IInsightFacade {
 	public datasets: InsightDataset[];
 	public currentCourses: JSON[];
@@ -33,72 +20,11 @@ export default class InsightFacade implements IInsightFacade {
 		this.currentCourses = [];
 		this.currentDatasetId = "";
 	}
-	private static isValidCourses(jsonObject: JSON) {
-		if ("Title" in jsonObject &&
-			"tier_eighty_five" in jsonObject) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	private static parseJsonAsync (jsonString: string): Promise<JSON> {
-		return new Promise((resolve, reject) => {
-			setTimeout(() => {
-				try {
-					let json = JSON.parse(jsonString);
-					resolve(json);
-				} catch (e) {
-					reject(new Error());
-				}
-			});
-		});
-	}
-
-	private static isValidId (id: string): [boolean, string] {
-		if (id.includes("_") || id.match(/^[ ]+$/)) {
-			return [false, "invalid id: can't have underscore or be all spaces"];
-		}
-		return [true, ""];
-	}
-
-	private static addDatasetValidate(id: string,
-		datasets: InsightDataset[], kind: InsightDatasetKind): [boolean, string] {
-		const jsZip = new JSZip();
-		if (kind === InsightDatasetKind.Rooms) {
-			return [false, "InsightDatasetKind.Rooms not implemented"];
-		}
-		let [result, str] = InsightFacade.isValidId(id);
-		if (result === false) {
-			return [result, str];
-		}
-		for (let dataset of datasets) {
-			if (dataset.id === id) {
-				return [false, "id already added"];
-			}
-		}
-		return [true, ""];
-	}
-
-	private static getValidCourses(validResults: any[]) {
-		let courses: any[] = [];
-		for (let file of validResults) {
-			for (let course of file.result) {
-				if (course.Section === "overall") {
-					course.Year = 1900;
-				}
-				if (InsightFacade.isValidCourses(course)) {
-					courses.push(course);
-				}
-			}
-		}
-		return courses;
-	}
 
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		const jsZip = new JSZip();
 		return new Promise<string[]>((resolve, reject) => {
-			let [isValid, errorString] = InsightFacade.addDatasetValidate(id, this.datasets, kind);
+			let [isValid, errorString] = addDatasetValidate(id, this.datasets, kind);
 			if (!isValid) {
 				reject(new InsightError(errorString));
 			}
@@ -113,14 +39,14 @@ export default class InsightFacade implements IInsightFacade {
 				Promise.all(fileStrings).then(async function (files) {
 					let fileJsons: any[] = [];
 					for (let file of files) {
-						fileJsons.push(InsightFacade.parseJsonAsync(file));
+						fileJsons.push(parseJsonAsync(file));
 					}
 					// Start of code based on https://stackoverflow.com/a/46024590
 					const results = await Promise.all(fileJsons.map((p) => p.catch((e: Error) => e)));
 					return results.filter((result) => !(result instanceof Error));
 					// End of code based on https://stackoverflow.com/a/46024590
 				}).then((validResults) => {
-					courses = InsightFacade.getValidCourses(validResults);
+					courses = getValidCourses(validResults);
 					fs.outputJson("data/" + id + ".json", JSON.stringify(courses));
 						// .then((data: any) => {
 						// 	console.log(data);
@@ -149,7 +75,7 @@ export default class InsightFacade implements IInsightFacade {
 
 	public removeDataset(id: string): Promise<string> {
 		return new Promise<string>((resolve, reject) => {
-			let [isValid, errorString] = InsightFacade.isValidId(id);
+			let [isValid, errorString] = isValidId(id);
 			if (!isValid) {
 				reject(new InsightError(errorString));
 			}
@@ -264,13 +190,51 @@ export default class InsightFacade implements IInsightFacade {
 		}
 	}
 
+	// Adapted from https://stackoverflow.com/a/4760279
+	private dynamicSort(key: any) {
+		let sortOrder = 1;
+		if(key[0] === "-") {
+			sortOrder = -1;
+			key = key.substr(1);
+		}
+		return function (a: any, b: any) {
+			let result = (a[key] < b[key]) ? -1 : (a[key] > b[key]) ? 1 : 0;
+			return result * sortOrder;
+		};
+	}
+
 	public performQuery(query: any): Promise<any[]> {
 		return new Promise<any[]>((resolve, reject) => {
+			if(!query.OPTIONS || !query.OPTIONS.ORDER) {
+				reject(new InsightError("performQuery Invalid Query Grammar"));
+			}
+			let id = query["OPTIONS"]["COLUMNS"][0].split("_")[0];
 			if (!isValidQuery(query)) {
 				reject(new InsightError("performQuery Invalid Query Grammar"));
 			}
-
-			reject(new InsightError("performQuery Not Fully Implemented"));
+			let filteredCourses = this.executeNode(query["WHERE"]);
+			if (filteredCourses.length > 5000) {
+				reject(new ResultTooLargeError("performQuery > 5000 results"));
+			}
+			let columns = [];
+			for (let feature of query["OPTIONS"]["COLUMNS"]) {
+				columns.push(feature.split("_")[1]);
+			}
+			let coursesSelectedColumns: any[] = [];
+			for (let course of filteredCourses) {
+				let courseObject: any = {};
+				for (let feature of features) {
+					if(columns.find((element) => element === feature)) {
+						let columnName = id + "_" + feature;
+						courseObject[columnName] = course[keyDict[feature]];
+					}
+				}
+				coursesSelectedColumns.push(courseObject);
+			}
+			coursesSelectedColumns.sort(this.dynamicSort(query["OPTIONS"]["ORDER"]));
+			console.log("filtered courses: ", filteredCourses.length);
+			console.log("filtered courses columns: ", coursesSelectedColumns.length);
+			resolve(coursesSelectedColumns);
 		});
 	}
 }
