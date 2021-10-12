@@ -420,7 +420,7 @@ describe("kevincgc c0 tests", function() {
 		testFolder<any, any[], PQErrorKind>(
 			"Normal Queries",
 			(input): Promise<any[]> => insightFacade.performQuery(input),
-			"./test/resources/queries/kevincgc",
+			"./test/resources/kevincgc_queries",
 			{
 				assertOnResult(expected, actual) {
 					expect(actual).to.be.an.instanceOf(Array);
@@ -452,7 +452,7 @@ describe("kevincgc c0 tests", function() {
 		testFolder<any, any[], PQErrorKind>(
 			"Special Queries",
 			(input): Promise<any[]> => insightFacade.performQuery(input),
-			"./test/resources/queries/kevincgc/special",
+			"./test/resources/kevincgc_special_queries",
 			{
 				assertOnResult(expected, actual) {
 					expect(actual).to.be.an.instanceOf(Array);

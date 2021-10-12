@@ -47,7 +47,6 @@ export default class InsightFacade implements IInsightFacade {
 					// End of code based on https://stackoverflow.com/a/46024590
 				}).then((validResults) => {
 					courses = getValidCourses(validResults);
-					fs.outputJson("data/" + id + ".json", JSON.stringify(courses));
 						// .then((data: any) => {
 						// 	console.log(data);
 						// })
@@ -62,6 +61,7 @@ export default class InsightFacade implements IInsightFacade {
 						for (let dataset of this.datasets) {
 							ids.push(dataset.id);
 						}
+						fs.outputJson("data/" + id + ".json", JSON.stringify(courses));
 						resolve(ids);
 					} else {
 						reject(new InsightError("addDataset No Valid Sections"));
@@ -177,7 +177,7 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public executeNode(object: any): any[] {
-		let operator = "";
+		let operator = "null";
 		for (let key in object) {
 			operator = key;
 		}
@@ -185,6 +185,8 @@ export default class InsightFacade implements IInsightFacade {
 			return this.executeFilter(object);
 		} else if (logic.find((a) => a === operator)) {
 			return this.executeLogic(object);
+		} else if (operator === "null") {
+			return this.currentCourses;
 		} else {
 			return [];
 		}
@@ -203,37 +205,52 @@ export default class InsightFacade implements IInsightFacade {
 		};
 	}
 
+	public getFeatures (query: any) {
+		let columns = [];
+		for (let feature of query["OPTIONS"]["COLUMNS"]) {
+			columns.push(feature.split("_")[1]);
+		}
+		return columns;
+	}
+
 	public performQuery(query: any): Promise<any[]> {
 		return new Promise<any[]>((resolve, reject) => {
-			if(!query.OPTIONS || !query.OPTIONS.ORDER) {
+			if (!isValidQuery(query)) {
 				reject(new InsightError("performQuery Invalid Query Grammar"));
 			}
 			let id = query["OPTIONS"]["COLUMNS"][0].split("_")[0];
-			if (!isValidQuery(query)) {
-				reject(new InsightError("performQuery Invalid Query Grammar"));
+			console.log(id);
+			if (id !== this.currentDatasetId) {
+				try {
+					this.currentCourses = JSON.parse(fs.readJsonSync("data/" + id + ".json"));
+					this.currentDatasetId = id;
+				} catch (err: any) {
+					reject(new InsightError("performQuery Dataset Does Not Exist"));
+				}
 			}
 			let filteredCourses = this.executeNode(query["WHERE"]);
 			if (filteredCourses.length > 5000) {
 				reject(new ResultTooLargeError("performQuery > 5000 results"));
 			}
-			let columns = [];
-			for (let feature of query["OPTIONS"]["COLUMNS"]) {
-				columns.push(feature.split("_")[1]);
-			}
+			let columns = this.getFeatures(query);
 			let coursesSelectedColumns: any[] = [];
 			for (let course of filteredCourses) {
 				let courseObject: any = {};
 				for (let feature of features) {
 					if(columns.find((element) => element === feature)) {
 						let columnName = id + "_" + feature;
-						courseObject[columnName] = course[keyDict[feature]];
+						if (feature === "year") {
+							courseObject[columnName] = parseInt(course[keyDict[feature]], 10);
+						} else if (feature === "uuid") {
+							courseObject[columnName] = course[keyDict[feature]].toString();
+						} else {
+							courseObject[columnName] = course[keyDict[feature]];
+						}
 					}
 				}
 				coursesSelectedColumns.push(courseObject);
 			}
 			coursesSelectedColumns.sort(this.dynamicSort(query["OPTIONS"]["ORDER"]));
-			console.log("filtered courses: ", filteredCourses.length);
-			console.log("filtered courses columns: ", coursesSelectedColumns.length);
 			resolve(coursesSelectedColumns);
 		});
 	}
