@@ -47,12 +47,6 @@ export default class InsightFacade implements IInsightFacade {
 					// End of code based on https://stackoverflow.com/a/46024590
 				}).then((validResults) => {
 					courses = getValidCourses(validResults);
-						// .then((data: any) => {
-						// 	console.log(data);
-						// })
-						// .catch((err: any) => {
-						// 	console.error(err);
-						// });
 					if (courses.length > 0) {
 						this.currentCourses = courses;
 						this.currentDatasetId = id;
@@ -100,7 +94,6 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public executeFilter(object: any): any[] {
-		// return new Promise<any[]>((resolve, reject) => {
 		let courses: any[] = this.currentCourses;
 		let data = [];
 		let operator = "";
@@ -137,13 +130,9 @@ export default class InsightFacade implements IInsightFacade {
 				data = this.currentCourses.filter((val) => !insideQueryResult.includes(val));
 				break;
 			}
-			// default:
-			//	reject(new Error("executeFilter Invalid Operator"));
 			}
 		}
 		return data;
-		// resolve(data);
-		// });
 	}
 
 	public executeLogic(object: any): any[] {
@@ -191,14 +180,9 @@ export default class InsightFacade implements IInsightFacade {
 
 	// Adapted from https://stackoverflow.com/a/4760279
 	private dynamicSort(key: any) {
-		let sortOrder = 1;
-		if(key[0] === "-") {
-			sortOrder = -1;
-			key = key.substr(1);
-		}
 		return function (a: any, b: any) {
 			let result = (a[key] < b[key]) ? -1 : (a[key] > b[key]) ? 1 : 0;
-			return result * sortOrder;
+			return result;
 		};
 	}
 
