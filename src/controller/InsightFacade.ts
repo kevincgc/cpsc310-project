@@ -210,6 +210,19 @@ export default class InsightFacade implements IInsightFacade {
 		return columns;
 	}
 
+	public isDatasetInDatasets(id: any) {
+		if (this.datasets.length === 0) {
+			return false;
+		}
+		let found = false;
+		for (let dataset of this.datasets) {
+			if (id === dataset.id) {
+				found = true;
+			}
+		}
+		return found;
+	}
+
 	public performQuery(query: any): Promise<any[]> {
 		return new Promise<any[]>((resolve, reject) => {
 			if (!isValidQuery(query)) {
@@ -217,6 +230,9 @@ export default class InsightFacade implements IInsightFacade {
 			}
 			let id = query["OPTIONS"]["COLUMNS"][0].split("_")[0];
 			if (id !== this.currentDatasetId) {
+				if (!this.isDatasetInDatasets(id)) {
+					reject(new InsightError("performQuery Dataset Does Not Exist"));
+				}
 				try {
 					this.currentCourses = JSON.parse(fs.readJsonSync("data/" + id + ".json"));
 					this.currentDatasetId = id;

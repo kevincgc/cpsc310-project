@@ -28,7 +28,7 @@ function isValidLogicComparison (input: any, id: string): boolean {
 	}
 	let isValid = true;
 	for (let key in input) {
-		if (!(count(input[key]) > 1) || !(input[key] instanceof Array)) {
+		if (!(count(input[key]) > 0) || !(input[key] instanceof Array)) {
 			return false;
 		}
 		for (let m in input[key]) {

@@ -11,6 +11,7 @@ import {isValidQuery} from "../../src/controller/ValidateQuery";
 type PQErrorKind = "ResultTooLargeError" | "InsightError";
 
 describe("InsightFacade", function () {
+	this.timeout(10000);
 	let insightFacade: InsightFacade;
 
 	const persistDir = "./data";
