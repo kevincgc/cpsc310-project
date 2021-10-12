@@ -80,6 +80,21 @@ export default class InsightFacade implements IInsightFacade {
 		return [true, ""];
 	}
 
+	private static getValidCourses(validResults: any[]) {
+		let courses: any[] = [];
+		for (let file of validResults) {
+			for (let course of file.result) {
+				if (course.Section === "overall") {
+					course.Year = 1900;
+				}
+				if (InsightFacade.isValidCourses(course)) {
+					courses.push(course);
+				}
+			}
+		}
+		return courses;
+	}
+
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		const jsZip = new JSZip();
 		return new Promise<string[]>((resolve, reject) => {
@@ -105,13 +120,7 @@ export default class InsightFacade implements IInsightFacade {
 					return results.filter((result) => !(result instanceof Error));
 					// End of code based on https://stackoverflow.com/a/46024590
 				}).then((validResults) => {
-					for (let file of validResults) {
-						for (let course of file.result) {
-							if (InsightFacade.isValidCourses(course)) {
-								courses.push(course);
-							}
-						}
-					}
+					courses = InsightFacade.getValidCourses(validResults);
 					fs.outputJson("data/" + id + ".json", JSON.stringify(courses));
 						// .then((data: any) => {
 						// 	console.log(data);
@@ -164,8 +173,9 @@ export default class InsightFacade implements IInsightFacade {
 		});
 	}
 
-	public executeFilter(object: any, dataInput: any[] = this.currentCourses): any[] {
+	public executeFilter(object: any): any[] {
 		// return new Promise<any[]>((resolve, reject) => {
+		let courses: any[] = this.currentCourses;
 		let data = [];
 		let operator = "";
 		for (let key in object) {
@@ -179,26 +189,28 @@ export default class InsightFacade implements IInsightFacade {
 				let wcEnd: boolean = object[operator][key][object[operator][key].length - 1] === "*" ? true : false;
 				if (wcStart && wcEnd && (object[operator][key].length === 1 ||
 					object[operator][key].length === 2)) {
-					data = dataInput;
+					data = courses;
 					break;
 				}
 				let definite = object[operator][key].replace(/[*]/g, "");
 				let regex = new RegExp("^" + (wcStart ? ".*" : "") + definite + (wcEnd ? ".*" : "") + "$");
-				data = dataInput.filter((a) => regex.test(a[keyDict[field]]));
+				data = courses.filter((a) => regex.test(a[keyDict[field]]));
 				break;
 			}
 			case "EQ":
-				data = dataInput.filter((a) => a[keyDict[field]] === object[operator][key]);
+				data = courses.filter((a) => a[keyDict[field]] === object[operator][key]);
 				break;
 			case "GT":
-				data = dataInput.filter((a) => a[keyDict[field]] > object[operator][key]);
+				data = courses.filter((a) => a[keyDict[field]] > object[operator][key]);
 				break;
 			case "LT":
-				data = dataInput.filter((a) => a[keyDict[field]] < object[operator][key]);
+				data = courses.filter((a) => a[keyDict[field]] < object[operator][key]);
 				break;
-			case "NOT":
-				data = this.currentCourses.filter((val) => !dataInput.includes(val));
+			case "NOT": {
+				let insideQueryResult = this.executeNode(object[operator]);
+				data = this.currentCourses.filter((val) => !insideQueryResult.includes(val));
 				break;
+			}
 			// default:
 			//	reject(new Error("executeFilter Invalid Operator"));
 			}
@@ -208,7 +220,7 @@ export default class InsightFacade implements IInsightFacade {
 		// });
 	}
 
-	public executeLogic(object: any, dataInput: any[]): any[] {
+	public executeLogic(object: any): any[] {
 		let results: any[] = [];
 		let operator = "";
 		for (let key in object) {
@@ -216,7 +228,7 @@ export default class InsightFacade implements IInsightFacade {
 		}
 		for (let key in object[operator]) {
 			// results.push(this.executeNode(object, this.currentCourses));
-			results.push(this.executeFilter(object[operator][key], this.currentCourses));
+			results.push(this.executeNode(object[operator][key]));
 		}
 		for (let key of results) {
 			console.log(key.length);
@@ -238,15 +250,15 @@ export default class InsightFacade implements IInsightFacade {
 		return data;
 	}
 
-	public executeNode(object: any, dataInput: any[]): any[] {
+	public executeNode(object: any): any[] {
 		let operator = "";
 		for (let key in object) {
 			operator = key;
 		}
 		if (filter.find((a) => a === operator)) {
-			return this.executeFilter(object, dataInput);
+			return this.executeFilter(object);
 		} else if (logic.find((a) => a === operator)) {
-			return this.executeLogic(object, dataInput);
+			return this.executeLogic(object);
 		} else {
 			return [];
 		}
