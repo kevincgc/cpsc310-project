@@ -23,45 +23,55 @@ function isValidLogicComparison (input: any, id: string): boolean {
 	if (!(input["AND"] || input["OR"])) {
 		return false;
 	}
-	let keyCount = 0;
+	if (!(count(input) === 1)) {
+		return false;
+	}
 	let isValid = true;
 	for (let key in input) {
-		keyCount++;
+		if (!(count(input[key]) > 1) || !(input[key] instanceof Array)) {
+			return false;
+		}
 		for (let m in input[key]) {
-			keyCount++;
 			isValid = isValid && isValidFilter(input[key][m], id);
 		}
 	}
-	return isValid && keyCount >= 2;
+	return isValid;
 }
 function isValidMComparison (input: any, id: string): boolean {
 	if (!(input["LT"] || input["GT"] || input["EQ"])) {
 		return false;
 	}
-	let keyCount = 0;
+	if (!(count(input) === 1) || !(input instanceof Object)) {
+		return false;
+	}
 	let isValid = false;
 	for (let key in input) {
-		keyCount++;
+		if (!(count(input[key]) === 1) || !(input[key] instanceof Object)) {
+			return false;
+		}
 		for (let m in input[key]) {
-			keyCount++;
+			console.log(input[key][m]);
 			isValid = isValidMKey(m, id);
 			isValid = isValid && !isNaN(input[key][m]) &&
 				!(typeof input[key][m] === "string" || input[key][m] instanceof String);
 		}
 	}
-	return isValid && keyCount === 2;
+	return isValid;
 }
 
 function isValidSComparison (input: any, id: string): boolean {
 	if (!input["IS"]) {
 		return false;
 	}
-	let keyCount = 0;
+	if (!(count(input) === 1) || !(input instanceof Object)) {
+		return false;
+	}
 	let isValid = false;
 	for (let key in input) {
-		keyCount++;
+		if (!(count(input[key]) === 1) || !(input[key] instanceof Object)) {
+			return false;
+		}
 		for (let m in input[key]) {
-			keyCount++;
 			isValid = isValidSKey(m, id);
 			isValid = isValid && (typeof input[key][m] === "string" || input[key][m] instanceof String);
 			if (isValid) {
@@ -69,10 +79,16 @@ function isValidSComparison (input: any, id: string): boolean {
 			}
 		}
 	}
-	return isValid && keyCount === 2;
+	return isValid;
 }
 function isValidNegation (input: any, id: string): boolean {
 	if (!input["NOT"]) {
+		return false;
+	}
+	if (!(count(input) === 1)) {
+		return false;
+	}
+	if (!(input["NOT"] instanceof Object)){
 		return false;
 	}
 	return isValidFilter(input["NOT"], id);
@@ -90,6 +106,9 @@ function isValidWhere (input: any, id: any) {
 	if (!(input instanceof Object)) {
 		return false;
 	}
+	if (count(input) > 1) {
+		return false;
+	}
 	return Object.keys(input).length === 0 || isValidFilter(input, id);
 }
 
@@ -105,7 +124,6 @@ function isValidColumns (input: any, id: string): boolean {
 }
 
 function isValidOrder (input: any, columns: any, id: any): boolean {
-	console.log(input);
 	if (isValidKey(input, id)) {
 		for (let c of columns) {
 			if (c === input) {
@@ -117,7 +135,7 @@ function isValidOrder (input: any, columns: any, id: any): boolean {
 }
 
 function isValidOptions (input: any, id: any) {
-	if(!input["COLUMNS"]) {
+	if(!input["COLUMNS"] || !(input["COLUMNS"] instanceof Array) || input["COLUMNS"].length < 1) {
 		return false;
 	}
 	if (input["ORDER"] && !(count(input) === 2)) {
