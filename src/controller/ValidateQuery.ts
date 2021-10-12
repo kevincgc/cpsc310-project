@@ -1,5 +1,10 @@
 export {isValidQuery};
 
+// From https://stackoverflow.com/a/6283527
+function count(obj: any) {
+	return Object.keys(obj).length;
+}
+
 function isValidKey (input: string, id: string) {
 	return isValidMKey(input, id) || isValidSKey(input, id);
 }
@@ -93,15 +98,14 @@ function isValidColumns (input: any, id: string): boolean {
 		return false;
 	}
 	let isValid = true;
-	let count = 0;
 	for (let c of input) {
-		count++;
 		isValid = isValid && isValidKey(c, id);
 	}
-	return isValid && count > 0;
+	return isValid;
 }
 
 function isValidOrder (input: any, columns: any, id: any): boolean {
+	console.log(input);
 	if (isValidKey(input, id)) {
 		for (let c of columns) {
 			if (c === input) {
@@ -113,6 +117,18 @@ function isValidOrder (input: any, columns: any, id: any): boolean {
 }
 
 function isValidOptions (input: any, id: any) {
+	if(!input["COLUMNS"]) {
+		return false;
+	}
+	if (input["ORDER"] && !(count(input) === 2)) {
+		return false;
+	}
+	if (!input["ORDER"] && !(count(input) === 1)) {
+		return false;
+	}
+	if (input["ORDER"] && !(typeof input["ORDER"] === "string" || input["ORDER"] instanceof String)) {
+		return false;
+	}
 	return isValidColumns(input["COLUMNS"], id) &&
 		(input["ORDER"] ? isValidOrder(input["ORDER"], input["COLUMNS"], id) : true);
 }
@@ -121,12 +137,11 @@ function isValidQuery(query: any): boolean {
 	if (!(query instanceof Object)) {
 		return false;
 	}
-	let id = "";
-	if(query.OPTIONS && query.OPTIONS.ORDER) {
-		id = query["OPTIONS"]["COLUMNS"][0].split("_")[0];
-	} else {
+	if(!query["WHERE"] || !query["OPTIONS"] || !query["OPTIONS"]["COLUMNS"] ||
+		query["OPTIONS"]["COLUMNS"].length === 0 || !(count(query) === 2)) {
 		return false;
 	}
+	let id = query["OPTIONS"]["COLUMNS"][0].split("_")[0];
 	return isValidWhere(query["WHERE"], id) && isValidOptions(query["OPTIONS"], id);
 }
 

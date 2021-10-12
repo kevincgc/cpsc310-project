@@ -156,9 +156,6 @@ export default class InsightFacade implements IInsightFacade {
 			// results.push(this.executeNode(object, this.currentCourses));
 			results.push(this.executeNode(object[operator][key]));
 		}
-		for (let key of results) {
-			console.log(key.length);
-		}
 		let data: any[] = results[0];
 		if (operator === "AND") {
 			for (let result of results) {
@@ -219,7 +216,6 @@ export default class InsightFacade implements IInsightFacade {
 				reject(new InsightError("performQuery Invalid Query Grammar"));
 			}
 			let id = query["OPTIONS"]["COLUMNS"][0].split("_")[0];
-			console.log(id);
 			if (id !== this.currentDatasetId) {
 				try {
 					this.currentCourses = JSON.parse(fs.readJsonSync("data/" + id + ".json"));
@@ -250,7 +246,9 @@ export default class InsightFacade implements IInsightFacade {
 				}
 				coursesSelectedColumns.push(courseObject);
 			}
-			coursesSelectedColumns.sort(this.dynamicSort(query["OPTIONS"]["ORDER"]));
+			if (query.OPTIONS.ORDER) {
+				coursesSelectedColumns.sort(this.dynamicSort(query["OPTIONS"]["ORDER"]));
+			}
 			resolve(coursesSelectedColumns);
 		});
 	}

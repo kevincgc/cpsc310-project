@@ -1,0 +1,34 @@
+{
+	"errorMsg": "COLUMNS must be a non-empty array",
+	"title": "Should return true",
+	"input": {
+		"WHERE": {
+			"OR": [
+				{
+					"AND": [
+						{
+							"GT": {
+								"courses_avg": 90
+							}
+						},
+						{
+							"IS": {
+								"courses_dept": "adhe"
+							}
+						}
+					]
+				},
+				{
+					"EQ": {
+						"courses_avg": 95
+					}
+				}
+			]
+		},
+		"OPTIONS": {
+			"COLUMNS": []
+		}
+	},
+	"errorExpected": true,
+	"with": "InsightError"
+}

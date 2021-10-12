@@ -29,68 +29,68 @@ describe("kevincgc c0 tests", function() {
 		coursesNotAllJson = getContentFromArchives("not_all_json.zip");
 		coursesJsonOutsideFolder = getContentFromArchives("courses_only_64612_should_be_considered.zip");
 	});
-	// describe("Normal Queries", function () {
-	// 	let insightFacade: InsightFacade;
-	// 	before(async function () {
-	// 		clearDisk();
-	// 		insightFacade = new InsightFacade();
-	// 		await insightFacade.addDataset("courses", courses, InsightDatasetKind.Courses);
-	// 	});
-	//
-	// 	testFolder<any, any[], PQErrorKind>(
-	// 		"Normal Queries",
-	// 		(input): Promise<any[]> => insightFacade.performQuery(input),
-	// 		"./test/resources/queries/kevincgc",
-	// 		{
-	// 			assertOnResult(expected, actual) {
-	// 				expect(actual).to.be.an.instanceOf(Array);
-	// 				expect(actual).to.have.deep.members(expected);
-	// 				expect(actual).to.have.length(expected.length);
-	// 			},
-	// 			errorValidator: (error): error is PQErrorKind =>
-	// 				error === "ResultTooLargeError" || error === "InsightError",
-	// 			assertOnError(expected, actual) {
-	// 				if (expected === "ResultTooLargeError") {
-	// 					expect(actual).to.be.instanceof(ResultTooLargeError);
-	// 				} else {
-	// 					expect(actual).to.be.instanceof(InsightError);
-	// 				}
-	// 			},
-	// 		}
-	// 	);
-	// });
-	//
-	// describe("Special Queries", function () {
-	// 	let insightFacade: InsightFacade;
-	// 	before(async function () {
-	// 		clearDisk();
-	// 		insightFacade = new InsightFacade();
-	// 		await insightFacade.addDataset("courses a", courses, InsightDatasetKind.Courses);
-	// 		await insightFacade.addDataset("courses b", courses8, InsightDatasetKind.Courses);
-	// 	});
-	//
-	// 	testFolder<any, any[], PQErrorKind>(
-	// 		"Special Queries",
-	// 		(input): Promise<any[]> => insightFacade.performQuery(input),
-	// 		"./test/resources/queries/kevincgc/special",
-	// 		{
-	// 			assertOnResult(expected, actual) {
-	// 				expect(actual).to.be.an.instanceOf(Array);
-	// 				expect(actual).to.have.deep.members(expected);
-	// 				expect(actual).to.have.length(expected.length);
-	// 			},
-	// 			errorValidator: (error): error is PQErrorKind =>
-	// 				error === "ResultTooLargeError" || error === "InsightError",
-	// 			assertOnError(expected, actual) {
-	// 				if (expected === "ResultTooLargeError") {
-	// 					expect(actual).to.be.instanceof(ResultTooLargeError);
-	// 				} else {
-	// 					expect(actual).to.be.instanceof(InsightError);
-	// 				}
-	// 			},
-	// 		}
-	// 	);
-	// });
+	describe("Normal Queries", function () {
+		let insightFacade: InsightFacade;
+		before(async function () {
+			clearDisk();
+			insightFacade = new InsightFacade();
+			await insightFacade.addDataset("courses", courses, InsightDatasetKind.Courses);
+		});
+
+		testFolder<any, any[], PQErrorKind>(
+			"Normal Queries",
+			(input): Promise<any[]> => insightFacade.performQuery(input),
+			"./test/resources/kevincgc_queries",
+			{
+				assertOnResult(expected, actual) {
+					expect(actual).to.be.an.instanceOf(Array);
+					expect(actual).to.have.deep.members(expected);
+					expect(actual).to.have.length(expected.length);
+				},
+				errorValidator: (error): error is PQErrorKind =>
+					error === "ResultTooLargeError" || error === "InsightError",
+				assertOnError(expected, actual) {
+					if (expected === "ResultTooLargeError") {
+						expect(actual).to.be.instanceof(ResultTooLargeError);
+					} else {
+						expect(actual).to.be.instanceof(InsightError);
+					}
+				},
+			}
+		);
+	});
+
+	describe("Special Queries", function () {
+		let insightFacade: InsightFacade;
+		before(async function () {
+			clearDisk();
+			insightFacade = new InsightFacade();
+			await insightFacade.addDataset("courses a", courses, InsightDatasetKind.Courses);
+			await insightFacade.addDataset("courses b", courses8, InsightDatasetKind.Courses);
+		});
+
+		testFolder<any, any[], PQErrorKind>(
+			"Special Queries",
+			(input): Promise<any[]> => insightFacade.performQuery(input),
+			"./test/resources/kevincgc_special_queries",
+			{
+				assertOnResult(expected, actual) {
+					expect(actual).to.be.an.instanceOf(Array);
+					expect(actual).to.have.deep.members(expected);
+					expect(actual).to.have.length(expected.length);
+				},
+				errorValidator: (error): error is PQErrorKind =>
+					error === "ResultTooLargeError" || error === "InsightError",
+				assertOnError(expected, actual) {
+					if (expected === "ResultTooLargeError") {
+						expect(actual).to.be.instanceof(ResultTooLargeError);
+					} else {
+						expect(actual).to.be.instanceof(InsightError);
+					}
+				},
+			}
+		);
+	});
 	describe("Special Queries", function () {
 		let insightFacade: InsightFacade;
 		let insightFacade2: InsightFacade;
@@ -125,25 +125,6 @@ describe("kevincgc c0 tests", function() {
 			} catch (err) {
 				expect(err).to.be.instanceof(InsightError);
 			}
-		});
-		let space = {
-			WHERE: {
-				GT: {
-					"courses a_avg": 97
-				}
-			},
-			OPTIONS: {
-				COLUMNS: [
-					"courses a_dept",
-					"courses a_avg"
-				],
-				ORDER: "courses a_avg"
-			}
-		};
-		it("should test space in name", async function() {
-			let returnedQuery;
-			returnedQuery = await insightFacade.performQuery(space);
-			console.log(returnedQuery);
 		});
 	});
 });
