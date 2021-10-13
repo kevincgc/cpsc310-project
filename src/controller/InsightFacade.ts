@@ -36,6 +36,8 @@ export default class InsightFacade implements IInsightFacade {
 						fileStrings.push(file.async("text"));
 					}
 				});
+				return fileStrings;
+			}).then((fileStrings) => {
 				Promise.all(fileStrings).then(async function (files) {
 					let fileJsons: any[] = [];
 					for (let file of files) {
