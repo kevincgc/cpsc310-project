@@ -141,33 +141,33 @@ export default class InsightFacade implements IInsightFacade {
 		for (let key in object[operator]) {
 			let field = key.split("_")[1];
 			switch (operator) {
-			case "IS": {
-				let wcStart: boolean = object[operator][key][0] === "*" ? true : false;
-				let wcEnd: boolean = object[operator][key][object[operator][key].length - 1] === "*" ? true : false;
-				if (wcStart && wcEnd && (object[operator][key].length === 1 ||
-					object[operator][key].length === 2)) {
-					data = courses;
+				case "IS": {
+					let wcStart: boolean = object[operator][key][0] === "*" ? true : false;
+					let wcEnd: boolean = object[operator][key][object[operator][key].length - 1] === "*" ? true : false;
+					if (wcStart && wcEnd && (object[operator][key].length === 1 ||
+						object[operator][key].length === 2)) {
+						data = courses;
+						break;
+					}
+					let definite = object[operator][key].replace(/[*]/g, "");
+					let regex = new RegExp("^" + (wcStart ? ".*" : "") + definite + (wcEnd ? ".*" : "") + "$");
+					data = courses.filter((a) => regex.test(a[keyDict[field]]));
 					break;
 				}
-				let definite = object[operator][key].replace(/[*]/g, "");
-				let regex = new RegExp("^" + (wcStart ? ".*" : "") + definite + (wcEnd ? ".*" : "") + "$");
-				data = courses.filter((a) => regex.test(a[keyDict[field]]));
-				break;
-			}
-			case "EQ":
-				data = courses.filter((a) => a[keyDict[field]] === object[operator][key]);
-				break;
-			case "GT":
-				data = courses.filter((a) => a[keyDict[field]] > object[operator][key]);
-				break;
-			case "LT":
-				data = courses.filter((a) => a[keyDict[field]] < object[operator][key]);
-				break;
-			case "NOT": {
-				let insideQueryResult = this.executeNode(object[operator]);
-				data = this.currentCourses.filter((val) => !insideQueryResult.includes(val));
-				break;
-			}
+				case "EQ":
+					data = courses.filter((a) => a[keyDict[field]] === object[operator][key]);
+					break;
+				case "GT":
+					data = courses.filter((a) => a[keyDict[field]] > object[operator][key]);
+					break;
+				case "LT":
+					data = courses.filter((a) => a[keyDict[field]] < object[operator][key]);
+					break;
+				case "NOT": {
+					let insideQueryResult = this.executeNode(object[operator]);
+					data = this.currentCourses.filter((val) => !insideQueryResult.includes(val));
+					break;
+				}
 			}
 		}
 		return data;
