@@ -5,7 +5,6 @@ import {isValidQuery} from "./ValidateQuery";
 import {keyDict, filter, logic, features} from "./Const";
 const fs = require("fs-extra");
 import {addDatasetValidate, isValidId, isValidCourses, getValidCourses, parseJsonAsync} from "./addDataset Helpers";
-const jsZip = new JSZip();
 /**
  * This is the main programmatic entry point for the project.
  * Method documentation is in IInsightFacade
@@ -23,6 +22,7 @@ export default class InsightFacade implements IInsightFacade {
 
 	public getFilesAsStrings(content: any): Promise<string[]> {
 		return new Promise<string[]>((resolve, reject) => {
+			const jsZip = new JSZip();
 			jsZip.loadAsync(content, {base64: true}).then((zip: JSZip) => {
 				const fileStrings: any[] = [];
 				zip.forEach((relativePath, file) => {
@@ -82,16 +82,12 @@ export default class InsightFacade implements IInsightFacade {
 			}).then((fileStrings) => {
 				return Promise.all(fileStrings);
 			}).then((files) => {
-				console.log(files.length);
 				return this.getValidJsons(files);
 			}).then((validJsons) => {
-				console.log(validJsons.length);
 				return getValidCourses(validJsons);
 			}).then((courses) => {
-				console.log(courses.length);
 				return this.saveDataset(courses, id, kind);
 			}).then(() => {
-				console.log(this.getAddedDatasets());
 				resolve(this.getAddedDatasets());
 			}).catch((e) => {
 				reject(e);
