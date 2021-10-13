@@ -223,6 +223,7 @@ describe("kevincgc c0 tests", function() {
 				await facade.addDataset("courses", data, InsightDatasetKind.Courses);
 				expect.fail("Should have rejected!");
 			} catch (err) {
+				console.log(err);
 				expect(err).to.be.instanceof(InsightError);
 			}
 		});

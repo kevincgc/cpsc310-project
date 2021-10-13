@@ -5,7 +5,7 @@ import {isValidQuery} from "./ValidateQuery";
 import {keyDict, filter, logic, features} from "./Const";
 const fs = require("fs-extra");
 import {addDatasetValidate, isValidId, isValidCourses, getValidCourses, parseJsonAsync} from "./addDataset Helpers";
-
+const jsZip = new JSZip();
 /**
  * This is the main programmatic entry point for the project.
  * Method documentation is in IInsightFacade
@@ -21,14 +21,8 @@ export default class InsightFacade implements IInsightFacade {
 		this.currentDatasetId = "";
 	}
 
-	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
-		const jsZip = new JSZip();
+	public getFilesAsStrings(content: any): Promise<string[]> {
 		return new Promise<string[]>((resolve, reject) => {
-			let [isValid, errorString] = addDatasetValidate(id, this.datasets, kind);
-			if (!isValid) {
-				reject(new InsightError(errorString));
-			}
-			let courses: any[] = [];
 			jsZip.loadAsync(content, {base64: true}).then((zip: JSZip) => {
 				const fileStrings: any[] = [];
 				zip.forEach((relativePath, file) => {
@@ -36,47 +30,79 @@ export default class InsightFacade implements IInsightFacade {
 						fileStrings.push(file.async("text"));
 					}
 				});
-				return fileStrings;
-			}).then((fileStrings) => {
-				Promise.all(fileStrings).then(async function (files) {
-					let fileJsons: any[] = [];
-					for (let file of files) {
-						fileJsons.push(parseJsonAsync(file));
-					}
-					// Start of code based on https://stackoverflow.com/a/46024590
-					const results = await Promise.all(fileJsons.map((p) => p.catch((e: Error) => e)));
-					return results.filter((result) => !(result instanceof Error));
-					// End of code based on https://stackoverflow.com/a/46024590
-				}).then((validResults) => {
-					courses = getValidCourses(validResults);
-					if (courses.length > 0) {
-						fs.outputJson("data/" + id + ".json", JSON.stringify(courses)).then(() => {
-							this.currentCourses = courses;
-							this.currentDatasetId = id;
-							this.datasets.push({	id: id,	kind: kind,	numRows: courses.length	});
-							let ids: string[] = [];
-							for (let dataset of this.datasets) {
-								ids.push(dataset.id);
-							}
-							resolve(ids);
-						}).catch((e: any) => {
-							reject(new InsightError("addDataset Couldn't Output Json With ID: " + id));
-						});
-					} else {
-						reject(new InsightError("addDataset No Valid Sections"));
-					}
+				resolve(fileStrings);
+			}).catch((e) => {
+				reject(new InsightError("addDataset Not A Valid Zip File"));
+			});
+		});
+	}
+
+	public async getValidJsons(files: string[]) {
+		let fileJsons: any[] = [];
+		for (let file of files) {
+			fileJsons.push(parseJsonAsync(file));
+		}
+		// Start of code based on https://stackoverflow.com/a/46024590
+		const results = await Promise.all(fileJsons.map((p) => p.catch((e: Error) => e)));
+		return results.filter((result) => !(result instanceof Error));
+		// End of code based on https://stackoverflow.com/a/46024590
+	}
+
+	public saveDataset(courses: any, id: string, kind: InsightDatasetKind) {
+		return new Promise<void>((resolve, reject) => {
+			if (courses.length > 0) {
+				fs.outputJson("data/" + id + ".json", JSON.stringify(courses)).then(() => {
+					this.currentCourses = courses;
+					this.currentDatasetId = id;
+					this.datasets.push({ id: id, kind: kind, numRows: courses.length });
+					resolve();
+				}).catch((e: any) => {
+					reject(new InsightError("addDataset Can't Write To File"));
 				});
-			}).catch((e: any) => {
-				reject(new InsightError("addDataset Invalid Zip File"));
+			} else {
+				reject(new InsightError("addDataset No Valid Sections"));
+			}
+		});
+	}
+
+	public getAddedDatasets() {
+		return new Promise<string[]>((resolve, reject) => {
+			let ids: string[] = [];
+			for (let dataset of this.datasets) {
+				ids.push(dataset.id);
+			}
+			resolve(ids);
+		});
+	}
+
+	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
+		return new Promise<string[]>((resolve, reject) => {
+			addDatasetValidate(id, this.datasets, kind).then(() => {
+				return this.getFilesAsStrings(content);
+			}).then((fileStrings) => {
+				return Promise.all(fileStrings);
+			}).then((files) => {
+				console.log(files.length);
+				return this.getValidJsons(files);
+			}).then((validJsons) => {
+				console.log(validJsons.length);
+				return getValidCourses(validJsons);
+			}).then((courses) => {
+				console.log(courses.length);
+				return this.saveDataset(courses, id, kind);
+			}).then(() => {
+				console.log(this.getAddedDatasets());
+				resolve(this.getAddedDatasets());
+			}).catch((e) => {
+				reject(e);
 			});
 		});
 	}
 
 	public removeDataset(id: string): Promise<string> {
 		return new Promise<string>((resolve, reject) => {
-			let [isValid, errorString] = isValidId(id);
-			if (!isValid) {
-				reject(new InsightError(errorString));
+			if (!isValidId(id)) {
+				reject(new InsightError("removeDataset ID Invalid"));
 			}
 			let datasetExists = false;
 			for (let i = 0; i < this.datasets.length; i++) {
