@@ -55,8 +55,11 @@ export default class InsightFacade implements IInsightFacade {
 						for (let dataset of this.datasets) {
 							ids.push(dataset.id);
 						}
-						fs.outputJson("data/" + id + ".json", JSON.stringify(courses));
-						resolve(ids);
+						fs.outputJson("data/" + id + ".json", JSON.stringify(courses)).then(() => {
+							resolve(ids);
+						}).catch((e: any) => {
+							reject(new InsightError("addDataset Couldn't Output Json With ID: " + id));
+						});
 					} else {
 						reject(new InsightError("addDataset No Valid Sections"));
 					}
@@ -73,17 +76,28 @@ export default class InsightFacade implements IInsightFacade {
 			if (!isValid) {
 				reject(new InsightError(errorString));
 			}
-			const results: any[] = [];
+			let datasetExists = false;
 			for (let i = 0; i < this.datasets.length; i++) {
 				if (this.datasets[i].id === id) {
+					datasetExists = true;
+					this.currentDatasetId = "";
 					this.datasets.splice(i, 1);
-					fs.remove("data/" + id + ".json").catch((err: any) => {
-						reject(new InsightError(err));
-					});
-					resolve(id);
 				}
 			}
-			reject(new NotFoundError("removeDataset File Not Found"));
+			if (!datasetExists) {
+				reject(new NotFoundError("removeDataset File Not Found"));
+			}
+			if (fs.existsSync("./data/" + id + ".json")) {
+				fs.remove("./data/" + id + ".json").then(() => {
+					if (!fs.existsSync("./data/" + id + ".json")) {
+						resolve(id);
+					} else {
+						reject(new InsightError("removeDataset Unable To Remove File"));
+					}
+				});
+			} else {
+				reject(new InsightError("removeDataset DS Not Found On Disk"));
+			}
 		});
 	}
 

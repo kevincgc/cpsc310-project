@@ -3,7 +3,26 @@ import JSZip from "jszip";
 
 export function isValidCourses(jsonObject: JSON) {
 	if ("Title" in jsonObject &&
-		"tier_eighty_five" in jsonObject) {
+		"tier_eighty_five" in jsonObject &&
+		"tier_seventy_six" in jsonObject &&
+		"tier_zero" in jsonObject &&
+		"Campus" in jsonObject &&
+		"Stddev" in jsonObject &&
+		"Detail" in jsonObject &&
+		"tier_seventy_two" in jsonObject &&
+		"tier_sixty_four" in jsonObject &&
+		"tier_ninety" in jsonObject &&
+		"Session" in jsonObject &&
+		"Year" in jsonObject &&
+		"Pass" in jsonObject &&
+		"Fail" in jsonObject &&
+		"Subject" in jsonObject &&
+		"Course" in jsonObject &&
+		"Avg" in jsonObject &&
+		"Professor" in jsonObject &&
+		"Audit" in jsonObject &&
+		"id" in jsonObject &&
+		"Enrolled" in jsonObject) {
 		return true;
 	} else {
 		return false;

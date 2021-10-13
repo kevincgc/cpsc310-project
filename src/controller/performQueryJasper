@@ -1,0 +1,296 @@
+// public performQuery(query: any): Promise<any[]> {
+// 	return new Promise<any>((resolve, reject) => {
+// 		let id = "";
+// 		let conditions: any[];
+// 		let output: void | any[] = [];
+// 		const obj = JSON.parse(JSON.stringify(query));
+// 		output = this.recursiveFilter(obj.WHERE,output);
+// 		resolve(output);
+// 	});
+// }
+//
+// private recursiveFilter(obj: any, output: any[]) {
+// 	if (obj["AND"]) {
+// 		let temp1: any;
+// 		let temp2: any;
+// 		for (let x of obj["AND"]) {
+// 			temp1 = this.recursiveFilter(x,output);
+// 			temp2 = output;
+// 			if (output === []) {
+// 				output = temp1;
+// 			} else {
+// 				output = [];
+// 				for (let j in temp1) {
+// 					for (let k in temp2) {
+// 						if (temp1[j] === temp2[k] && !output.includes(temp1[j]) && !output.includes(temp2[k])) {
+// 							output.push(temp2[k]);
+// 						}
+// 					}
+// 				}
+// 			}
+// 		}
+// 		return output;
+// 	} else if (obj["OR"]) {
+// 		output = this.orQuery(output,obj["OR"]);
+// 	} else if (obj["IS"]) {
+// 		let key = this.getKey(obj["IS"])[0];
+// 		let name = this.getKey(obj["IS"])[1];
+// 		let filterName = this.filterName(name, obj["IS"]);
+// 		return this.addToOutputString(key, output, filterName);
+// 	} else if (obj["GT"]) {
+// 		let key = this.getKey(obj["GT"])[0];
+// 		let name = this.getKey(obj["GT"])[1];
+// 		let filterNumber = this.filterNumber(name, obj["GT"]);
+// 		return this.addToOutputGT(key, output, filterNumber);
+// 	} else if (obj["LT"]) {
+// 		let key = this.getKey(obj["LT"])[0];
+// 		let name = this.getKey(obj["LT"])[1];
+// 		let filterNumber = this.filterNumber(name, obj["LT"]);
+// 		return this.addToOutputLT(key, output, filterNumber);
+// 	} else if (obj["EQ"]) {
+// 		let key = this.getKey(obj["EQ"])[0];
+// 		let name = this.getKey(obj["EQ"])[1];
+// 		let filterNumber = this.filterNumber(name, obj["EQ"]);
+// 		return this.addToOutputEQ(key, output, filterNumber);
+// 	}
+//
+// 	return output;
+// }
+// private orQuery(output: any, obj: any) {
+// 	for (let x in obj) {
+// 		let temp1: any = this.recursiveFilter(x, output);
+// 		let temp2: any = output;
+// 		// eslint-disable-next-line eqeqeq
+// 		if (output == []) {
+// 			output = temp1;
+// 		} else {
+// 			for (let j of obj) {
+// 				output = [];
+// 				if (temp1[x].id !== temp2[x].id) {
+// 					output.push(temp1[x]);
+// 				}
+// 			}
+// 		}
+// 	}
+// 	return output;
+// }
+// private getKey(keyValue: any) {
+// 	let key = Object.keys(keyValue);
+// 	let temp = JSON.stringify(key).replace(/"/g, "")
+// 		.replace("[", "")
+// 		.replace("]", "");
+// 	let underscoreIndex = temp.indexOf("_");
+// 	return [temp.substring(underscoreIndex + 1, temp.length), temp];
+// }
+// private addToOutputString(key: string, output: any[], input: any) {
+// 	switch (key) {
+// 		case "dept":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				if (json.Subject === input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 		case "id":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				if (json.Course === input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 		case "instructor":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				if (json.Professor === input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 		case "title":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				if (json.Title === input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 		case "uuid": {
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				// eslint-disable-next-line eqeqeq
+// 				if (input == json.id) {
+// 					output.push(json);
+//
+// 				}
+// 			}
+// 		}
+// 	}
+// 	return output;
+// }
+// private addToOutputGT(key: string, output: any[], input: any) {
+// 	switch (key) {
+// 		case "avg":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				if (json.Avg > input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 			return output;
+// 		case "pass":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				if (json.Pass > input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 			return output;
+// 		case "fail":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				if (json.Fail > input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 			return output;
+// 		case "audit":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				if (json.Audit > input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 			return output;
+// 		case "year": {
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				if (json.Year > input) {
+// 					output.push(json);
+//
+// 				}
+// 			}
+// 			return output;
+// 		}
+// 	}
+// 	return output;
+// }
+// private addToOutputLT(key: string, output: any[], input: any) {
+// 	switch (key) {
+// 		case "avg":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				if (json.Avg < input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 			return output;
+// 		case "pass":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				if (json.Pass < input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 			return output;
+// 		case "fail":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				if (json.Fail < input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 			return output;
+// 		case "audit":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				if (json.Audit < input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 			return output;
+// 		case "year": {
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				if (json.Year < input) {
+// 					output.push(json);
+//
+// 				}
+// 			}
+// 			return output;
+// 		}
+// 	}
+// 	return output;
+// }
+// private addToOutputEQ(key: string, output: any[], input: any) {
+// 	switch (key) {
+// 		case "avg":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				// eslint-disable-next-line eqeqeq
+// 				if (json.Avg == input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 		case "pass":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				// eslint-disable-next-line eqeqeq
+// 				if (json.Pass == input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 		case "fail":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				// eslint-disable-next-line eqeqeq
+// 				if (json.Fail == input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 		case "audit":
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				// eslint-disable-next-line eqeqeq
+// 				if (json.Audit == input) {
+// 					output.push(json);
+// 				}
+// 			}
+// 		case "year": {
+// 			for (let x in this.currentCourses) {
+// 				let json: any = this.currentCourses[x];
+// 				// eslint-disable-next-line eqeqeq
+// 				if (json.Year == input) {
+// 					output.push(json);
+//
+// 				}
+// 			}
+// 		}
+// 	}
+// 	return output;
+// }
+// private filterName(name: string, objElement: any) {
+// 	switch(name) {
+// 		case "courses_dept":
+// 			return objElement.courses_dept;
+// 		case "courses_id":
+// 			return objElement.courses_id;
+// 		case "courses_instructor":
+// 			return objElement.courses_instructor;
+// 		case "courses_title":
+// 			return objElement.courses_title;
+// 		case "courses_uuid":
+// 			return objElement.courses_uuid;
+// 	}
+// }
+// private filterNumber(name: string, objElement: any) {
+// 	switch(name) {
+// 		case "courses_avg":
+// 			return objElement.courses_avg;
+// 		case "courses_pass":
+// 			return objElement.courses_pass;
+// 		case "courses_fail":
+// 			return objElement.courses_fail;
+// 		case "courses_audit":
+// 			return objElement.courses_audit;
+// 		case "courses_year":
+// 			return objElement.courses_year;
+// 	}
+// }
