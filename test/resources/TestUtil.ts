@@ -8,5 +8,8 @@ function getContentFromArchives(name: string): string {
 function clearDisk(): void {
 	fs.removeSync(persistDir);
 }
-export {getContentFromArchives, persistDir, clearDisk};
+function sleep(delay: number) {
+	new Promise((resolve) => setTimeout(resolve, delay));
+}
+export {getContentFromArchives, persistDir, clearDisk, sleep};
 

@@ -3,7 +3,7 @@ import {IInsightFacade, InsightDataset, InsightDatasetKind, InsightError,
 import InsightFacade from "../../src/controller/InsightFacade";
 
 import * as fs from "fs-extra";
-import {clearDisk, getContentFromArchives } from "../resources/TestUtil";
+import {clearDisk, getContentFromArchives, sleep} from "../resources/TestUtil";
 import {testFolder} from "@ubccpsc310/folder-test";
 import {expect} from "chai";
 import {isValidQuery} from "../../src/controller/ValidateQuery";
@@ -223,6 +223,7 @@ describe("kevincgc c0 tests", function() {
 				await facade.addDataset("courses", data, InsightDatasetKind.Courses);
 				expect.fail("Should have rejected!");
 			} catch (err) {
+				console.log(err);
 				expect(err).to.be.instanceof(InsightError);
 			}
 		});
@@ -320,6 +321,18 @@ describe("kevincgc c0 tests", function() {
 			expect(insightDatasets).to.have.length(0);
 			expect(removedID).to.equal("courses");
 		});
+		it("should RDS fail remove but DS not on disk", async function () {
+			await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
+			clearDisk();
+			try {
+				let removedID = await facade.removeDataset("courses");
+				expect.fail("Should have rejected!");
+			} catch (e) {
+				expect(e).to.be.instanceof(InsightError);
+			}
+			const insightDatasets = await facade.listDatasets();
+			expect(insightDatasets).to.have.length(0);
+		});
 		it("should RDS fail add remove twice", async function () {
 			await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
 			await facade.removeDataset("courses");
@@ -383,9 +396,9 @@ describe("kevincgc c0 tests", function() {
 		});
 		it("should LDS pass 5 datasets", async function () {
 			const names: string[] = [
-				"asdfghsfdfytry09898987878d6fg???...........",
+				"asdfghsfdfytry09898987878d6fg......",
 				"bgU&^nJ6e$V#i!qe",
-				"[zv]GIcFYQfBxx?p5-=",
+				"[zvG]IcFYQfBxxp5-=",
 				"sad4636trtyd@#FSdFG",
 			];
 			let ads1: string[] = await facade.addDataset(names[0], courses, InsightDatasetKind.Courses);

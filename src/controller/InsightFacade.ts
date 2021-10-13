@@ -5,7 +5,6 @@ import {isValidQuery} from "./ValidateQuery";
 import {keyDict, filter, logic, features} from "./Const";
 const fs = require("fs-extra");
 import {addDatasetValidate, isValidId, isValidCourses, getValidCourses, parseJsonAsync} from "./addDataset Helpers";
-
 /**
  * This is the main programmatic entry point for the project.
  * Method documentation is in IInsightFacade
@@ -21,14 +20,9 @@ export default class InsightFacade implements IInsightFacade {
 		this.currentDatasetId = "";
 	}
 
-	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
-		const jsZip = new JSZip();
+	public getFilesAsStrings(content: any): Promise<string[]> {
 		return new Promise<string[]>((resolve, reject) => {
-			let [isValid, errorString] = addDatasetValidate(id, this.datasets, kind);
-			if (!isValid) {
-				reject(new InsightError(errorString));
-			}
-			let courses: any[] = [];
+			const jsZip = new JSZip();
 			jsZip.loadAsync(content, {base64: true}).then((zip: JSZip) => {
 				const fileStrings: any[] = [];
 				zip.forEach((relativePath, file) => {
@@ -36,60 +30,98 @@ export default class InsightFacade implements IInsightFacade {
 						fileStrings.push(file.async("text"));
 					}
 				});
-				Promise.all(fileStrings).then(async function (files) {
-					let fileJsons: any[] = [];
-					for (let file of files) {
-						fileJsons.push(parseJsonAsync(file));
-					}
-					// Start of code based on https://stackoverflow.com/a/46024590
-					const results = await Promise.all(fileJsons.map((p) => p.catch((e: Error) => e)));
-					return results.filter((result) => !(result instanceof Error));
-					// End of code based on https://stackoverflow.com/a/46024590
-				}).then((validResults) => {
-					courses = getValidCourses(validResults);
-						// .then((data: any) => {
-						// 	console.log(data);
-						// })
-						// .catch((err: any) => {
-						// 	console.error(err);
-						// });
-					if (courses.length > 0) {
-						this.currentCourses = courses;
-						this.currentDatasetId = id;
-						this.datasets.push({	id: id,	kind: kind,	numRows: courses.length	});
-						let ids: string[] = [];
-						for (let dataset of this.datasets) {
-							ids.push(dataset.id);
-						}
-						fs.outputJson("data/" + id + ".json", JSON.stringify(courses));
-						resolve(ids);
-					} else {
-						reject(new InsightError("addDataset No Valid Sections"));
-					}
+				resolve(fileStrings);
+			}).catch((e) => {
+				reject(new InsightError("addDataset Not A Valid Zip File"));
+			});
+		});
+	}
+
+	public async getValidJsons(files: string[]) {
+		let fileJsons: any[] = [];
+		for (let file of files) {
+			fileJsons.push(parseJsonAsync(file));
+		}
+		// Start of code based on https://stackoverflow.com/a/46024590
+		const results = await Promise.all(fileJsons.map((p) => p.catch((e: Error) => e)));
+		return results.filter((result) => !(result instanceof Error));
+		// End of code based on https://stackoverflow.com/a/46024590
+	}
+
+	public saveDataset(courses: any, id: string, kind: InsightDatasetKind) {
+		return new Promise<void>((resolve, reject) => {
+			if (courses.length > 0) {
+				fs.outputJson("data/" + id + ".json", JSON.stringify(courses)).then(() => {
+					this.currentCourses = courses;
+					this.currentDatasetId = id;
+					this.datasets.push({ id: id, kind: kind, numRows: courses.length });
+					resolve();
+				}).catch((e: any) => {
+					reject(new InsightError("addDataset Can't Write To File"));
 				});
-			}).catch((e: any) => {
-				reject(new InsightError("addDataset Invalid Zip File"));
+			} else {
+				reject(new InsightError("addDataset No Valid Sections"));
+			}
+		});
+	}
+
+	public getAddedDatasets() {
+		return new Promise<string[]>((resolve, reject) => {
+			let ids: string[] = [];
+			for (let dataset of this.datasets) {
+				ids.push(dataset.id);
+			}
+			resolve(ids);
+		});
+	}
+
+	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
+		return new Promise<string[]>((resolve, reject) => {
+			addDatasetValidate(id, this.datasets, kind).then(() => {
+				return this.getFilesAsStrings(content);
+			}).then((fileStrings) => {
+				return Promise.all(fileStrings);
+			}).then((files) => {
+				return this.getValidJsons(files);
+			}).then((validJsons) => {
+				return getValidCourses(validJsons);
+			}).then((courses) => {
+				return this.saveDataset(courses, id, kind);
+			}).then(() => {
+				resolve(this.getAddedDatasets());
+			}).catch((e) => {
+				reject(e);
 			});
 		});
 	}
 
 	public removeDataset(id: string): Promise<string> {
 		return new Promise<string>((resolve, reject) => {
-			let [isValid, errorString] = isValidId(id);
-			if (!isValid) {
-				reject(new InsightError(errorString));
+			if (!isValidId(id)) {
+				reject(new InsightError("removeDataset ID Invalid"));
 			}
-			const results: any[] = [];
+			let datasetExists = false;
 			for (let i = 0; i < this.datasets.length; i++) {
 				if (this.datasets[i].id === id) {
+					datasetExists = true;
+					this.currentDatasetId = this.currentDatasetId === id ? "" : this.currentDatasetId;
 					this.datasets.splice(i, 1);
-					fs.remove("data/" + id + ".json").catch((err: any) => {
-						reject(new InsightError(err));
-					});
-					resolve(id);
 				}
 			}
-			reject(new NotFoundError("removeDataset File Not Found"));
+			if (!datasetExists) {
+				reject(new NotFoundError("removeDataset Dataset Not Found"));
+			}
+			if (fs.existsSync("./data/" + id + ".json")) {
+				fs.remove("./data/" + id + ".json").then(() => {
+					if (!fs.existsSync("./data/" + id + ".json")) {
+						resolve(id);
+					} else {
+						reject(new InsightError("removeDataset Unable To Remove File"));
+					}
+				});
+			} else {
+				reject(new InsightError("removeDataset DS Not Found On Disk"));
+			}
 		});
 	}
 
@@ -100,7 +132,6 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public executeFilter(object: any): any[] {
-		// return new Promise<any[]>((resolve, reject) => {
 		let courses: any[] = this.currentCourses;
 		let data = [];
 		let operator = "";
@@ -110,40 +141,36 @@ export default class InsightFacade implements IInsightFacade {
 		for (let key in object[operator]) {
 			let field = key.split("_")[1];
 			switch (operator) {
-			case "IS": {
-				let wcStart: boolean = object[operator][key][0] === "*" ? true : false;
-				let wcEnd: boolean = object[operator][key][object[operator][key].length - 1] === "*" ? true : false;
-				if (wcStart && wcEnd && (object[operator][key].length === 1 ||
-					object[operator][key].length === 2)) {
-					data = courses;
+				case "IS": {
+					let wcStart: boolean = object[operator][key][0] === "*" ? true : false;
+					let wcEnd: boolean = object[operator][key][object[operator][key].length - 1] === "*" ? true : false;
+					if (wcStart && wcEnd && (object[operator][key].length === 1 ||
+						object[operator][key].length === 2)) {
+						data = courses;
+						break;
+					}
+					let definite = object[operator][key].replace(/[*]/g, "");
+					let regex = new RegExp("^" + (wcStart ? ".*" : "") + definite + (wcEnd ? ".*" : "") + "$");
+					data = courses.filter((a) => regex.test(a[keyDict[field]]));
 					break;
 				}
-				let definite = object[operator][key].replace(/[*]/g, "");
-				let regex = new RegExp("^" + (wcStart ? ".*" : "") + definite + (wcEnd ? ".*" : "") + "$");
-				data = courses.filter((a) => regex.test(a[keyDict[field]]));
-				break;
-			}
-			case "EQ":
-				data = courses.filter((a) => a[keyDict[field]] === object[operator][key]);
-				break;
-			case "GT":
-				data = courses.filter((a) => a[keyDict[field]] > object[operator][key]);
-				break;
-			case "LT":
-				data = courses.filter((a) => a[keyDict[field]] < object[operator][key]);
-				break;
-			case "NOT": {
-				let insideQueryResult = this.executeNode(object[operator]);
-				data = this.currentCourses.filter((val) => !insideQueryResult.includes(val));
-				break;
-			}
-			// default:
-			//	reject(new Error("executeFilter Invalid Operator"));
+				case "EQ":
+					data = courses.filter((a) => a[keyDict[field]] === object[operator][key]);
+					break;
+				case "GT":
+					data = courses.filter((a) => a[keyDict[field]] > object[operator][key]);
+					break;
+				case "LT":
+					data = courses.filter((a) => a[keyDict[field]] < object[operator][key]);
+					break;
+				case "NOT": {
+					let insideQueryResult = this.executeNode(object[operator]);
+					data = this.currentCourses.filter((val) => !insideQueryResult.includes(val));
+					break;
+				}
 			}
 		}
 		return data;
-		// resolve(data);
-		// });
 	}
 
 	public executeLogic(object: any): any[] {
@@ -191,14 +218,9 @@ export default class InsightFacade implements IInsightFacade {
 
 	// Adapted from https://stackoverflow.com/a/4760279
 	private dynamicSort(key: any) {
-		let sortOrder = 1;
-		if(key[0] === "-") {
-			sortOrder = -1;
-			key = key.substr(1);
-		}
 		return function (a: any, b: any) {
 			let result = (a[key] < b[key]) ? -1 : (a[key] > b[key]) ? 1 : 0;
-			return result * sortOrder;
+			return result;
 		};
 	}
 
