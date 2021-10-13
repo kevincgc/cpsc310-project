@@ -48,14 +48,14 @@ export default class InsightFacade implements IInsightFacade {
 				}).then((validResults) => {
 					courses = getValidCourses(validResults);
 					if (courses.length > 0) {
-						this.currentCourses = courses;
-						this.currentDatasetId = id;
-						this.datasets.push({	id: id,	kind: kind,	numRows: courses.length	});
-						let ids: string[] = [];
-						for (let dataset of this.datasets) {
-							ids.push(dataset.id);
-						}
 						fs.outputJson("data/" + id + ".json", JSON.stringify(courses)).then(() => {
+							this.currentCourses = courses;
+							this.currentDatasetId = id;
+							this.datasets.push({	id: id,	kind: kind,	numRows: courses.length	});
+							let ids: string[] = [];
+							for (let dataset of this.datasets) {
+								ids.push(dataset.id);
+							}
 							resolve(ids);
 						}).catch((e: any) => {
 							reject(new InsightError("addDataset Couldn't Output Json With ID: " + id));
