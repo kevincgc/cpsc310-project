@@ -6,9 +6,7 @@ import * as fs from "fs-extra";
 import {clearDisk, getContentFromArchives, sleep} from "../resources/TestUtil";
 import {testFolder} from "@ubccpsc310/folder-test";
 import {expect} from "chai";
-const Path = require("path");
 import {isValidQuery} from "../../src/controller/ValidateQuery";
-import {pathExistsSync} from "fs-extra";
 
 type PQErrorKind = "ResultTooLargeError" | "InsightError";
 

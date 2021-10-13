@@ -80,12 +80,12 @@ export default class InsightFacade implements IInsightFacade {
 			for (let i = 0; i < this.datasets.length; i++) {
 				if (this.datasets[i].id === id) {
 					datasetExists = true;
-					this.currentDatasetId = "";
+					this.currentDatasetId = this.currentDatasetId === id ? "" : this.currentDatasetId;
 					this.datasets.splice(i, 1);
 				}
 			}
 			if (!datasetExists) {
-				reject(new NotFoundError("removeDataset File Not Found"));
+				reject(new NotFoundError("removeDataset Dataset Not Found"));
 			}
 			if (fs.existsSync("./data/" + id + ".json")) {
 				fs.remove("./data/" + id + ".json").then(() => {
