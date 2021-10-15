@@ -125,6 +125,7 @@ function isValidColumns (input: any, id: string): boolean {
 
 function isValidOrder (input: any, columns: any, id: any): boolean {
 	if (isValidKey(input, id)) {
+		// Find Order key in Columns
 		for (let c of columns) {
 			if (c === input) {
 				return true;
