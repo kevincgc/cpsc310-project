@@ -521,5 +521,36 @@ describe("kevincgc c0 tests", function() {
 			}
 		});
 	});
+	// TODO add room
+	describe("C2 Queries", function () {
+		let insightFacade: InsightFacade;
+		before(async function () {
+			clearDisk();
+			insightFacade = new InsightFacade();
+			await insightFacade.addDataset("courses", courses, InsightDatasetKind.Rooms);
+		});
+
+		testFolder<any, any[], PQErrorKind>(
+			"C2 Queries",
+			(input): Promise<any[]> => insightFacade.performQuery(input),
+			"./test/resources/c2_queries",
+			{
+				assertOnResult(expected, actual) {
+					expect(actual).to.be.an.instanceOf(Array);
+					expect(actual).to.have.deep.members(expected);
+					expect(actual).to.have.length(expected.length);
+				},
+				errorValidator: (error): error is PQErrorKind =>
+					error === "ResultTooLargeError" || error === "InsightError",
+				assertOnError(expected, actual) {
+					if (expected === "ResultTooLargeError") {
+						expect(actual).to.be.instanceof(ResultTooLargeError);
+					} else {
+						expect(actual).to.be.instanceof(InsightError);
+					}
+				},
+			}
+		);
+	});
 });
 
