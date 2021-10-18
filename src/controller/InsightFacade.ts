@@ -119,8 +119,6 @@ export default class InsightFacade implements IInsightFacade {
 						reject(new InsightError("removeDataset Unable To Remove File"));
 					}
 				});
-			} else {
-				reject(new InsightError("removeDataset DS Not Found On Disk"));
 			}
 		});
 	}
