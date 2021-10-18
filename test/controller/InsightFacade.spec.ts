@@ -551,38 +551,37 @@ describe("kevincgc c0 tests", function() {
 		);
 	});
 
-	describe("Ordered Queries", function () {
-		let insightFacade: InsightFacade;
-		before(async function () {
-			clearDisk();
-			insightFacade = new InsightFacade();
-			await insightFacade.addDataset("courses", courses, InsightDatasetKind.Courses);
-			await insightFacade.addDataset("rooms", rooms, InsightDatasetKind.Rooms);
-		});
-
-		testFolder<any, any[], PQErrorKind>(
-			"Ordered Queries",
-			(input): Promise<any[]> => insightFacade.performQuery(input),
-			"./test/resources/ordered_queries",
-			{
-				assertOnResult(expected, actual) {
-					expect(actual).to.be.an.instanceOf(Array);
-					expect(actual).to.have.deep.ordered.members(expected);
-					expect(actual).to.have.length(expected.length);
-				},
-				errorValidator: (error): error is PQErrorKind =>
-					error === "ResultTooLargeError" || error === "InsightError",
-				assertOnError(expected, actual) {
-					if (expected === "ResultTooLargeError") {
-						expect(actual).to.be.instanceof(ResultTooLargeError);
-					} else {
-						expect(actual).to.be.instanceof(InsightError);
-					}
-				},
-			}
-		);
-	});
-
+	// describe("C2 Ordered Queries", function () {
+	// 	let insightFacade: InsightFacade;
+	// 	before(async function () {
+	// 		clearDisk();
+	// 		insightFacade = new InsightFacade();
+	// 		await insightFacade.addDataset("courses", courses, InsightDatasetKind.Courses);
+	// 		await insightFacade.addDataset("rooms", rooms, InsightDatasetKind.Rooms);
+	// 	});
+	//
+	// 	testFolder<any, any[], PQErrorKind>(
+	// 		"C2 Ordered Queries",
+	// 		(input): Promise<any[]> => insightFacade.performQuery(input),
+	// 		"./test/resources/ordered_queries",
+	// 		{
+	// 			assertOnResult(expected, actual) {
+	// 				expect(actual).to.be.an.instanceOf(Array);
+	// 				expect(actual).to.have.deep.ordered.members(expected);
+	// 				expect(actual).to.have.length(expected.length);
+	// 			},
+	// 			errorValidator: (error): error is PQErrorKind =>
+	// 				error === "ResultTooLargeError" || error === "InsightError",
+	// 			assertOnError(expected, actual) {
+	// 				if (expected === "ResultTooLargeError") {
+	// 					expect(actual).to.be.instanceof(ResultTooLargeError);
+	// 				} else {
+	// 					expect(actual).to.be.instanceof(InsightError);
+	// 				}
+	// 			},
+	// 		}
+	// 	);
+	// });
 
 	describe("C2 Tutorial add 0/1/multi DS", function () {
 		let facade: IInsightFacade = new InsightFacade();
@@ -663,171 +662,172 @@ describe("kevincgc c0 tests", function() {
 				});
 		});
 	});
-	describe("C2 Add dataset exceptions", function () {
-		let facade: IInsightFacade = new InsightFacade();
-		beforeEach(function () {
-			clearDisk();
-			facade = new InsightFacade();
-		});
-		it("C2 should DS reject, not a zip", async function () {
-			try {
-				let data = getContentFromArchives("not_a_zip.txt");
-				await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
-				expect.fail("Should have rejected!");
-			} catch (err) {
-				expect(err).to.be.instanceof(InsightError);
-			}
-		});
-		it("C2 should DS reject, c2_0room_building_exists_but_no_rooms", async function () {
-			try {
-				let data = getContentFromArchives("c2_0room_building_exists_but_no_rooms.zip");
-				await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
-				expect.fail("Should have rejected!");
-			} catch (err) {
-				console.log(err);
-				expect(err).to.be.instanceof(InsightError);
-			}
-		});
-		it("C2 should DS reject, c2_0room_no_index", async function () {
-			try {
-				let data = getContentFromArchives("c2_0room_no_index.zip");
-				await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
-				expect.fail("Should have rejected!");
-			} catch (err) {
-				expect(err).to.be.instanceof(InsightError);
-			}
-		});
-		it("C2 should DS reject, c2_0room_no_rooms_folder", async function () {
-			try {
-				let data = getContentFromArchives("c2_0room_no_rooms_folder.zip");
-				await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
-				expect.fail("Should have rejected!");
-			} catch (err) {
-				expect(err).to.be.instanceof(InsightError);
-			}
-		});
-		it("C2 should DS pass, c2_4rooms_basic_biol_only", async function () {
-			let data = getContentFromArchives("c2_4rooms_basic_biol_only.zip");
-			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
-			const insightDatasets = await facade.listDatasets();
-			expect(insightDatasets).to.have.length(1);
-			expect(insightDatasets).to.deep.equal([{
-				id: "rooms",
-				kind: InsightDatasetKind.Rooms,
-				numRows: 4,
-			}]);
-		});
-		it("C2 should DS pass, c2_4rooms_no_views-row-first", async function () {
-			let data = getContentFromArchives("c2_4rooms_no_views-row-first.zip");
-			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
-			const insightDatasets = await facade.listDatasets();
-			expect(insightDatasets).to.have.length(1);
-			expect(insightDatasets).to.deep.equal([{
-				id: "rooms",
-				kind: InsightDatasetKind.Rooms,
-				numRows: 4,
-			}]);
-		});
-		it("C2 should DS reject, c2_0rooms_building_not_vaild_html", async function () {
-			try {
-				let data = getContentFromArchives("c2_0rooms_building_not_vaild_html.zip");
-				await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
-				expect.fail("Should have rejected!");
-			} catch (err) {
-				expect(err).to.be.instanceof(InsightError);
-			}
-		});
-		it("C2 should DS pass, c2_4rooms_ignore_unlinked_rooms", async function () {
-			let data = getContentFromArchives("c2_4rooms_ignore_unlinked_rooms.zip");
-			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
-			const insightDatasets = await facade.listDatasets();
-			expect(insightDatasets).to.have.length(1);
-			expect(insightDatasets).to.deep.equal([{
-				id: "rooms",
-				kind: InsightDatasetKind.Rooms,
-				numRows: 4,
-			}]);
-		});
-		it("C2 should DS reject, c2_0rooms_invalid_geolocation", async function () {
-			try {
-				let data = getContentFromArchives("c2_0rooms_invalid_geolocation.zip");
-				await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
-				expect.fail("Should have rejected!");
-			} catch (err) {
-				expect(err).to.be.instanceof(InsightError);
-			}
-		});
-		it("C2 should DS reject, c2_0rooms_building_files_not_exist", async function () {
-			try {
-				let data = getContentFromArchives("c2_0rooms_building_files_not_exist.zip");
-				await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
-				expect.fail("Should have rejected!");
-			} catch (err) {
-				expect(err).to.be.instanceof(InsightError);
-			}
-		});
-		it("C2 should DS reject, c2_0rooms_seats_info_blank", async function () {
-			try {
-				let data = getContentFromArchives("c2_0rooms_seats_info_blank.zip");
-				await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
-				expect.fail("Should have rejected!");
-			} catch (err) {
-				expect(err).to.be.instanceof(InsightError);
-			}
-		});
-		it("C2 should DS reject, c2_0rooms_index_same_dir_as_biol", async function () {
-			try {
-				let data = getContentFromArchives("c2_0rooms_index_same_dir_as_biol.zip");
-				await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
-				expect.fail("Should have rejected!");
-			} catch (err) {
-				expect(err).to.be.instanceof(InsightError);
-			}
-		});
-		it("C2 should DS reject files does not exist", async function () {
-			let data: string = "";
-			try {
-				await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
-				expect.fail("Should have rejected!");
-			} catch (err) {
-				expect(err).to.be.instanceof(InsightError);
-			}
-		});
-		it("C2 should DS reject name underscore", async function () {
-			try {
-				await facade.addDataset("rooms", rooms, InsightDatasetKind.Rooms);
-				expect.fail("Should have rejected!");
-			} catch (err) {
-				expect(err).to.be.instanceof(InsightError);
-			}
-		});
-		it("C2 should DS reject name all spaces", async function () {
-			try {
-				await facade.addDataset("          ", rooms, InsightDatasetKind.Rooms);
-				expect.fail("Should have rejected!");
-			} catch (err) {
-				expect(err).to.be.instanceof(InsightError);
-			}
-		});
-		it("C2 should DS reject, add Room as Course", async function () {
-			try {
-				await facade.addDataset("courses", rooms, InsightDatasetKind.Courses);
-				expect.fail("Should have rejected!");
-			} catch (err) {
-				console.log(err);
-				expect(err).to.be.instanceof(InsightError);
-			}
-		});
-		it("C2 should DS reject, add Course as Room", async function () {
-			try {
-				await facade.addDataset("rooms", courses, InsightDatasetKind.Rooms);
-				expect.fail("Should have rejected!");
-			} catch (err) {
-				console.log(err);
-				expect(err).to.be.instanceof(InsightError);
-			}
-		});
-	});
+
+	// describe("C2 Add dataset exceptions", function () {
+	// 	let facade: IInsightFacade = new InsightFacade();
+	// 	beforeEach(function () {
+	// 		clearDisk();
+	// 		facade = new InsightFacade();
+	// 	});
+	// 	it("C2 should DS reject, not a zip", async function () {
+	// 		try {
+	// 			let data = getContentFromArchives("not_a_zip.txt");
+	// 			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+	// 			expect.fail("Should have rejected!");
+	// 		} catch (err) {
+	// 			expect(err).to.be.instanceof(InsightError);
+	// 		}
+	// 	});
+	// 	it("C2 should DS reject, c2_0room_building_exists_but_no_rooms", async function () {
+	// 		try {
+	// 			let data = getContentFromArchives("c2_0room_building_exists_but_no_rooms.zip");
+	// 			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+	// 			expect.fail("Should have rejected!");
+	// 		} catch (err) {
+	// 			console.log(err);
+	// 			expect(err).to.be.instanceof(InsightError);
+	// 		}
+	// 	});
+	// 	it("C2 should DS reject, c2_0room_no_index", async function () {
+	// 		try {
+	// 			let data = getContentFromArchives("c2_0room_no_index.zip");
+	// 			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+	// 			expect.fail("Should have rejected!");
+	// 		} catch (err) {
+	// 			expect(err).to.be.instanceof(InsightError);
+	// 		}
+	// 	});
+	// 	it("C2 should DS reject, c2_0room_no_rooms_folder", async function () {
+	// 		try {
+	// 			let data = getContentFromArchives("c2_0room_no_rooms_folder.zip");
+	// 			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+	// 			expect.fail("Should have rejected!");
+	// 		} catch (err) {
+	// 			expect(err).to.be.instanceof(InsightError);
+	// 		}
+	// 	});
+	// 	it("C2 should DS pass, c2_4rooms_basic_biol_only", async function () {
+	// 		let data = getContentFromArchives("c2_4rooms_basic_biol_only.zip");
+	// 		await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+	// 		const insightDatasets = await facade.listDatasets();
+	// 		expect(insightDatasets).to.have.length(1);
+	// 		expect(insightDatasets).to.deep.equal([{
+	// 			id: "rooms",
+	// 			kind: InsightDatasetKind.Rooms,
+	// 			numRows: 4,
+	// 		}]);
+	// 	});
+	// 	it("C2 should DS pass, c2_4rooms_no_views-row-first", async function () {
+	// 		let data = getContentFromArchives("c2_4rooms_no_views-row-first.zip");
+	// 		await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+	// 		const insightDatasets = await facade.listDatasets();
+	// 		expect(insightDatasets).to.have.length(1);
+	// 		expect(insightDatasets).to.deep.equal([{
+	// 			id: "rooms",
+	// 			kind: InsightDatasetKind.Rooms,
+	// 			numRows: 4,
+	// 		}]);
+	// 	});
+	// 	it("C2 should DS reject, c2_0rooms_building_not_vaild_html", async function () {
+	// 		try {
+	// 			let data = getContentFromArchives("c2_0rooms_building_not_vaild_html.zip");
+	// 			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+	// 			expect.fail("Should have rejected!");
+	// 		} catch (err) {
+	// 			expect(err).to.be.instanceof(InsightError);
+	// 		}
+	// 	});
+	// 	it("C2 should DS pass, c2_4rooms_ignore_unlinked_rooms", async function () {
+	// 		let data = getContentFromArchives("c2_4rooms_ignore_unlinked_rooms.zip");
+	// 		await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+	// 		const insightDatasets = await facade.listDatasets();
+	// 		expect(insightDatasets).to.have.length(1);
+	// 		expect(insightDatasets).to.deep.equal([{
+	// 			id: "rooms",
+	// 			kind: InsightDatasetKind.Rooms,
+	// 			numRows: 4,
+	// 		}]);
+	// 	});
+	// 	it("C2 should DS reject, c2_0rooms_invalid_geolocation", async function () {
+	// 		try {
+	// 			let data = getContentFromArchives("c2_0rooms_invalid_geolocation.zip");
+	// 			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+	// 			expect.fail("Should have rejected!");
+	// 		} catch (err) {
+	// 			expect(err).to.be.instanceof(InsightError);
+	// 		}
+	// 	});
+	// 	it("C2 should DS reject, c2_0rooms_building_files_not_exist", async function () {
+	// 		try {
+	// 			let data = getContentFromArchives("c2_0rooms_building_files_not_exist.zip");
+	// 			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+	// 			expect.fail("Should have rejected!");
+	// 		} catch (err) {
+	// 			expect(err).to.be.instanceof(InsightError);
+	// 		}
+	// 	});
+	// 	it("C2 should DS reject, c2_0rooms_seats_info_blank", async function () {
+	// 		try {
+	// 			let data = getContentFromArchives("c2_0rooms_seats_info_blank.zip");
+	// 			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+	// 			expect.fail("Should have rejected!");
+	// 		} catch (err) {
+	// 			expect(err).to.be.instanceof(InsightError);
+	// 		}
+	// 	});
+	// 	it("C2 should DS reject, c2_0rooms_index_same_dir_as_biol", async function () {
+	// 		try {
+	// 			let data = getContentFromArchives("c2_0rooms_index_same_dir_as_biol.zip");
+	// 			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+	// 			expect.fail("Should have rejected!");
+	// 		} catch (err) {
+	// 			expect(err).to.be.instanceof(InsightError);
+	// 		}
+	// 	});
+	// 	it("C2 should DS reject files does not exist", async function () {
+	// 		let data: string = "";
+	// 		try {
+	// 			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+	// 			expect.fail("Should have rejected!");
+	// 		} catch (err) {
+	// 			expect(err).to.be.instanceof(InsightError);
+	// 		}
+	// 	});
+	// 	it("C2 should DS reject name underscore", async function () {
+	// 		try {
+	// 			await facade.addDataset("rooms", rooms, InsightDatasetKind.Rooms);
+	// 			expect.fail("Should have rejected!");
+	// 		} catch (err) {
+	// 			expect(err).to.be.instanceof(InsightError);
+	// 		}
+	// 	});
+	// 	it("C2 should DS reject name all spaces", async function () {
+	// 		try {
+	// 			await facade.addDataset("          ", rooms, InsightDatasetKind.Rooms);
+	// 			expect.fail("Should have rejected!");
+	// 		} catch (err) {
+	// 			expect(err).to.be.instanceof(InsightError);
+	// 		}
+	// 	});
+	// 	it("C2 should DS reject, add Room as Course", async function () {
+	// 		try {
+	// 			await facade.addDataset("courses", rooms, InsightDatasetKind.Courses);
+	// 			expect.fail("Should have rejected!");
+	// 		} catch (err) {
+	// 			console.log(err);
+	// 			expect(err).to.be.instanceof(InsightError);
+	// 		}
+	// 	});
+	// 	it("C2 should DS reject, add Course as Room", async function () {
+	// 		try {
+	// 			await facade.addDataset("rooms", courses, InsightDatasetKind.Rooms);
+	// 			expect.fail("Should have rejected!");
+	// 		} catch (err) {
+	// 			console.log(err);
+	// 			expect(err).to.be.instanceof(InsightError);
+	// 		}
+	// 	});
+	// });
 
 	// describe("C2 List Datasets", function () {
 	// 	let facade: IInsightFacade;
