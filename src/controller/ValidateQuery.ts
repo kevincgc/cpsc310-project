@@ -50,7 +50,7 @@ function isValidMComparison (input: any, id: string): boolean {
 			return false;
 		}
 		for (let m in input[key]) {
-			console.log(input[key][m]);
+			// console.log(input[key][m]);
 			isValid = isValidMKey(m, id);
 			isValid = isValid && !isNaN(input[key][m]) &&
 				!(typeof input[key][m] === "string" || input[key][m] instanceof String);

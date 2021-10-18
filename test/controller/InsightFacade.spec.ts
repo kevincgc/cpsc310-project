@@ -613,7 +613,7 @@ describe("kevincgc c0 tests", function() {
 		it("C2 should list multiple datasets", function () {
 			return facade.addDataset("rooms", rooms, InsightDatasetKind.Rooms)
 				.then(() => {
-					return facade.addDataset("rooms-2", rooms, InsightDatasetKind.Rooms);
+					return facade.addDataset("rooms2", rooms, InsightDatasetKind.Rooms);
 				})
 				.then(() => {
 					return facade.listDatasets();
@@ -628,7 +628,7 @@ describe("kevincgc c0 tests", function() {
 							numRows: 364,
 						},
 						{
-							id: "rooms-2",
+							id: "rooms2",
 							kind: InsightDatasetKind.Rooms,
 							numRows: 364,
 						}
@@ -681,7 +681,7 @@ describe("kevincgc c0 tests", function() {
 		it("C2 should DS reject, c2_0room_building_exists_but_no_rooms", async function () {
 			try {
 				let data = getContentFromArchives("c2_0room_building_exists_but_no_rooms.zip");
-				await facade.addDataset("rooms", data, InsightDatasetKind.Courses);
+				await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
 				expect.fail("Should have rejected!");
 			} catch (err) {
 				console.log(err);
