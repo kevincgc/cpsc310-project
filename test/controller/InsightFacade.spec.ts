@@ -717,6 +717,17 @@ describe("kevincgc c0 tests", function() {
 				numRows: 4,
 			}]);
 		});
+		it("C2 should DS pass, c2_4rooms_multiple_tables_in_index", async function () {
+			let data = getContentFromArchives("c2_4rooms_multiple_tables_in_index.zip");
+			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+			const insightDatasets = await facade.listDatasets();
+			expect(insightDatasets).to.have.length(1);
+			expect(insightDatasets).to.deep.equal([{
+				id: "rooms",
+				kind: InsightDatasetKind.Rooms,
+				numRows: 4,
+			}]);
+		});
 		it("C2 should DS pass, c2_4rooms_no_views-row-first", async function () {
 			let data = getContentFromArchives("c2_4rooms_no_views-row-first.zip");
 			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
