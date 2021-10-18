@@ -797,49 +797,49 @@ describe("kevincgc c0 tests", function() {
 				expect(err).to.be.instanceof(InsightError);
 			}
 		});
-	// 	it("C2 should DS reject files does not exist", async function () {
-	// 		let data: string = "";
-	// 		try {
-	// 			await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
-	// 			expect.fail("Should have rejected!");
-	// 		} catch (err) {
-	// 			expect(err).to.be.instanceof(InsightError);
-	// 		}
-	// 	});
-	// 	it("C2 should DS reject name underscore", async function () {
-	// 		try {
-	// 			await facade.addDataset("rooms", rooms, InsightDatasetKind.Rooms);
-	// 			expect.fail("Should have rejected!");
-	// 		} catch (err) {
-	// 			expect(err).to.be.instanceof(InsightError);
-	// 		}
-	// 	});
-	// 	it("C2 should DS reject name all spaces", async function () {
-	// 		try {
-	// 			await facade.addDataset("          ", rooms, InsightDatasetKind.Rooms);
-	// 			expect.fail("Should have rejected!");
-	// 		} catch (err) {
-	// 			expect(err).to.be.instanceof(InsightError);
-	// 		}
-	// 	});
-	// 	it("C2 should DS reject, add Room as Course", async function () {
-	// 		try {
-	// 			await facade.addDataset("courses", rooms, InsightDatasetKind.Courses);
-	// 			expect.fail("Should have rejected!");
-	// 		} catch (err) {
-	// 			console.log(err);
-	// 			expect(err).to.be.instanceof(InsightError);
-	// 		}
-	// 	});
-	// 	it("C2 should DS reject, add Course as Room", async function () {
-	// 		try {
-	// 			await facade.addDataset("rooms", courses, InsightDatasetKind.Rooms);
-	// 			expect.fail("Should have rejected!");
-	// 		} catch (err) {
-	// 			console.log(err);
-	// 			expect(err).to.be.instanceof(InsightError);
-	// 		}
-	// 	});
+		it("C2 should DS reject files does not exist", async function () {
+			let data: string = "";
+			try {
+				await facade.addDataset("rooms", data, InsightDatasetKind.Rooms);
+				expect.fail("Should have rejected!");
+			} catch (err) {
+				expect(err).to.be.instanceof(InsightError);
+			}
+		});
+		it("C2 should DS reject name underscore", async function () {
+			try {
+				await facade.addDataset("rooms_invalid", rooms, InsightDatasetKind.Rooms);
+				expect.fail("Should have rejected!");
+			} catch (err) {
+				expect(err).to.be.instanceof(InsightError);
+			}
+		});
+		it("C2 should DS reject name all spaces", async function () {
+			try {
+				await facade.addDataset("          ", rooms, InsightDatasetKind.Rooms);
+				expect.fail("Should have rejected!");
+			} catch (err) {
+				expect(err).to.be.instanceof(InsightError);
+			}
+		});
+		// it("C2 should DS reject, add Room as Course", async function () {
+		// 	try {
+		// 		await facade.addDataset("courses", rooms, InsightDatasetKind.Courses);
+		// 		expect.fail("Should have rejected!");
+		// 	} catch (err) {
+		// 		console.log(err);
+		// 		expect(err).to.be.instanceof(InsightError);
+		// 	}
+		// });
+		// it("C2 should DS reject, add Course as Room", async function () {
+		// 	try {
+		// 		await facade.addDataset("rooms", courses, InsightDatasetKind.Rooms);
+		// 		expect.fail("Should have rejected!");
+		// 	} catch (err) {
+		// 		console.log(err);
+		// 		expect(err).to.be.instanceof(InsightError);
+		// 	}
+		// });
 	});
 
 	// describe("C2 List Datasets", function () {
