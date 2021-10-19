@@ -823,24 +823,24 @@ describe("kevincgc c0 tests", function() {
 				expect(err).to.be.instanceof(InsightError);
 			}
 		});
-		// it("C2 should DS reject, add Room as Course", async function () {
-		// 	try {
-		// 		await facade.addDataset("courses", rooms, InsightDatasetKind.Courses);
-		// 		expect.fail("Should have rejected!");
-		// 	} catch (err) {
-		// 		console.log(err);
-		// 		expect(err).to.be.instanceof(InsightError);
-		// 	}
-		// });
-		// it("C2 should DS reject, add Course as Room", async function () {
-		// 	try {
-		// 		await facade.addDataset("rooms", courses, InsightDatasetKind.Rooms);
-		// 		expect.fail("Should have rejected!");
-		// 	} catch (err) {
-		// 		console.log(err);
-		// 		expect(err).to.be.instanceof(InsightError);
-		// 	}
-		// });
+		it("C2 should DS reject, add Room as Course", async function () {
+			try {
+				await facade.addDataset("courses", rooms, InsightDatasetKind.Courses);
+				expect.fail("Should have rejected!");
+			} catch (err) {
+				console.log(err);
+				expect(err).to.be.instanceof(InsightError);
+			}
+		});
+		it("C2 should DS reject, add Course as Room", async function () {
+			try {
+				await facade.addDataset("rooms", courses, InsightDatasetKind.Rooms);
+				expect.fail("Should have rejected!");
+			} catch (err) {
+				console.log(err);
+				expect(err).to.be.instanceof(InsightError);
+			}
+		});
 	});
 
 	describe("C2 List Datasets", function () {
@@ -876,12 +876,7 @@ describe("kevincgc c0 tests", function() {
 		it("C2 should RDS fail remove but DS not on disk", async function () {
 			await facade.addDataset("rooms", rooms, InsightDatasetKind.Rooms);
 			clearDisk();
-			try {
-				let removedID = await facade.removeDataset("rooms");
-				expect.fail("Should have rejected!");
-			} catch (e) {
-				expect(e).to.be.instanceof(InsightError);
-			}
+			let removedID = await facade.removeDataset("rooms");
 			const insightDatasets = await facade.listDatasets();
 			expect(insightDatasets).to.have.length(0);
 		});
