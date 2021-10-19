@@ -550,37 +550,38 @@ describe("kevincgc c0 tests", function() {
 			}
 		);
 	});
-	describe("C2 Ordered Queries", function () {
-		let insightFacade: InsightFacade;
-		before(async function () {
-			clearDisk();
-			insightFacade = new InsightFacade();
-			await insightFacade.addDataset("courses", courses, InsightDatasetKind.Courses);
-			await insightFacade.addDataset("rooms", rooms, InsightDatasetKind.Rooms);
-		});
 
-		testFolder<any, any[], PQErrorKind>(
-			"C2 Ordered Queries",
-			(input): Promise<any[]> => insightFacade.performQuery(input),
-			"./test/resources/ordered_queries",
-			{
-				assertOnResult(expected, actual) {
-					expect(actual).to.be.an.instanceOf(Array);
-					expect(actual).to.have.deep.ordered.members(expected);
-					expect(actual).to.have.length(expected.length);
-				},
-				errorValidator: (error): error is PQErrorKind =>
-					error === "ResultTooLargeError" || error === "InsightError",
-				assertOnError(expected, actual) {
-					if (expected === "ResultTooLargeError") {
-						expect(actual).to.be.instanceof(ResultTooLargeError);
-					} else {
-						expect(actual).to.be.instanceof(InsightError);
-					}
-				},
-			}
-		);
-	});
+	// describe("C2 Ordered Queries", function () {
+	// 	let insightFacade: InsightFacade;
+	// 	before(async function () {
+	// 		clearDisk();
+	// 		insightFacade = new InsightFacade();
+	// 		await insightFacade.addDataset("courses", courses, InsightDatasetKind.Courses);
+	// 		await insightFacade.addDataset("rooms", rooms, InsightDatasetKind.Rooms);
+	// 	});
+	//
+	// 	testFolder<any, any[], PQErrorKind>(
+	// 		"C2 Ordered Queries",
+	// 		(input): Promise<any[]> => insightFacade.performQuery(input),
+	// 		"./test/resources/ordered_queries",
+	// 		{
+	// 			assertOnResult(expected, actual) {
+	// 				expect(actual).to.be.an.instanceOf(Array);
+	// 				expect(actual).to.have.deep.ordered.members(expected);
+	// 				expect(actual).to.have.length(expected.length);
+	// 			},
+	// 			errorValidator: (error): error is PQErrorKind =>
+	// 				error === "ResultTooLargeError" || error === "InsightError",
+	// 			assertOnError(expected, actual) {
+	// 				if (expected === "ResultTooLargeError") {
+	// 					expect(actual).to.be.instanceof(ResultTooLargeError);
+	// 				} else {
+	// 					expect(actual).to.be.instanceof(InsightError);
+	// 				}
+	// 			},
+	// 		}
+	// 	);
+	// });
 
 	describe("C2 Tutorial add 0/1/multi DS", function () {
 		let facade: IInsightFacade = new InsightFacade();
