@@ -1,0 +1,60 @@
+{
+  "errorMsg": "Cannot have underscore in applyKey",
+  "title": "underscoreInApplyKey",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_Max",
+        "courses_dept",
+        "courses_year",
+        "coursesMin",
+        "coursesSum"
+      ],
+      "ORDER": {
+        "dir": "DOWN",
+        "keys": [
+          "courses_Max",
+          "courses_dept",
+          "courses_year",
+          "coursesMin",
+          "coursesSum"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_dept",
+        "courses_year",
+        "courses_uuid"
+      ],
+      "APPLY": [
+        {
+          "courses_Max": {
+            "MAX": "courses_avg"
+          }
+        },
+        {
+          "coursesMin": {
+            "MIN": "courses_avg"
+          }
+        },
+        {
+          "coursesSum": {
+            "SUM": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

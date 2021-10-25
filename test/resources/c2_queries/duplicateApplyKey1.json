@@ -1,0 +1,58 @@
+{
+  "errorMsg": "Duplicate APPLY key coursesMin",
+  "title": "duplicateApplyKey",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_year",
+        "coursesMin",
+        "coursesSum"
+      ],
+      "ORDER": {
+        "keys": [
+          "courses_dept",
+          "courses_year",
+          "coursesMin",
+          "coursesSum"
+        ],
+        "dir": "DOWN"
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_dept",
+        "courses_year",
+        "courses_uuid"
+      ],
+      "APPLY": [
+        {
+          "coursesMin": {
+            "MAX": "courses_avg"
+          }
+        },
+        {
+          "coursesMin": {
+            "MIN": "courses_avg"
+          }
+        },
+        {
+          "coursesSum": {
+            "SUM": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

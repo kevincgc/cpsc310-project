@@ -1,0 +1,60 @@
+{
+  "errorMsg": "Invalid key coursesMax in COLUMNS",
+  "title": "keyCaseSensitive",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "coursesMax",
+        "courses_dept",
+        "courses_year",
+        "coursesMin",
+        "coursesSum"
+      ],
+      "ORDER": {
+        "dir": "DOWN",
+        "keys": [
+          "coursesMax",
+          "courses_dept",
+          "courses_year",
+          "coursesMin",
+          "coursesSum"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_dept",
+        "courses_year",
+        "courses_uuid"
+      ],
+      "APPLY": [
+        {
+          "coursesmax": {
+            "MAX": "courses_avg"
+          }
+        },
+        {
+          "coursesMin": {
+            "MIN": "courses_avg"
+          }
+        },
+        {
+          "coursesSum": {
+            "SUM": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

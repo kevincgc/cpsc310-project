@@ -1,0 +1,1858 @@
+{
+  "title": "multipleApplyKeys",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_year",
+        "coursesMax",
+        "coursesMin",
+        "coursesSum"
+      ],
+      "ORDER": {
+        "dir": "DOWN",
+        "keys": [
+          "coursesMax",
+          "courses_dept",
+          "courses_year",
+          "coursesMin",
+          "coursesSum"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_dept",
+        "courses_year"
+      ],
+      "APPLY": [
+        {
+          "coursesMax": {
+            "MAX": "courses_avg"
+          }
+        },
+        {
+          "coursesMin": {
+            "MIN": "courses_avg"
+          }
+        },
+        {
+          "coursesSum": {
+            "SUM": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_dept": "math",
+      "courses_year": 2009,
+      "coursesMax": 99.78,
+      "coursesMin": 93.6,
+      "coursesSum": 289.82
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 1900,
+      "coursesMax": 99.78,
+      "coursesMin": 93.11,
+      "coursesSum": 2470.17
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2012,
+      "coursesMax": 99.19,
+      "coursesMin": 93.5,
+      "coursesSum": 476.01
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 2015,
+      "coursesMax": 98.98,
+      "coursesMin": 93.2,
+      "coursesSum": 664.7
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 1900,
+      "coursesMax": 98.98,
+      "coursesMin": 93.2,
+      "coursesSum": 1418.89
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2014,
+      "coursesMax": 98.8,
+      "coursesMin": 93.15,
+      "coursesSum": 1984.34
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2012,
+      "coursesMax": 98.76,
+      "coursesMin": 93.06,
+      "coursesSum": 2172.62
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 1900,
+      "coursesMax": 98.76,
+      "coursesMin": 93.08,
+      "coursesSum": 8796.07
+    },
+    {
+      "courses_dept": "eece",
+      "courses_year": 2009,
+      "coursesMax": 98.75,
+      "coursesMin": 98.75,
+      "coursesSum": 98.75
+    },
+    {
+      "courses_dept": "eece",
+      "courses_year": 1900,
+      "coursesMax": 98.75,
+      "coursesMin": 93.56,
+      "coursesSum": 474.4
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2011,
+      "coursesMax": 98.71,
+      "coursesMin": 93.86,
+      "coursesSum": 381.25
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 1900,
+      "coursesMax": 98.71,
+      "coursesMin": 93.07,
+      "coursesSum": 2477.91
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2009,
+      "coursesMax": 98.7,
+      "coursesMin": 93.23,
+      "coursesSum": 1433.17
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2010,
+      "coursesMax": 98.58,
+      "coursesMin": 93.41,
+      "coursesSum": 573.75
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2013,
+      "coursesMax": 98.5,
+      "coursesMin": 93.36,
+      "coursesSum": 474.84
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2011,
+      "coursesMax": 98.45,
+      "coursesMin": 93.55,
+      "coursesSum": 1517.78
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2015,
+      "coursesMax": 98.21,
+      "coursesMin": 94,
+      "coursesSum": 384.03
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_year": 2013,
+      "coursesMax": 98,
+      "coursesMin": 93.33,
+      "coursesSum": 1046.24
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2013,
+      "coursesMax": 97.69,
+      "coursesMin": 93.25,
+      "coursesSum": 1610.72
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2007,
+      "coursesMax": 97.67,
+      "coursesMin": 93.08,
+      "coursesSum": 949.15
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 2015,
+      "coursesMax": 97.5,
+      "coursesMin": 93.47,
+      "coursesSum": 190.97
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2010,
+      "coursesMax": 97.48,
+      "coursesMin": 93.8,
+      "coursesSum": 383.04
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2009,
+      "coursesMax": 97.47,
+      "coursesMin": 97.47,
+      "coursesSum": 97.47
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 1900,
+      "coursesMax": 97.47,
+      "coursesMin": 93.08,
+      "coursesSum": 1700.37
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2010,
+      "coursesMax": 97.29,
+      "coursesMin": 93.29,
+      "coursesSum": 1323.93
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2016,
+      "coursesMax": 97.25,
+      "coursesMin": 93.2,
+      "coursesSum": 190.45
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 2012,
+      "coursesMax": 97,
+      "coursesMin": 97,
+      "coursesSum": 97
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_year": 2014,
+      "coursesMax": 97,
+      "coursesMin": 93.67,
+      "coursesSum": 952.03
+    },
+    {
+      "courses_dept": "arst",
+      "courses_year": 2008,
+      "coursesMax": 96.94,
+      "coursesMin": 96.94,
+      "coursesSum": 96.94
+    },
+    {
+      "courses_dept": "arst",
+      "courses_year": 1900,
+      "coursesMax": 96.94,
+      "coursesMin": 94,
+      "coursesSum": 190.94
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2012,
+      "coursesMax": 96.9,
+      "coursesMin": 96.9,
+      "coursesSum": 96.9
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 1900,
+      "coursesMax": 96.9,
+      "coursesMin": 93.09,
+      "coursesSum": 1221.76
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2011,
+      "coursesMax": 96.83,
+      "coursesMin": 94.67,
+      "coursesSum": 191.5
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 2010,
+      "coursesMax": 96.8,
+      "coursesMin": 93.33,
+      "coursesSum": 190.13
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2016,
+      "coursesMax": 96.73,
+      "coursesMin": 93.4,
+      "coursesSum": 190.13
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2012,
+      "coursesMax": 96.64,
+      "coursesMin": 96.64,
+      "coursesSum": 96.64
+    },
+    {
+      "courses_dept": "mine",
+      "courses_year": 2012,
+      "coursesMax": 96.59,
+      "coursesMin": 96.59,
+      "coursesSum": 96.59
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2012,
+      "coursesMax": 96.5,
+      "coursesMin": 96.5,
+      "coursesSum": 96.5
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 1900,
+      "coursesMax": 96.5,
+      "coursesMin": 93.06,
+      "coursesSum": 1132.61
+    },
+    {
+      "courses_dept": "midw",
+      "courses_year": 2012,
+      "coursesMax": 96.5,
+      "coursesMin": 96.5,
+      "coursesSum": 96.5
+    },
+    {
+      "courses_dept": "midw",
+      "courses_year": 1900,
+      "coursesMax": 96.5,
+      "coursesMin": 93.47,
+      "coursesSum": 471.95
+    },
+    {
+      "courses_dept": "plan",
+      "courses_year": 2011,
+      "coursesMax": 96.47,
+      "coursesMin": 96.47,
+      "coursesSum": 96.47
+    },
+    {
+      "courses_dept": "plan",
+      "courses_year": 1900,
+      "coursesMax": 96.47,
+      "coursesMin": 93.12,
+      "coursesSum": 378.11
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2012,
+      "coursesMax": 96.47,
+      "coursesMin": 93.08,
+      "coursesSum": 377.25
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 1900,
+      "coursesMax": 96.47,
+      "coursesMin": 93.19,
+      "coursesSum": 1227.44
+    },
+    {
+      "courses_dept": "edst",
+      "courses_year": 2013,
+      "coursesMax": 96.46,
+      "coursesMin": 96.46,
+      "coursesSum": 96.46
+    },
+    {
+      "courses_dept": "edst",
+      "courses_year": 1900,
+      "coursesMax": 96.46,
+      "coursesMin": 93.4,
+      "coursesSum": 849.5
+    },
+    {
+      "courses_dept": "fipr",
+      "courses_year": 2015,
+      "coursesMax": 96.4,
+      "coursesMin": 96.4,
+      "coursesSum": 96.4
+    },
+    {
+      "courses_dept": "fipr",
+      "courses_year": 1900,
+      "coursesMax": 96.4,
+      "coursesMin": 96.4,
+      "coursesSum": 96.4
+    },
+    {
+      "courses_dept": "frst",
+      "courses_year": 2015,
+      "coursesMax": 96.36,
+      "coursesMin": 96.36,
+      "coursesSum": 96.36
+    },
+    {
+      "courses_dept": "frst",
+      "courses_year": 1900,
+      "coursesMax": 96.36,
+      "coursesMin": 96.36,
+      "coursesSum": 96.36
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2013,
+      "coursesMax": 96.33,
+      "coursesMin": 94.18,
+      "coursesSum": 381.4
+    },
+    {
+      "courses_dept": "civl",
+      "courses_year": 2012,
+      "coursesMax": 96.27,
+      "coursesMin": 96.27,
+      "coursesSum": 96.27
+    },
+    {
+      "courses_dept": "civl",
+      "courses_year": 1900,
+      "coursesMax": 96.27,
+      "coursesMin": 96.27,
+      "coursesSum": 96.27
+    },
+    {
+      "courses_dept": "mtrl",
+      "courses_year": 2011,
+      "coursesMax": 96.25,
+      "coursesMin": 95,
+      "coursesSum": 191.25
+    },
+    {
+      "courses_dept": "mtrl",
+      "courses_year": 1900,
+      "coursesMax": 96.25,
+      "coursesMin": 95,
+      "coursesSum": 191.25
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2015,
+      "coursesMax": 96.25,
+      "coursesMin": 93.11,
+      "coursesSum": 565.97
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2015,
+      "coursesMax": 96.21,
+      "coursesMin": 93.23,
+      "coursesSum": 1698.14
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_year": 2012,
+      "coursesMax": 96.15,
+      "coursesMin": 96.15,
+      "coursesSum": 96.15
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_year": 1900,
+      "coursesMax": 96.15,
+      "coursesMin": 93.4,
+      "coursesSum": 285.48
+    },
+    {
+      "courses_dept": "adhe",
+      "courses_year": 2015,
+      "coursesMax": 96.11,
+      "coursesMin": 96.11,
+      "coursesSum": 96.11
+    },
+    {
+      "courses_dept": "libr",
+      "courses_year": 2015,
+      "coursesMax": 96.1,
+      "coursesMin": 96.1,
+      "coursesSum": 96.1
+    },
+    {
+      "courses_dept": "libr",
+      "courses_year": 1900,
+      "coursesMax": 96.1,
+      "coursesMin": 96.1,
+      "coursesSum": 96.1
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_year": 2014,
+      "coursesMax": 96.09,
+      "coursesMin": 95.93,
+      "coursesSum": 192.02
+    },
+    {
+      "courses_dept": "kin",
+      "courses_year": 2013,
+      "coursesMax": 96.06,
+      "coursesMin": 93.29,
+      "coursesSum": 473.82
+    },
+    {
+      "courses_dept": "kin",
+      "courses_year": 1900,
+      "coursesMax": 96.06,
+      "coursesMin": 93.37,
+      "coursesSum": 755.8
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 2015,
+      "coursesMax": 96,
+      "coursesMin": 93.25,
+      "coursesSum": 285
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 1900,
+      "coursesMax": 96,
+      "coursesMin": 93.25,
+      "coursesSum": 947.45
+    },
+    {
+      "courses_dept": "phil",
+      "courses_year": 2010,
+      "coursesMax": 96,
+      "coursesMin": 96,
+      "coursesSum": 96
+    },
+    {
+      "courses_dept": "pcth",
+      "courses_year": 1900,
+      "coursesMax": 96,
+      "coursesMin": 96,
+      "coursesSum": 96
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_year": 2012,
+      "coursesMax": 96,
+      "coursesMin": 93.5,
+      "coursesSum": 474.2
+    },
+    {
+      "courses_dept": "apsc",
+      "courses_year": 2010,
+      "coursesMax": 96,
+      "coursesMin": 95.05,
+      "coursesSum": 191.05
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2014,
+      "coursesMax": 95.96,
+      "coursesMin": 94,
+      "coursesSum": 378.96
+    },
+    {
+      "courses_dept": "apsc",
+      "courses_year": 2009,
+      "coursesMax": 95.95,
+      "coursesMin": 94.1,
+      "coursesSum": 190.05
+    },
+    {
+      "courses_dept": "apsc",
+      "courses_year": 2007,
+      "coursesMax": 95.94,
+      "coursesMin": 94.17,
+      "coursesSum": 285.05
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2016,
+      "coursesMax": 95.9,
+      "coursesMin": 93.65,
+      "coursesSum": 377.74
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2008,
+      "coursesMax": 95.83,
+      "coursesMin": 93.81,
+      "coursesSum": 284.91
+    },
+    {
+      "courses_dept": "edst",
+      "courses_year": 2010,
+      "coursesMax": 95.78,
+      "coursesMin": 95.78,
+      "coursesSum": 95.78
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2015,
+      "coursesMax": 95.78,
+      "coursesMin": 94.05,
+      "coursesSum": 189.83
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 2013,
+      "coursesMax": 95.75,
+      "coursesMin": 93.94,
+      "coursesSum": 189.69
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_year": 1900,
+      "coursesMax": 95.7,
+      "coursesMin": 93.2,
+      "coursesSum": 848.52
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2013,
+      "coursesMax": 95.63,
+      "coursesMin": 93.14,
+      "coursesSum": 473.34
+    },
+    {
+      "courses_dept": "mine",
+      "courses_year": 2009,
+      "coursesMax": 95.6,
+      "coursesMin": 95.6,
+      "coursesSum": 95.6
+    },
+    {
+      "courses_dept": "edcp",
+      "courses_year": 2012,
+      "coursesMax": 95.58,
+      "coursesMin": 95.58,
+      "coursesSum": 95.58
+    },
+    {
+      "courses_dept": "edcp",
+      "courses_year": 1900,
+      "coursesMax": 95.58,
+      "coursesMin": 93.2,
+      "coursesSum": 566.11
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2007,
+      "coursesMax": 95.56,
+      "coursesMin": 93.8,
+      "coursesSum": 189.36
+    },
+    {
+      "courses_dept": "chbe",
+      "courses_year": 2013,
+      "coursesMax": 95.54,
+      "coursesMin": 95.54,
+      "coursesSum": 95.54
+    },
+    {
+      "courses_dept": "chbe",
+      "courses_year": 1900,
+      "coursesMax": 95.54,
+      "coursesMin": 94.75,
+      "coursesSum": 285.6
+    },
+    {
+      "courses_dept": "mine",
+      "courses_year": 2013,
+      "coursesMax": 95.44,
+      "coursesMin": 94.5,
+      "coursesSum": 189.94
+    },
+    {
+      "courses_dept": "phys",
+      "courses_year": 2015,
+      "coursesMax": 95.43,
+      "coursesMin": 93.31,
+      "coursesSum": 188.74
+    },
+    {
+      "courses_dept": "phys",
+      "courses_year": 1900,
+      "coursesMax": 95.43,
+      "coursesMin": 93.31,
+      "coursesSum": 377.94
+    },
+    {
+      "courses_dept": "mine",
+      "courses_year": 1900,
+      "coursesMax": 95.43,
+      "coursesMin": 94.07,
+      "coursesSum": 284.68
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2015,
+      "coursesMax": 95.38,
+      "coursesMin": 93.35,
+      "coursesSum": 188.73
+    },
+    {
+      "courses_dept": "phth",
+      "courses_year": 2013,
+      "coursesMax": 95.37,
+      "coursesMin": 95.37,
+      "coursesSum": 95.37
+    },
+    {
+      "courses_dept": "phth",
+      "courses_year": 1900,
+      "coursesMax": 95.37,
+      "coursesMin": 94.32,
+      "coursesSum": 189.69
+    },
+    {
+      "courses_dept": "kin",
+      "courses_year": 2014,
+      "coursesMax": 95.36,
+      "coursesMin": 93.37,
+      "coursesSum": 283.73
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2011,
+      "coursesMax": 95.36,
+      "coursesMin": 93.4,
+      "coursesSum": 376.76
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2016,
+      "coursesMax": 95.32,
+      "coursesMin": 95.32,
+      "coursesSum": 95.32
+    },
+    {
+      "courses_dept": "chbe",
+      "courses_year": 2015,
+      "coursesMax": 95.31,
+      "coursesMin": 94.75,
+      "coursesSum": 190.06
+    },
+    {
+      "courses_dept": "hgse",
+      "courses_year": 2014,
+      "coursesMax": 95.29,
+      "coursesMin": 95.29,
+      "coursesSum": 95.29
+    },
+    {
+      "courses_dept": "hgse",
+      "courses_year": 1900,
+      "coursesMax": 95.29,
+      "coursesMin": 93.07,
+      "coursesSum": 471.69
+    },
+    {
+      "courses_dept": "hgse",
+      "courses_year": 2016,
+      "coursesMax": 95.26,
+      "coursesMin": 95.26,
+      "coursesSum": 95.26
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 2007,
+      "coursesMax": 95.25,
+      "coursesMin": 94.75,
+      "coursesSum": 190
+    },
+    {
+      "courses_dept": "thtr",
+      "courses_year": 2011,
+      "coursesMax": 95.2,
+      "coursesMin": 95.2,
+      "coursesSum": 95.2
+    },
+    {
+      "courses_dept": "thtr",
+      "courses_year": 1900,
+      "coursesMax": 95.2,
+      "coursesMin": 93.05,
+      "coursesSum": 188.25
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 2013,
+      "coursesMax": 95.16,
+      "coursesMin": 93.7,
+      "coursesSum": 188.86
+    },
+    {
+      "courses_dept": "bmeg",
+      "courses_year": 2012,
+      "coursesMax": 95.15,
+      "coursesMin": 95.15,
+      "coursesSum": 95.15
+    },
+    {
+      "courses_dept": "bmeg",
+      "courses_year": 1900,
+      "coursesMax": 95.15,
+      "coursesMin": 95,
+      "coursesSum": 190.15
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2014,
+      "coursesMax": 95.13,
+      "coursesMin": 94.15,
+      "coursesSum": 284.2
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 2009,
+      "coursesMax": 95.11,
+      "coursesMin": 95.09,
+      "coursesSum": 190.2
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2011,
+      "coursesMax": 95.1,
+      "coursesMin": 93.64,
+      "coursesSum": 376.92
+    },
+    {
+      "courses_dept": "phar",
+      "courses_year": 2014,
+      "coursesMax": 95.07,
+      "coursesMin": 94.54,
+      "coursesSum": 189.61
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_year": 2015,
+      "coursesMax": 95,
+      "coursesMin": 95,
+      "coursesSum": 95
+    },
+    {
+      "courses_dept": "rhsc",
+      "courses_year": 2009,
+      "coursesMax": 95,
+      "coursesMin": 95,
+      "coursesSum": 95
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 2010,
+      "coursesMax": 95,
+      "coursesMin": 95,
+      "coursesSum": 95
+    },
+    {
+      "courses_dept": "obst",
+      "courses_year": 1900,
+      "coursesMax": 95,
+      "coursesMin": 95,
+      "coursesSum": 95
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2013,
+      "coursesMax": 95,
+      "coursesMin": 95,
+      "coursesSum": 95
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2011,
+      "coursesMax": 95,
+      "coursesMin": 93.33,
+      "coursesSum": 188.33
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2010,
+      "coursesMax": 95,
+      "coursesMin": 93.06,
+      "coursesSum": 282.06
+    },
+    {
+      "courses_dept": "mtrl",
+      "courses_year": 2010,
+      "coursesMax": 95,
+      "coursesMin": 95,
+      "coursesSum": 95
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2008,
+      "coursesMax": 95,
+      "coursesMin": 95,
+      "coursesSum": 95
+    },
+    {
+      "courses_dept": "kin",
+      "courses_year": 2015,
+      "coursesMax": 95,
+      "coursesMin": 94.29,
+      "coursesSum": 284.21
+    },
+    {
+      "courses_dept": "edcp",
+      "courses_year": 2013,
+      "coursesMax": 95,
+      "coursesMin": 93.2,
+      "coursesSum": 283.06
+    },
+    {
+      "courses_dept": "econ",
+      "courses_year": 2016,
+      "coursesMax": 95,
+      "coursesMin": 95,
+      "coursesSum": 95
+    },
+    {
+      "courses_dept": "econ",
+      "courses_year": 1900,
+      "coursesMax": 95,
+      "coursesMin": 93.33,
+      "coursesSum": 375.32
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_year": 2015,
+      "coursesMax": 95,
+      "coursesMin": 93.33,
+      "coursesSum": 282.33
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_year": 2014,
+      "coursesMax": 95,
+      "coursesMin": 95,
+      "coursesSum": 95
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_year": 1900,
+      "coursesMax": 95,
+      "coursesMin": 93.38,
+      "coursesSum": 470.38
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2016,
+      "coursesMax": 95,
+      "coursesMin": 95,
+      "coursesSum": 95
+    },
+    {
+      "courses_dept": "bmeg",
+      "courses_year": 2014,
+      "coursesMax": 95,
+      "coursesMin": 95,
+      "coursesSum": 95
+    },
+    {
+      "courses_dept": "edst",
+      "courses_year": 2015,
+      "coursesMax": 94.93,
+      "coursesMin": 94.06,
+      "coursesSum": 188.99
+    },
+    {
+      "courses_dept": "phar",
+      "courses_year": 1900,
+      "coursesMax": 94.87,
+      "coursesMin": 94.87,
+      "coursesSum": 94.87
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 2014,
+      "coursesMax": 94.87,
+      "coursesMin": 93.6,
+      "coursesSum": 188.47
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 2016,
+      "coursesMax": 94.75,
+      "coursesMin": 94.75,
+      "coursesSum": 94.75
+    },
+    {
+      "courses_dept": "comm",
+      "courses_year": 2007,
+      "coursesMax": 94.75,
+      "coursesMin": 94.75,
+      "coursesSum": 94.75
+    },
+    {
+      "courses_dept": "comm",
+      "courses_year": 1900,
+      "coursesMax": 94.75,
+      "coursesMin": 94.5,
+      "coursesSum": 283.81
+    },
+    {
+      "courses_dept": "eece",
+      "courses_year": 2015,
+      "coursesMax": 94.71,
+      "coursesMin": 94.71,
+      "coursesSum": 94.71
+    },
+    {
+      "courses_dept": "stat",
+      "courses_year": 2014,
+      "coursesMax": 94.7,
+      "coursesMin": 94.7,
+      "coursesSum": 94.7
+    },
+    {
+      "courses_dept": "stat",
+      "courses_year": 1900,
+      "coursesMax": 94.7,
+      "coursesMin": 94.7,
+      "coursesSum": 94.7
+    },
+    {
+      "courses_dept": "phys",
+      "courses_year": 2010,
+      "coursesMax": 94.7,
+      "coursesMin": 94.5,
+      "coursesSum": 189.2
+    },
+    {
+      "courses_dept": "medg",
+      "courses_year": 2007,
+      "coursesMax": 94.7,
+      "coursesMin": 94.7,
+      "coursesSum": 94.7
+    },
+    {
+      "courses_dept": "medg",
+      "courses_year": 1900,
+      "coursesMax": 94.7,
+      "coursesMin": 93.25,
+      "coursesSum": 187.95
+    },
+    {
+      "courses_dept": "plan",
+      "courses_year": 2010,
+      "coursesMax": 94.58,
+      "coursesMin": 93.12,
+      "coursesSum": 187.7
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_year": 2009,
+      "coursesMax": 94.56,
+      "coursesMin": 94.56,
+      "coursesSum": 94.56
+    },
+    {
+      "courses_dept": "kin",
+      "courses_year": 2012,
+      "coursesMax": 94.56,
+      "coursesMin": 94.42,
+      "coursesSum": 283.48
+    },
+    {
+      "courses_dept": "comm",
+      "courses_year": 2010,
+      "coursesMax": 94.56,
+      "coursesMin": 94.56,
+      "coursesSum": 94.56
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2014,
+      "coursesMax": 94.56,
+      "coursesMin": 93.67,
+      "coursesSum": 282.43
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 2012,
+      "coursesMax": 94.5,
+      "coursesMin": 94.09,
+      "coursesSum": 188.59
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2014,
+      "coursesMax": 94.5,
+      "coursesMin": 94.5,
+      "coursesSum": 94.5
+    },
+    {
+      "courses_dept": "hgse",
+      "courses_year": 2013,
+      "coursesMax": 94.5,
+      "coursesMin": 93.07,
+      "coursesSum": 187.57
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_year": 2007,
+      "coursesMax": 94.5,
+      "coursesMin": 94,
+      "coursesSum": 188.5
+    },
+    {
+      "courses_dept": "comm",
+      "courses_year": 2012,
+      "coursesMax": 94.5,
+      "coursesMin": 94.5,
+      "coursesSum": 94.5
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2008,
+      "coursesMax": 94.44,
+      "coursesMin": 94.44,
+      "coursesSum": 94.44
+    },
+    {
+      "courses_dept": "aanb",
+      "courses_year": 2015,
+      "coursesMax": 94.44,
+      "coursesMin": 94.44,
+      "coursesSum": 94.44
+    },
+    {
+      "courses_dept": "aanb",
+      "courses_year": 1900,
+      "coursesMax": 94.44,
+      "coursesMin": 94.44,
+      "coursesSum": 94.44
+    },
+    {
+      "courses_dept": "cell",
+      "courses_year": 2010,
+      "coursesMax": 94.4,
+      "coursesMin": 94.4,
+      "coursesSum": 94.4
+    },
+    {
+      "courses_dept": "cell",
+      "courses_year": 1900,
+      "coursesMax": 94.4,
+      "coursesMin": 93.8,
+      "coursesSum": 188.2
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 2011,
+      "coursesMax": 94.38,
+      "coursesMin": 93.92,
+      "coursesSum": 188.3
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_year": 2010,
+      "coursesMax": 94.33,
+      "coursesMin": 93.4,
+      "coursesSum": 187.73
+    },
+    {
+      "courses_dept": "dent",
+      "courses_year": 2012,
+      "coursesMax": 94.33,
+      "coursesMin": 94.33,
+      "coursesSum": 94.33
+    },
+    {
+      "courses_dept": "dent",
+      "courses_year": 1900,
+      "coursesMax": 94.33,
+      "coursesMin": 94.33,
+      "coursesSum": 94.33
+    },
+    {
+      "courses_dept": "biol",
+      "courses_year": 2015,
+      "coursesMax": 94.33,
+      "coursesMin": 94.33,
+      "coursesSum": 94.33
+    },
+    {
+      "courses_dept": "biol",
+      "courses_year": 1900,
+      "coursesMax": 94.33,
+      "coursesMin": 94.33,
+      "coursesSum": 94.33
+    },
+    {
+      "courses_dept": "phth",
+      "courses_year": 2014,
+      "coursesMax": 94.32,
+      "coursesMin": 94.32,
+      "coursesSum": 94.32
+    },
+    {
+      "courses_dept": "ceen",
+      "courses_year": 2013,
+      "coursesMax": 94.27,
+      "coursesMin": 94.27,
+      "coursesSum": 94.27
+    },
+    {
+      "courses_dept": "surg",
+      "courses_year": 2011,
+      "coursesMax": 94.25,
+      "coursesMin": 94.25,
+      "coursesSum": 94.25
+    },
+    {
+      "courses_dept": "surg",
+      "courses_year": 1900,
+      "coursesMax": 94.25,
+      "coursesMin": 93.5,
+      "coursesSum": 187.75
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2009,
+      "coursesMax": 94.25,
+      "coursesMin": 93.75,
+      "coursesSum": 188
+    },
+    {
+      "courses_dept": "edst",
+      "courses_year": 2011,
+      "coursesMax": 94.25,
+      "coursesMin": 94.25,
+      "coursesSum": 94.25
+    },
+    {
+      "courses_dept": "phrm",
+      "courses_year": 2015,
+      "coursesMax": 94.23,
+      "coursesMin": 94.23,
+      "coursesSum": 94.23
+    },
+    {
+      "courses_dept": "phrm",
+      "courses_year": 1900,
+      "coursesMax": 94.23,
+      "coursesMin": 94.23,
+      "coursesSum": 94.23
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 2008,
+      "coursesMax": 94.2,
+      "coursesMin": 94.2,
+      "coursesSum": 94.2
+    },
+    {
+      "courses_dept": "micb",
+      "courses_year": 2015,
+      "coursesMax": 94.17,
+      "coursesMin": 94.17,
+      "coursesSum": 94.17
+    },
+    {
+      "courses_dept": "micb",
+      "courses_year": 1900,
+      "coursesMax": 94.17,
+      "coursesMin": 93.2,
+      "coursesSum": 280.97
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2013,
+      "coursesMax": 94.17,
+      "coursesMin": 93.5,
+      "coursesSum": 187.67
+    },
+    {
+      "courses_dept": "edcp",
+      "courses_year": 2011,
+      "coursesMax": 94.17,
+      "coursesMin": 93.04,
+      "coursesSum": 187.21
+    },
+    {
+      "courses_dept": "midw",
+      "courses_year": 2013,
+      "coursesMax": 94.15,
+      "coursesMin": 94.15,
+      "coursesSum": 94.15
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 2014,
+      "coursesMax": 94.1,
+      "coursesMin": 93.63,
+      "coursesSum": 187.73
+    },
+    {
+      "courses_dept": "midw",
+      "courses_year": 2011,
+      "coursesMax": 94.08,
+      "coursesMin": 94.08,
+      "coursesSum": 94.08
+    },
+    {
+      "courses_dept": "rhsc",
+      "courses_year": 2008,
+      "coursesMax": 94,
+      "coursesMin": 94,
+      "coursesSum": 94
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2007,
+      "coursesMax": 94,
+      "coursesMin": 93.07,
+      "coursesSum": 187.07
+    },
+    {
+      "courses_dept": "fish",
+      "courses_year": 2009,
+      "coursesMax": 94,
+      "coursesMin": 94,
+      "coursesSum": 94
+    },
+    {
+      "courses_dept": "fish",
+      "courses_year": 1900,
+      "coursesMax": 94,
+      "coursesMin": 94,
+      "coursesSum": 94
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2015,
+      "coursesMax": 94,
+      "coursesMin": 93.05,
+      "coursesSum": 374.32
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 2012,
+      "coursesMax": 94,
+      "coursesMin": 94,
+      "coursesSum": 94
+    },
+    {
+      "courses_dept": "edst",
+      "courses_year": 2014,
+      "coursesMax": 94,
+      "coursesMin": 93.4,
+      "coursesSum": 374.24
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2013,
+      "coursesMax": 94,
+      "coursesMin": 94,
+      "coursesSum": 188
+    },
+    {
+      "courses_dept": "arst",
+      "courses_year": 2012,
+      "coursesMax": 94,
+      "coursesMin": 94,
+      "coursesSum": 94
+    },
+    {
+      "courses_dept": "plan",
+      "courses_year": 2008,
+      "coursesMax": 93.94,
+      "coursesMin": 93.94,
+      "coursesSum": 93.94
+    },
+    {
+      "courses_dept": "elec",
+      "courses_year": 2015,
+      "coursesMax": 93.93,
+      "coursesMin": 93.88,
+      "coursesSum": 187.81
+    },
+    {
+      "courses_dept": "elec",
+      "courses_year": 1900,
+      "coursesMax": 93.91,
+      "coursesMin": 93.91,
+      "coursesSum": 93.91
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2007,
+      "coursesMax": 93.91,
+      "coursesMin": 93.91,
+      "coursesSum": 93.91
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_year": 2013,
+      "coursesMax": 93.82,
+      "coursesMin": 93.82,
+      "coursesSum": 93.82
+    },
+    {
+      "courses_dept": "eece",
+      "courses_year": 2013,
+      "coursesMax": 93.8,
+      "coursesMin": 93.8,
+      "coursesSum": 93.8
+    },
+    {
+      "courses_dept": "cell",
+      "courses_year": 2011,
+      "coursesMax": 93.8,
+      "coursesMin": 93.8,
+      "coursesSum": 93.8
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2010,
+      "coursesMax": 93.79,
+      "coursesMin": 93.5,
+      "coursesSum": 187.29
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2012,
+      "coursesMax": 93.78,
+      "coursesMin": 93.75,
+      "coursesSum": 187.53
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 2011,
+      "coursesMax": 93.78,
+      "coursesMin": 93.53,
+      "coursesSum": 280.91
+    },
+    {
+      "courses_dept": "edst",
+      "courses_year": 2007,
+      "coursesMax": 93.78,
+      "coursesMin": 93.78,
+      "coursesSum": 93.78
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 2014,
+      "coursesMax": 93.75,
+      "coursesMin": 93.75,
+      "coursesSum": 93.75
+    },
+    {
+      "courses_dept": "midw",
+      "courses_year": 2015,
+      "coursesMax": 93.75,
+      "coursesMin": 93.75,
+      "coursesSum": 93.75
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2014,
+      "coursesMax": 93.75,
+      "coursesMin": 93.09,
+      "coursesSum": 280.38
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2009,
+      "coursesMax": 93.75,
+      "coursesMin": 93.75,
+      "coursesSum": 187.5
+    },
+    {
+      "courses_dept": "eced",
+      "courses_year": 2014,
+      "coursesMax": 93.72,
+      "coursesMin": 93.72,
+      "coursesSum": 93.72
+    },
+    {
+      "courses_dept": "eced",
+      "courses_year": 1900,
+      "coursesMax": 93.72,
+      "coursesMin": 93.72,
+      "coursesSum": 93.72
+    },
+    {
+      "courses_dept": "dhyg",
+      "courses_year": 2012,
+      "coursesMax": 93.72,
+      "coursesMin": 93.72,
+      "coursesSum": 93.72
+    },
+    {
+      "courses_dept": "eced",
+      "courses_year": 2012,
+      "coursesMax": 93.71,
+      "coursesMin": 93.71,
+      "coursesSum": 93.71
+    },
+    {
+      "courses_dept": "ccst",
+      "courses_year": 2010,
+      "coursesMax": 93.67,
+      "coursesMin": 93.67,
+      "coursesSum": 93.67
+    },
+    {
+      "courses_dept": "ccst",
+      "courses_year": 1900,
+      "coursesMax": 93.67,
+      "coursesMin": 93.67,
+      "coursesSum": 93.67
+    },
+    {
+      "courses_dept": "micb",
+      "courses_year": 2013,
+      "coursesMax": 93.6,
+      "coursesMin": 93.6,
+      "coursesSum": 93.6
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 1900,
+      "coursesMax": 93.6,
+      "coursesMin": 93.6,
+      "coursesSum": 93.6
+    },
+    {
+      "courses_dept": "eece",
+      "courses_year": 2007,
+      "coursesMax": 93.58,
+      "coursesMin": 93.58,
+      "coursesSum": 93.58
+    },
+    {
+      "courses_dept": "dhyg",
+      "courses_year": 2013,
+      "coursesMax": 93.58,
+      "coursesMin": 93.58,
+      "coursesSum": 93.58
+    },
+    {
+      "courses_dept": "hgse",
+      "courses_year": 2015,
+      "coursesMax": 93.57,
+      "coursesMin": 93.57,
+      "coursesSum": 93.57
+    },
+    {
+      "courses_dept": "eece",
+      "courses_year": 2008,
+      "coursesMax": 93.56,
+      "coursesMin": 93.56,
+      "coursesSum": 93.56
+    },
+    {
+      "courses_dept": "edcp",
+      "courses_year": 2015,
+      "coursesMax": 93.56,
+      "coursesMin": 93.25,
+      "coursesSum": 186.81
+    },
+    {
+      "courses_dept": "econ",
+      "courses_year": 2010,
+      "coursesMax": 93.52,
+      "coursesMin": 93.52,
+      "coursesSum": 93.52
+    },
+    {
+      "courses_dept": "surg",
+      "courses_year": 2013,
+      "coursesMax": 93.5,
+      "coursesMin": 93.5,
+      "coursesSum": 93.5
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 2013,
+      "coursesMax": 93.5,
+      "coursesMin": 93.5,
+      "coursesSum": 93.5
+    },
+    {
+      "courses_dept": "path",
+      "courses_year": 2008,
+      "coursesMax": 93.5,
+      "coursesMin": 93.5,
+      "coursesSum": 93.5
+    },
+    {
+      "courses_dept": "medi",
+      "courses_year": 2014,
+      "coursesMax": 93.5,
+      "coursesMin": 93.08,
+      "coursesSum": 186.58
+    },
+    {
+      "courses_dept": "mech",
+      "courses_year": 2011,
+      "coursesMax": 93.5,
+      "coursesMin": 93.5,
+      "coursesSum": 93.5
+    },
+    {
+      "courses_dept": "mech",
+      "courses_year": 1900,
+      "coursesMax": 93.5,
+      "coursesMin": 93.5,
+      "coursesSum": 93.5
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_year": 2011,
+      "coursesMax": 93.5,
+      "coursesMin": 93.5,
+      "coursesSum": 93.5
+    },
+    {
+      "courses_dept": "midw",
+      "courses_year": 2014,
+      "coursesMax": 93.47,
+      "coursesMin": 93.47,
+      "coursesSum": 93.47
+    },
+    {
+      "courses_dept": "eosc",
+      "courses_year": 2014,
+      "coursesMax": 93.47,
+      "coursesMin": 93.47,
+      "coursesSum": 93.47
+    },
+    {
+      "courses_dept": "eosc",
+      "courses_year": 1900,
+      "coursesMax": 93.47,
+      "coursesMin": 93.47,
+      "coursesSum": 93.47
+    },
+    {
+      "courses_dept": "econ",
+      "courses_year": 2007,
+      "coursesMax": 93.47,
+      "coursesMin": 93.47,
+      "coursesSum": 93.47
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2016,
+      "coursesMax": 93.45,
+      "coursesMin": 93.45,
+      "coursesSum": 93.45
+    },
+    {
+      "courses_dept": "biof",
+      "courses_year": 2013,
+      "coursesMax": 93.45,
+      "coursesMin": 93.45,
+      "coursesSum": 93.45
+    },
+    {
+      "courses_dept": "biof",
+      "courses_year": 1900,
+      "coursesMax": 93.45,
+      "coursesMin": 93.45,
+      "coursesSum": 93.45
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_year": 2013,
+      "coursesMax": 93.38,
+      "coursesMin": 93.38,
+      "coursesSum": 93.38
+    },
+    {
+      "courses_dept": "econ",
+      "courses_year": 2014,
+      "coursesMax": 93.33,
+      "coursesMin": 93.33,
+      "coursesSum": 93.33
+    },
+    {
+      "courses_dept": "adhe",
+      "courses_year": 2016,
+      "coursesMax": 93.33,
+      "coursesMin": 93.33,
+      "coursesSum": 93.33
+    },
+    {
+      "courses_dept": "edcp",
+      "courses_year": 2010,
+      "coursesMax": 93.3,
+      "coursesMin": 93.3,
+      "coursesSum": 93.3
+    },
+    {
+      "courses_dept": "medi",
+      "courses_year": 2010,
+      "coursesMax": 93.29,
+      "coursesMin": 93.29,
+      "coursesSum": 93.29
+    },
+    {
+      "courses_dept": "medi",
+      "courses_year": 1900,
+      "coursesMax": 93.29,
+      "coursesMin": 93.08,
+      "coursesSum": 186.37
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 2008,
+      "coursesMax": 93.27,
+      "coursesMin": 93.27,
+      "coursesSum": 93.27
+    },
+    {
+      "courses_dept": "span",
+      "courses_year": 2008,
+      "coursesMax": 93.25,
+      "coursesMin": 93.25,
+      "coursesSum": 93.25
+    },
+    {
+      "courses_dept": "span",
+      "courses_year": 1900,
+      "coursesMax": 93.25,
+      "coursesMin": 93.25,
+      "coursesSum": 93.25
+    },
+    {
+      "courses_dept": "medg",
+      "courses_year": 2009,
+      "coursesMax": 93.25,
+      "coursesMin": 93.25,
+      "coursesSum": 93.25
+    },
+    {
+      "courses_dept": "hinu",
+      "courses_year": 2007,
+      "coursesMax": 93.22,
+      "coursesMin": 93.22,
+      "coursesSum": 93.22
+    },
+    {
+      "courses_dept": "hinu",
+      "courses_year": 1900,
+      "coursesMax": 93.22,
+      "coursesMin": 93.22,
+      "coursesSum": 93.22
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2008,
+      "coursesMax": 93.22,
+      "coursesMin": 93.08,
+      "coursesSum": 186.3
+    },
+    {
+      "courses_dept": "micb",
+      "courses_year": 2009,
+      "coursesMax": 93.2,
+      "coursesMin": 93.2,
+      "coursesSum": 93.2
+    },
+    {
+      "courses_dept": "lled",
+      "courses_year": 2016,
+      "coursesMax": 93.2,
+      "coursesMin": 93.2,
+      "coursesSum": 93.2
+    },
+    {
+      "courses_dept": "lled",
+      "courses_year": 1900,
+      "coursesMax": 93.2,
+      "coursesMin": 93.2,
+      "coursesSum": 93.2
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2016,
+      "coursesMax": 93.2,
+      "coursesMin": 93.2,
+      "coursesSum": 93.2
+    },
+    {
+      "courses_dept": "frst",
+      "courses_year": 2014,
+      "coursesMax": 93.17,
+      "coursesMin": 93.17,
+      "coursesSum": 93.17
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2008,
+      "coursesMax": 93.14,
+      "coursesMin": 93.14,
+      "coursesSum": 93.14
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2010,
+      "coursesMax": 93.11,
+      "coursesMin": 93.11,
+      "coursesSum": 93.11
+    },
+    {
+      "courses_dept": "onco",
+      "courses_year": 2013,
+      "coursesMax": 93.07,
+      "coursesMin": 93.07,
+      "coursesSum": 93.07
+    },
+    {
+      "courses_dept": "onco",
+      "courses_year": 1900,
+      "coursesMax": 93.07,
+      "coursesMin": 93.07,
+      "coursesSum": 93.07
+    },
+    {
+      "courses_dept": "thtr",
+      "courses_year": 2014,
+      "coursesMax": 93.05,
+      "coursesMin": 93.05,
+      "coursesSum": 93.05
+    },
+    {
+      "courses_dept": "fnh",
+      "courses_year": 2015,
+      "coursesMax": 93.05,
+      "coursesMin": 93.05,
+      "coursesSum": 93.05
+    },
+    {
+      "courses_dept": "gpp",
+      "courses_year": 2015,
+      "coursesMax": 93.04,
+      "coursesMin": 93.04,
+      "coursesSum": 93.04
+    },
+    {
+      "courses_dept": "gpp",
+      "courses_year": 1900,
+      "coursesMax": 93.04,
+      "coursesMin": 93.04,
+      "coursesSum": 93.04
+    }
+  ]
+}
