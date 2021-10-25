@@ -1,0 +1,48 @@
+{
+  "errorMsg": "Invalid transformation operator",
+  "title": "applyKeyCaseSensitive",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_year",
+        "courses_title",
+        "avgAvg"
+      ],
+      "ORDER": {
+        "dir": "UP",
+        "keys": [
+          "avgAvg",
+          "courses_dept",
+          "courses_year",
+          "courses_title"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_dept",
+        "courses_year",
+        "courses_title"
+      ],
+      "APPLY": [
+        {
+          "avgAvg": {
+            "avg": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

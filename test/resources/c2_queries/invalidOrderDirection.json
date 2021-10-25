@@ -1,0 +1,44 @@
+{
+  "errorMsg": "Invalid ORDER direction",
+  "title": "invalidOrderDirection",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 75
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_year",
+        "minAvg"
+      ],
+      "ORDER": {
+        "dir": "DOW",
+        "keys": [
+          "minAvg",
+          "courses_year"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_dept",
+        "courses_year"
+      ],
+      "APPLY": [
+        {
+          "minAvg": {
+            "MIN": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

@@ -1,0 +1,44 @@
+{
+  "errorMsg": "Invalid transformation operator",
+  "title": "invalidApplyOperator",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 75
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_year",
+        "minAvg"
+      ],
+      "ORDER": {
+        "dir": "DOWN",
+        "keys": [
+          "minAvg",
+          "courses_year"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_dept",
+        "courses_year"
+      ],
+      "APPLY": [
+        {
+          "minAvg": {
+            "MIIN": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

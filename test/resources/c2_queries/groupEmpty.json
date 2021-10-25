@@ -1,0 +1,43 @@
+{
+  "errorMsg": "GROUP must be a non-empty array",
+  "title": "groupEmpty",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_year",
+        "courses_"
+      ],
+      "ORDER": {
+        "dir": "DOWN",
+        "keys": [
+          "courses_",
+          "courses_dept",
+          "courses_year",
+          "courses_instructor"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [],
+      "APPLY": [
+        {
+          "courses_": {
+            "MAX": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

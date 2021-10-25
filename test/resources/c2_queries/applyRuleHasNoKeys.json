@@ -1,0 +1,39 @@
+{
+  "errorMsg": "Apply rule should only have 1 key, has 0",
+  "title": "apply rule has no keys",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_year"
+      ],
+      "ORDER": {
+        "dir": "DOWN",
+        "keys": [
+          "courses_dept",
+          "courses_year"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_dept",
+        "courses_year"
+      ],
+      "APPLY": [
+        {}
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
