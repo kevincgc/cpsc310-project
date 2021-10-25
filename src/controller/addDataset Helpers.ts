@@ -1,5 +1,6 @@
 import {InsightDataset, InsightDatasetKind, InsightError} from "./IInsightFacade";
 import JSZip from "jszip";
+import {keyDict} from "./Const";
 
 export function isValidCourses(jsonObject: JSON) {
 	if ("Title" in jsonObject &&
@@ -52,7 +53,6 @@ export function isValidId (id: string): boolean {
 export function addDatasetValidate(id: string,
 	datasets: InsightDataset[], kind: InsightDatasetKind) { // : [boolean, string] {
 	return new Promise<void>((resolve, reject) => {
-		const jsZip = new JSZip();
 		if (kind === InsightDatasetKind.Rooms) {
 			reject(new InsightError("addDataset InsightDatasetKind.Rooms not implemented"));
 		}
@@ -84,3 +84,50 @@ export function getValidCourses(validResults: any[]) {
 		resolve(courses);
 	});
 }
+
+export function getFilesAsStringsRooms(content: any): Promise<string[]> {
+	return new Promise<string[]>((resolve, reject) => {
+		const jsZip = new JSZip();
+		jsZip.loadAsync(content, {base64: true}).then((zip: JSZip) => {
+			const fileStrings: any[] = [];
+			zip.forEach((relativePath, file) => {
+				if (relativePath.startsWith("rooms/index")) {
+					fileStrings.push(file.async("text"));
+				}
+			});
+			resolve(fileStrings);
+		}).catch((e) => {
+			reject(new InsightError("addDataset Not A Valid Zip File"));
+		});
+	});
+}
+
+export async function getValidJsons(files: string[]) {
+	let fileJsons: any[] = [];
+	for (let file of files) {
+		fileJsons.push(parseJsonAsync(file));
+	}
+	// Start of code based on https://stackoverflow.com/a/46024590
+	const results = await Promise.all(fileJsons.map((p) => p.catch((e: Error) => e)));
+	return results.filter((result) => !(result instanceof Error));
+	// End of code based on https://stackoverflow.com/a/46024590
+}
+
+export function getFilesAsStrings(content: any): Promise<string[]> {
+	return new Promise<string[]>((resolve, reject) => {
+		const jsZip = new JSZip();
+		jsZip.loadAsync(content, {base64: true}).then((zip: JSZip) => {
+			const fileStrings: any[] = [];
+			zip.forEach((relativePath, file) => {
+				if (relativePath.startsWith("courses/")) {
+					fileStrings.push(file.async("text"));
+				}
+			});
+			resolve(fileStrings);
+		}).catch((e) => {
+			reject(new InsightError("addDataset Not A Valid Zip File"));
+		});
+	});
+}
+
+
