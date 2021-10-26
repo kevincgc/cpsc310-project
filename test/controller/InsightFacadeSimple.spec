@@ -276,11 +276,12 @@ describe("tests", function() {
 			expect(insightDatasets).to.have.length(2);
 			await facade.removeDataset("courses2");
 			const insightDatasets3 = await facade.listDatasets();
-			const insightDatasetCourses3 = insightDatasets3.find((dataset) => dataset.id === "courses");
+			const insightDatasetCourses3 = insightDatasets3.find((dataset) => dataset.id === "courses0");
 			expect(insightDatasetCourses3).to.exist;
 			expect(insightDatasets3).to.have.length(1);
 		});
 		it("should LDS pass 5 datasets", async function () {
+			this.timeout(10000);
 			const names: string[] = [
 				"asdfghsfdfytry09898987878d6fg???...........",
 				"bgU&^nJ6e$V#i!qe",

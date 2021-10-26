@@ -1,0 +1,43 @@
+{
+  "errorMsg": "Keys in COLUMNS must be in GROUP or APPLY when TRANSFORMATIONS is present",
+  "title": "columnKeyNotInGroup",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 75
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_year",
+        "minAvg"
+      ],
+      "ORDER": {
+        "dir": "DOWN",
+        "keys": [
+          "minAvg",
+          "courses_year"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_dept"
+      ],
+      "APPLY": [
+        {
+          "minAvg": {
+            "MIN": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

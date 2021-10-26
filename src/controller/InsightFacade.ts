@@ -111,17 +111,13 @@ export default class InsightFacade implements IInsightFacade {
 			if (!datasetExists) {
 				reject(new NotFoundError("removeDataset Dataset Not Found"));
 			}
-			if (fs.existsSync("./data/" + id + ".json")) {
-				fs.remove("./data/" + id + ".json").then(() => {
-					if (!fs.existsSync("./data/" + id + ".json")) {
-						resolve(id);
-					} else {
-						reject(new InsightError("removeDataset Unable To Remove File"));
-					}
-				});
-			} else {
-				reject(new InsightError("removeDataset DS Not Found On Disk"));
-			}
+			fs.remove("./data/" + id + ".json").then(() => {
+				if (!fs.existsSync("./data/" + id + ".json")) {
+					resolve(id);
+				} else {
+					reject(new InsightError("removeDataset Unable To Remove File"));
+				}
+			});
 		});
 	}
 
@@ -196,7 +192,6 @@ export default class InsightFacade implements IInsightFacade {
 				data = combined;
 			}
 		}
-		console.log("len ", data.length);
 		return data;
 	}
 

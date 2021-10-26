@@ -1,0 +1,60 @@
+{
+  "errorMsg": "The result is too big. Only queries with a maximum of 5000 results are supported.",
+  "title": "5001",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "OR": [
+            {
+              "GT": {
+                "courses_avg": 88.75
+              }
+            },
+            {
+              "EQ": {
+                "courses_avg": 88.1
+              }
+            },
+            {
+              "EQ": {
+                "courses_avg": 88.13
+              }
+            },
+            {
+              "EQ": {
+                "courses_avg": 88.12
+              }
+            },
+            {
+              "EQ": {
+                "courses_avg": 88.11
+              }
+            },
+            {
+              "EQ": {
+                "courses_avg": 88.44
+              }
+            },
+            {
+              "IS": {
+                "courses_uuid": "23456"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_id",
+        "courses_uuid",
+        "courses_avg"
+      ],
+      "ORDER": "courses_avg"
+    }
+  },
+  "errorExpected": true,
+  "with": "ResultTooLargeError"
+}

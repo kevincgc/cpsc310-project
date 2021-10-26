@@ -1,0 +1,1330 @@
+{
+  "title": "sum",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_year",
+        "avgAvg"
+      ],
+      "ORDER": {
+        "dir": "UP",
+        "keys": [
+          "avgAvg",
+          "courses_dept",
+          "courses_year"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_dept",
+        "courses_year"
+      ],
+      "APPLY": [
+        {
+          "avgAvg": {
+            "SUM": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_dept": "gpp",
+      "courses_year": 1900,
+      "avgAvg": 93.04
+    },
+    {
+      "courses_dept": "gpp",
+      "courses_year": 2015,
+      "avgAvg": 93.04
+    },
+    {
+      "courses_dept": "fnh",
+      "courses_year": 2015,
+      "avgAvg": 93.05
+    },
+    {
+      "courses_dept": "thtr",
+      "courses_year": 2014,
+      "avgAvg": 93.05
+    },
+    {
+      "courses_dept": "onco",
+      "courses_year": 1900,
+      "avgAvg": 93.07
+    },
+    {
+      "courses_dept": "onco",
+      "courses_year": 2013,
+      "avgAvg": 93.07
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2010,
+      "avgAvg": 93.11
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2008,
+      "avgAvg": 93.14
+    },
+    {
+      "courses_dept": "frst",
+      "courses_year": 2014,
+      "avgAvg": 93.17
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2016,
+      "avgAvg": 93.2
+    },
+    {
+      "courses_dept": "lled",
+      "courses_year": 1900,
+      "avgAvg": 93.2
+    },
+    {
+      "courses_dept": "lled",
+      "courses_year": 2016,
+      "avgAvg": 93.2
+    },
+    {
+      "courses_dept": "micb",
+      "courses_year": 2009,
+      "avgAvg": 93.2
+    },
+    {
+      "courses_dept": "hinu",
+      "courses_year": 1900,
+      "avgAvg": 93.22
+    },
+    {
+      "courses_dept": "hinu",
+      "courses_year": 2007,
+      "avgAvg": 93.22
+    },
+    {
+      "courses_dept": "medg",
+      "courses_year": 2009,
+      "avgAvg": 93.25
+    },
+    {
+      "courses_dept": "span",
+      "courses_year": 1900,
+      "avgAvg": 93.25
+    },
+    {
+      "courses_dept": "span",
+      "courses_year": 2008,
+      "avgAvg": 93.25
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 2008,
+      "avgAvg": 93.27
+    },
+    {
+      "courses_dept": "medi",
+      "courses_year": 2010,
+      "avgAvg": 93.29
+    },
+    {
+      "courses_dept": "edcp",
+      "courses_year": 2010,
+      "avgAvg": 93.3
+    },
+    {
+      "courses_dept": "adhe",
+      "courses_year": 2016,
+      "avgAvg": 93.33
+    },
+    {
+      "courses_dept": "econ",
+      "courses_year": 2014,
+      "avgAvg": 93.33
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_year": 2013,
+      "avgAvg": 93.38
+    },
+    {
+      "courses_dept": "biof",
+      "courses_year": 1900,
+      "avgAvg": 93.45
+    },
+    {
+      "courses_dept": "biof",
+      "courses_year": 2013,
+      "avgAvg": 93.45
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2016,
+      "avgAvg": 93.45
+    },
+    {
+      "courses_dept": "econ",
+      "courses_year": 2007,
+      "avgAvg": 93.47
+    },
+    {
+      "courses_dept": "eosc",
+      "courses_year": 1900,
+      "avgAvg": 93.47
+    },
+    {
+      "courses_dept": "eosc",
+      "courses_year": 2014,
+      "avgAvg": 93.47
+    },
+    {
+      "courses_dept": "midw",
+      "courses_year": 2014,
+      "avgAvg": 93.47
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_year": 2011,
+      "avgAvg": 93.5
+    },
+    {
+      "courses_dept": "mech",
+      "courses_year": 1900,
+      "avgAvg": 93.5
+    },
+    {
+      "courses_dept": "mech",
+      "courses_year": 2011,
+      "avgAvg": 93.5
+    },
+    {
+      "courses_dept": "path",
+      "courses_year": 2008,
+      "avgAvg": 93.5
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 2013,
+      "avgAvg": 93.5
+    },
+    {
+      "courses_dept": "surg",
+      "courses_year": 2013,
+      "avgAvg": 93.5
+    },
+    {
+      "courses_dept": "econ",
+      "courses_year": 2010,
+      "avgAvg": 93.52
+    },
+    {
+      "courses_dept": "eece",
+      "courses_year": 2008,
+      "avgAvg": 93.56
+    },
+    {
+      "courses_dept": "hgse",
+      "courses_year": 2015,
+      "avgAvg": 93.57
+    },
+    {
+      "courses_dept": "dhyg",
+      "courses_year": 2013,
+      "avgAvg": 93.58
+    },
+    {
+      "courses_dept": "eece",
+      "courses_year": 2007,
+      "avgAvg": 93.58
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 1900,
+      "avgAvg": 93.6
+    },
+    {
+      "courses_dept": "micb",
+      "courses_year": 2013,
+      "avgAvg": 93.6
+    },
+    {
+      "courses_dept": "ccst",
+      "courses_year": 1900,
+      "avgAvg": 93.67
+    },
+    {
+      "courses_dept": "ccst",
+      "courses_year": 2010,
+      "avgAvg": 93.67
+    },
+    {
+      "courses_dept": "eced",
+      "courses_year": 2012,
+      "avgAvg": 93.71
+    },
+    {
+      "courses_dept": "dhyg",
+      "courses_year": 2012,
+      "avgAvg": 93.72
+    },
+    {
+      "courses_dept": "eced",
+      "courses_year": 1900,
+      "avgAvg": 93.72
+    },
+    {
+      "courses_dept": "eced",
+      "courses_year": 2014,
+      "avgAvg": 93.72
+    },
+    {
+      "courses_dept": "midw",
+      "courses_year": 2015,
+      "avgAvg": 93.75
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 2014,
+      "avgAvg": 93.75
+    },
+    {
+      "courses_dept": "edst",
+      "courses_year": 2007,
+      "avgAvg": 93.78
+    },
+    {
+      "courses_dept": "cell",
+      "courses_year": 2011,
+      "avgAvg": 93.8
+    },
+    {
+      "courses_dept": "eece",
+      "courses_year": 2013,
+      "avgAvg": 93.8
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_year": 2013,
+      "avgAvg": 93.82
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2007,
+      "avgAvg": 93.91
+    },
+    {
+      "courses_dept": "elec",
+      "courses_year": 1900,
+      "avgAvg": 93.91
+    },
+    {
+      "courses_dept": "plan",
+      "courses_year": 2008,
+      "avgAvg": 93.94
+    },
+    {
+      "courses_dept": "arst",
+      "courses_year": 2012,
+      "avgAvg": 94
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 2012,
+      "avgAvg": 94
+    },
+    {
+      "courses_dept": "fish",
+      "courses_year": 1900,
+      "avgAvg": 94
+    },
+    {
+      "courses_dept": "fish",
+      "courses_year": 2009,
+      "avgAvg": 94
+    },
+    {
+      "courses_dept": "rhsc",
+      "courses_year": 2008,
+      "avgAvg": 94
+    },
+    {
+      "courses_dept": "midw",
+      "courses_year": 2011,
+      "avgAvg": 94.08
+    },
+    {
+      "courses_dept": "midw",
+      "courses_year": 2013,
+      "avgAvg": 94.15
+    },
+    {
+      "courses_dept": "micb",
+      "courses_year": 2015,
+      "avgAvg": 94.17
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 2008,
+      "avgAvg": 94.2
+    },
+    {
+      "courses_dept": "phrm",
+      "courses_year": 1900,
+      "avgAvg": 94.23
+    },
+    {
+      "courses_dept": "phrm",
+      "courses_year": 2015,
+      "avgAvg": 94.23
+    },
+    {
+      "courses_dept": "edst",
+      "courses_year": 2011,
+      "avgAvg": 94.25
+    },
+    {
+      "courses_dept": "surg",
+      "courses_year": 2011,
+      "avgAvg": 94.25
+    },
+    {
+      "courses_dept": "ceen",
+      "courses_year": 2013,
+      "avgAvg": 94.27
+    },
+    {
+      "courses_dept": "phth",
+      "courses_year": 2014,
+      "avgAvg": 94.32
+    },
+    {
+      "courses_dept": "biol",
+      "courses_year": 1900,
+      "avgAvg": 94.33
+    },
+    {
+      "courses_dept": "biol",
+      "courses_year": 2015,
+      "avgAvg": 94.33
+    },
+    {
+      "courses_dept": "dent",
+      "courses_year": 1900,
+      "avgAvg": 94.33
+    },
+    {
+      "courses_dept": "dent",
+      "courses_year": 2012,
+      "avgAvg": 94.33
+    },
+    {
+      "courses_dept": "cell",
+      "courses_year": 2010,
+      "avgAvg": 94.4
+    },
+    {
+      "courses_dept": "aanb",
+      "courses_year": 1900,
+      "avgAvg": 94.44
+    },
+    {
+      "courses_dept": "aanb",
+      "courses_year": 2015,
+      "avgAvg": 94.44
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2008,
+      "avgAvg": 94.44
+    },
+    {
+      "courses_dept": "comm",
+      "courses_year": 2012,
+      "avgAvg": 94.5
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2014,
+      "avgAvg": 94.5
+    },
+    {
+      "courses_dept": "comm",
+      "courses_year": 2010,
+      "avgAvg": 94.56
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_year": 2009,
+      "avgAvg": 94.56
+    },
+    {
+      "courses_dept": "medg",
+      "courses_year": 2007,
+      "avgAvg": 94.7
+    },
+    {
+      "courses_dept": "stat",
+      "courses_year": 1900,
+      "avgAvg": 94.7
+    },
+    {
+      "courses_dept": "stat",
+      "courses_year": 2014,
+      "avgAvg": 94.7
+    },
+    {
+      "courses_dept": "eece",
+      "courses_year": 2015,
+      "avgAvg": 94.71
+    },
+    {
+      "courses_dept": "comm",
+      "courses_year": 2007,
+      "avgAvg": 94.75
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 2016,
+      "avgAvg": 94.75
+    },
+    {
+      "courses_dept": "phar",
+      "courses_year": 1900,
+      "avgAvg": 94.87
+    },
+    {
+      "courses_dept": "bmeg",
+      "courses_year": 2014,
+      "avgAvg": 95
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2016,
+      "avgAvg": 95
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_year": 2014,
+      "avgAvg": 95
+    },
+    {
+      "courses_dept": "econ",
+      "courses_year": 2016,
+      "avgAvg": 95
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2008,
+      "avgAvg": 95
+    },
+    {
+      "courses_dept": "mtrl",
+      "courses_year": 2010,
+      "avgAvg": 95
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2013,
+      "avgAvg": 95
+    },
+    {
+      "courses_dept": "obst",
+      "courses_year": 1900,
+      "avgAvg": 95
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 2010,
+      "avgAvg": 95
+    },
+    {
+      "courses_dept": "rhsc",
+      "courses_year": 2009,
+      "avgAvg": 95
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_year": 2015,
+      "avgAvg": 95
+    },
+    {
+      "courses_dept": "bmeg",
+      "courses_year": 2012,
+      "avgAvg": 95.15
+    },
+    {
+      "courses_dept": "thtr",
+      "courses_year": 2011,
+      "avgAvg": 95.2
+    },
+    {
+      "courses_dept": "hgse",
+      "courses_year": 2016,
+      "avgAvg": 95.26
+    },
+    {
+      "courses_dept": "hgse",
+      "courses_year": 2014,
+      "avgAvg": 95.29
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2016,
+      "avgAvg": 95.32
+    },
+    {
+      "courses_dept": "phth",
+      "courses_year": 2013,
+      "avgAvg": 95.37
+    },
+    {
+      "courses_dept": "chbe",
+      "courses_year": 2013,
+      "avgAvg": 95.54
+    },
+    {
+      "courses_dept": "edcp",
+      "courses_year": 2012,
+      "avgAvg": 95.58
+    },
+    {
+      "courses_dept": "mine",
+      "courses_year": 2009,
+      "avgAvg": 95.6
+    },
+    {
+      "courses_dept": "edst",
+      "courses_year": 2010,
+      "avgAvg": 95.78
+    },
+    {
+      "courses_dept": "pcth",
+      "courses_year": 1900,
+      "avgAvg": 96
+    },
+    {
+      "courses_dept": "phil",
+      "courses_year": 2010,
+      "avgAvg": 96
+    },
+    {
+      "courses_dept": "libr",
+      "courses_year": 1900,
+      "avgAvg": 96.1
+    },
+    {
+      "courses_dept": "libr",
+      "courses_year": 2015,
+      "avgAvg": 96.1
+    },
+    {
+      "courses_dept": "adhe",
+      "courses_year": 2015,
+      "avgAvg": 96.11
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_year": 2012,
+      "avgAvg": 96.15
+    },
+    {
+      "courses_dept": "civl",
+      "courses_year": 1900,
+      "avgAvg": 96.27
+    },
+    {
+      "courses_dept": "civl",
+      "courses_year": 2012,
+      "avgAvg": 96.27
+    },
+    {
+      "courses_dept": "frst",
+      "courses_year": 1900,
+      "avgAvg": 96.36
+    },
+    {
+      "courses_dept": "frst",
+      "courses_year": 2015,
+      "avgAvg": 96.36
+    },
+    {
+      "courses_dept": "fipr",
+      "courses_year": 1900,
+      "avgAvg": 96.4
+    },
+    {
+      "courses_dept": "fipr",
+      "courses_year": 2015,
+      "avgAvg": 96.4
+    },
+    {
+      "courses_dept": "edst",
+      "courses_year": 2013,
+      "avgAvg": 96.46
+    },
+    {
+      "courses_dept": "plan",
+      "courses_year": 2011,
+      "avgAvg": 96.47
+    },
+    {
+      "courses_dept": "midw",
+      "courses_year": 2012,
+      "avgAvg": 96.5
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2012,
+      "avgAvg": 96.5
+    },
+    {
+      "courses_dept": "mine",
+      "courses_year": 2012,
+      "avgAvg": 96.59
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2012,
+      "avgAvg": 96.64
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2012,
+      "avgAvg": 96.9
+    },
+    {
+      "courses_dept": "arst",
+      "courses_year": 2008,
+      "avgAvg": 96.94
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 2012,
+      "avgAvg": 97
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2009,
+      "avgAvg": 97.47
+    },
+    {
+      "courses_dept": "eece",
+      "courses_year": 2009,
+      "avgAvg": 98.75
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2008,
+      "avgAvg": 186.3
+    },
+    {
+      "courses_dept": "medi",
+      "courses_year": 1900,
+      "avgAvg": 186.37
+    },
+    {
+      "courses_dept": "medi",
+      "courses_year": 2014,
+      "avgAvg": 186.58
+    },
+    {
+      "courses_dept": "edcp",
+      "courses_year": 2015,
+      "avgAvg": 186.81
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2007,
+      "avgAvg": 187.07
+    },
+    {
+      "courses_dept": "edcp",
+      "courses_year": 2011,
+      "avgAvg": 187.21
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2010,
+      "avgAvg": 187.29
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2009,
+      "avgAvg": 187.5
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2012,
+      "avgAvg": 187.53
+    },
+    {
+      "courses_dept": "hgse",
+      "courses_year": 2013,
+      "avgAvg": 187.57
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2013,
+      "avgAvg": 187.67
+    },
+    {
+      "courses_dept": "plan",
+      "courses_year": 2010,
+      "avgAvg": 187.7
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_year": 2010,
+      "avgAvg": 187.73
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 2014,
+      "avgAvg": 187.73
+    },
+    {
+      "courses_dept": "surg",
+      "courses_year": 1900,
+      "avgAvg": 187.75
+    },
+    {
+      "courses_dept": "elec",
+      "courses_year": 2015,
+      "avgAvg": 187.81
+    },
+    {
+      "courses_dept": "medg",
+      "courses_year": 1900,
+      "avgAvg": 187.95
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2013,
+      "avgAvg": 188
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2009,
+      "avgAvg": 188
+    },
+    {
+      "courses_dept": "cell",
+      "courses_year": 1900,
+      "avgAvg": 188.2
+    },
+    {
+      "courses_dept": "thtr",
+      "courses_year": 1900,
+      "avgAvg": 188.25
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 2011,
+      "avgAvg": 188.3
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2011,
+      "avgAvg": 188.33
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 2014,
+      "avgAvg": 188.47
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_year": 2007,
+      "avgAvg": 188.5
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 2012,
+      "avgAvg": 188.59
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2015,
+      "avgAvg": 188.73
+    },
+    {
+      "courses_dept": "phys",
+      "courses_year": 2015,
+      "avgAvg": 188.74
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 2013,
+      "avgAvg": 188.86
+    },
+    {
+      "courses_dept": "edst",
+      "courses_year": 2015,
+      "avgAvg": 188.99
+    },
+    {
+      "courses_dept": "phys",
+      "courses_year": 2010,
+      "avgAvg": 189.2
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2007,
+      "avgAvg": 189.36
+    },
+    {
+      "courses_dept": "phar",
+      "courses_year": 2014,
+      "avgAvg": 189.61
+    },
+    {
+      "courses_dept": "phth",
+      "courses_year": 1900,
+      "avgAvg": 189.69
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 2013,
+      "avgAvg": 189.69
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2015,
+      "avgAvg": 189.83
+    },
+    {
+      "courses_dept": "mine",
+      "courses_year": 2013,
+      "avgAvg": 189.94
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 2007,
+      "avgAvg": 190
+    },
+    {
+      "courses_dept": "apsc",
+      "courses_year": 2009,
+      "avgAvg": 190.05
+    },
+    {
+      "courses_dept": "chbe",
+      "courses_year": 2015,
+      "avgAvg": 190.06
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2016,
+      "avgAvg": 190.13
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 2010,
+      "avgAvg": 190.13
+    },
+    {
+      "courses_dept": "bmeg",
+      "courses_year": 1900,
+      "avgAvg": 190.15
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 2009,
+      "avgAvg": 190.2
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2016,
+      "avgAvg": 190.45
+    },
+    {
+      "courses_dept": "arst",
+      "courses_year": 1900,
+      "avgAvg": 190.94
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 2015,
+      "avgAvg": 190.97
+    },
+    {
+      "courses_dept": "apsc",
+      "courses_year": 2010,
+      "avgAvg": 191.05
+    },
+    {
+      "courses_dept": "mtrl",
+      "courses_year": 1900,
+      "avgAvg": 191.25
+    },
+    {
+      "courses_dept": "mtrl",
+      "courses_year": 2011,
+      "avgAvg": 191.25
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2011,
+      "avgAvg": 191.5
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_year": 2014,
+      "avgAvg": 192.02
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 2014,
+      "avgAvg": 280.38
+    },
+    {
+      "courses_dept": "educ",
+      "courses_year": 2011,
+      "avgAvg": 280.91
+    },
+    {
+      "courses_dept": "micb",
+      "courses_year": 1900,
+      "avgAvg": 280.97
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 2010,
+      "avgAvg": 282.06
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_year": 2015,
+      "avgAvg": 282.33
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2014,
+      "avgAvg": 282.43
+    },
+    {
+      "courses_dept": "edcp",
+      "courses_year": 2013,
+      "avgAvg": 283.06
+    },
+    {
+      "courses_dept": "kin",
+      "courses_year": 2012,
+      "avgAvg": 283.48
+    },
+    {
+      "courses_dept": "kin",
+      "courses_year": 2014,
+      "avgAvg": 283.73
+    },
+    {
+      "courses_dept": "comm",
+      "courses_year": 1900,
+      "avgAvg": 283.81
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2014,
+      "avgAvg": 284.2
+    },
+    {
+      "courses_dept": "kin",
+      "courses_year": 2015,
+      "avgAvg": 284.21
+    },
+    {
+      "courses_dept": "mine",
+      "courses_year": 1900,
+      "avgAvg": 284.68
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2008,
+      "avgAvg": 284.91
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 2015,
+      "avgAvg": 285
+    },
+    {
+      "courses_dept": "apsc",
+      "courses_year": 2007,
+      "avgAvg": 285.05
+    },
+    {
+      "courses_dept": "sowk",
+      "courses_year": 1900,
+      "avgAvg": 285.48
+    },
+    {
+      "courses_dept": "chbe",
+      "courses_year": 1900,
+      "avgAvg": 285.6
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2009,
+      "avgAvg": 289.82
+    },
+    {
+      "courses_dept": "edst",
+      "courses_year": 2014,
+      "avgAvg": 374.24
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2015,
+      "avgAvg": 374.32
+    },
+    {
+      "courses_dept": "econ",
+      "courses_year": 1900,
+      "avgAvg": 375.32
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2011,
+      "avgAvg": 376.76
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2011,
+      "avgAvg": 376.92
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2012,
+      "avgAvg": 377.25
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2016,
+      "avgAvg": 377.74
+    },
+    {
+      "courses_dept": "phys",
+      "courses_year": 1900,
+      "avgAvg": 377.94
+    },
+    {
+      "courses_dept": "plan",
+      "courses_year": 1900,
+      "avgAvg": 378.11
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2014,
+      "avgAvg": 378.96
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2011,
+      "avgAvg": 381.25
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2013,
+      "avgAvg": 381.4
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2010,
+      "avgAvg": 383.04
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2015,
+      "avgAvg": 384.03
+    },
+    {
+      "courses_dept": "cpsc",
+      "courses_year": 1900,
+      "avgAvg": 470.38
+    },
+    {
+      "courses_dept": "hgse",
+      "courses_year": 1900,
+      "avgAvg": 471.69
+    },
+    {
+      "courses_dept": "midw",
+      "courses_year": 1900,
+      "avgAvg": 471.95
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 2013,
+      "avgAvg": 473.34
+    },
+    {
+      "courses_dept": "kin",
+      "courses_year": 2013,
+      "avgAvg": 473.82
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_year": 2012,
+      "avgAvg": 474.2
+    },
+    {
+      "courses_dept": "eece",
+      "courses_year": 1900,
+      "avgAvg": 474.4
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2013,
+      "avgAvg": 474.84
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 2012,
+      "avgAvg": 476.01
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 2015,
+      "avgAvg": 565.97
+    },
+    {
+      "courses_dept": "edcp",
+      "courses_year": 1900,
+      "avgAvg": 566.11
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 2010,
+      "avgAvg": 573.75
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 2015,
+      "avgAvg": 664.7
+    },
+    {
+      "courses_dept": "kin",
+      "courses_year": 1900,
+      "avgAvg": 755.8
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_year": 1900,
+      "avgAvg": 848.52
+    },
+    {
+      "courses_dept": "edst",
+      "courses_year": 1900,
+      "avgAvg": 849.5
+    },
+    {
+      "courses_dept": "psyc",
+      "courses_year": 1900,
+      "avgAvg": 947.45
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2007,
+      "avgAvg": 949.15
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_year": 2014,
+      "avgAvg": 952.03
+    },
+    {
+      "courses_dept": "crwr",
+      "courses_year": 2013,
+      "avgAvg": 1046.24
+    },
+    {
+      "courses_dept": "musc",
+      "courses_year": 1900,
+      "avgAvg": 1132.61
+    },
+    {
+      "courses_dept": "audi",
+      "courses_year": 1900,
+      "avgAvg": 1221.76
+    },
+    {
+      "courses_dept": "etec",
+      "courses_year": 1900,
+      "avgAvg": 1227.44
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2010,
+      "avgAvg": 1323.93
+    },
+    {
+      "courses_dept": "spph",
+      "courses_year": 1900,
+      "avgAvg": 1418.89
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2009,
+      "avgAvg": 1433.17
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2011,
+      "avgAvg": 1517.78
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2013,
+      "avgAvg": 1610.72
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2015,
+      "avgAvg": 1698.14
+    },
+    {
+      "courses_dept": "cnps",
+      "courses_year": 1900,
+      "avgAvg": 1700.37
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2014,
+      "avgAvg": 1984.34
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 2012,
+      "avgAvg": 2172.62
+    },
+    {
+      "courses_dept": "math",
+      "courses_year": 1900,
+      "avgAvg": 2470.17
+    },
+    {
+      "courses_dept": "nurs",
+      "courses_year": 1900,
+      "avgAvg": 2477.91
+    },
+    {
+      "courses_dept": "epse",
+      "courses_year": 1900,
+      "avgAvg": 8796.07
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "errorMsg": "Invalid key type in SUM",
+  "title": "invalidSum",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_year",
+        "avgAvg"
+      ],
+      "ORDER": {
+        "dir": "DOWN",
+        "keys": [
+          "avgAvg",
+          "courses_dept",
+          "courses_year"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_dept",
+        "courses_year"
+      ],
+      "APPLY": [
+        {
+          "avgAvg": {
+            "SUM": "courses_dept"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

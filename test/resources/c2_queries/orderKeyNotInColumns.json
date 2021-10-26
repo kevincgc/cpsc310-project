@@ -1,0 +1,46 @@
+{
+  "errorMsg": "All ORDER keys must be in COLUMNS",
+  "title": "orderKeyNotInColumns",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_year",
+        "courses_"
+      ],
+      "ORDER": {
+        "dir": "DOWN",
+        "keys": [
+          "courses_",
+          "courses_dept",
+          "courses_year",
+          "courses_instructor"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_dept",
+        "courses_year"
+      ],
+      "APPLY": [
+        {
+          "courses_": {
+            "MAX": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

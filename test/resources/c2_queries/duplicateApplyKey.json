@@ -1,0 +1,53 @@
+{
+  "errorMsg": "Duplicate APPLY key maxAvg",
+  "title": "duplicateApplyKey",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_year",
+        "courses_title",
+        "maxAvg"
+      ],
+      "ORDER": {
+        "dir": "UP",
+        "keys": [
+          "maxAvg",
+          "courses_dept",
+          "courses_year",
+          "courses_title"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_dept",
+        "courses_year",
+        "courses_title"
+      ],
+      "APPLY": [
+        {
+          "maxAvg": {
+            "MAX": "courses_avg"
+          }
+        },
+        {
+          "maxAvg": {
+            "MIN": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
