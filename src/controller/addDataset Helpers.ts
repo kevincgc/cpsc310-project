@@ -85,6 +85,26 @@ export function getValidCourses(validResults: any[]) {
 	});
 }
 
+export function search(obj: any) {
+	let stack = [], node, ii;
+	stack.push(obj);
+
+	while (stack.length > 0) {
+		node = stack.pop();
+		if (node.nodeName === "td") {
+			// Found it!
+			return node;
+		} else if (node.childNodes && node.childNodes.length) {
+			for (ii = 0; ii < node.childNodes.length; ii += 1) {
+				stack.push(node.childNodes[ii]);
+			}
+		}
+	}
+
+// Didn't find it. Return null.
+	return null;
+}
+
 export function getFilesAsStringsRooms(content: any): Promise<string[]> {
 	return new Promise<string[]>((resolve, reject) => {
 		const jsZip = new JSZip();

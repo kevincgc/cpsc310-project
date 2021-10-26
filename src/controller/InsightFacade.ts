@@ -10,7 +10,7 @@ import JSZip from "jszip";
 import {isValidQuery} from "./ValidateQuery";
 import {features, filter, keyDict, logic} from "./Const";
 import {addDatasetValidate, getValidCourses, isValidId, parseJsonAsync,getFilesAsStringsRooms,
-	getValidJsons,getFilesAsStrings} from "./addDataset Helpers";
+	getValidJsons,getFilesAsStrings, search} from "./addDataset Helpers";
 import {dynamicSort, getFeatures} from "./preformQuery Helpers";
 
 const fs = require("fs-extra");
@@ -71,15 +71,12 @@ export default class InsightFacade implements IInsightFacade {
 			jsZip.loadAsync(content, {base64: true}).then((zip: JSZip) => {
 				return getFilesAsStringsRooms(content);
 			}).then((fileStrings) => {
+				console.log(fileStrings.length);
 				return Promise.all(fileStrings);
 			}).then ((files) => {
-				let document = "";
-				for (let x of files) {
-					document = parse5.parse(x);
-				}
-				return document;
+				return parse5.parse(files[0]);
 			}).then ((doc) => {
-				console.log(doc);
+				console.log(search(doc));
 			}).then ((PromisedDoc) => {
 				// console.log(PromisedDoc);
 			});
