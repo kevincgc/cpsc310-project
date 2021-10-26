@@ -5,6 +5,7 @@ import {isValidQuery} from "./ValidateQuery";
 import {keyDict, filter, logic, features} from "./Const";
 const fs = require("fs-extra");
 import {addDatasetValidate, isValidId, isValidCourses, getValidCourses, parseJsonAsync} from "./addDataset Helpers";
+import {getDatasetInfo} from "./ValidateQuery Helpers";
 /**
  * This is the main programmatic entry point for the project.
  * Method documentation is in IInsightFacade
@@ -12,11 +13,11 @@ import {addDatasetValidate, isValidId, isValidCourses, getValidCourses, parseJso
  */
 export default class InsightFacade implements IInsightFacade {
 	public datasets: InsightDataset[];
-	public currentCourses: JSON[];
+	public currentDataset: JSON[];
 	public currentDatasetId: string;
 	constructor() {
 		this.datasets = [];
-		this.currentCourses = [];
+		this.currentDataset = [];
 		this.currentDatasetId = "";
 	}
 
@@ -52,7 +53,7 @@ export default class InsightFacade implements IInsightFacade {
 		return new Promise<void>((resolve, reject) => {
 			if (courses.length > 0) {
 				fs.outputJson("data/" + id + ".json", JSON.stringify(courses)).then(() => {
-					this.currentCourses = courses;
+					this.currentDataset = courses;
 					this.currentDatasetId = id;
 					this.datasets.push({ id: id, kind: kind, numRows: courses.length });
 					resolve();
@@ -128,7 +129,7 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public executeFilter(object: any): any[] {
-		let courses: any[] = this.currentCourses;
+		let courses: any[] = this.currentDataset;
 		let data = [];
 		let operator = "";
 		for (let key in object) {
@@ -161,7 +162,7 @@ export default class InsightFacade implements IInsightFacade {
 					break;
 				case "NOT": {
 					let insideQueryResult = this.executeNode(object[operator]);
-					data = this.currentCourses.filter((val) => !insideQueryResult.includes(val));
+					data = this.currentDataset.filter((val) => !insideQueryResult.includes(val));
 					break;
 				}
 			}
@@ -204,10 +205,8 @@ export default class InsightFacade implements IInsightFacade {
 			return this.executeFilter(object);
 		} else if (logic.find((a) => a === operator)) {
 			return this.executeLogic(object);
-		} else if (operator === "null") {
-			return this.currentCourses;
 		} else {
-			return [];
+			return this.currentDataset;
 		}
 	}
 
@@ -240,49 +239,61 @@ export default class InsightFacade implements IInsightFacade {
 		return found;
 	}
 
+	public loadDataset(id: string) {
+		if (id !== this.currentDatasetId) {
+			if (!this.isDatasetInDatasets(id)) {
+				throw new InsightError("performQuery Dataset Does Not Exist");
+			}
+			try {
+				this.currentDataset = JSON.parse(fs.readJsonSync("data/" + id + ".json"));
+				this.currentDatasetId = id;
+			} catch (err: any) {
+				throw new InsightError("performQuery Dataset Does Not Exist");
+			}
+		}
+	}
+
+	public validateQuery(query: any) {
+		if (!isValidQuery(query)) {
+			throw new InsightError("performQuery Invalid Query Grammar");
+		}
+	}
+
 	public performQuery(query: any): Promise<any[]> {
 		return new Promise<any[]>((resolve, reject) => {
-			if (!isValidQuery(query)) {
-				reject(new InsightError("performQuery Invalid Query Grammar"));
-			}
-			let id = query["OPTIONS"]["COLUMNS"][0].split("_")[0];
-			if (id !== this.currentDatasetId) {
-				if (!this.isDatasetInDatasets(id)) {
-					reject(new InsightError("performQuery Dataset Does Not Exist"));
+			try{
+				this.validateQuery(query);
+				let id = getDatasetInfo(query).id;
+				this.loadDataset(id);
+				let filteredCourses = this.executeNode(query["WHERE"]);
+				if (filteredCourses.length > 5000) {
+					reject(new ResultTooLargeError("performQuery > 5000 results"));
 				}
-				try {
-					this.currentCourses = JSON.parse(fs.readJsonSync("data/" + id + ".json"));
-					this.currentDatasetId = id;
-				} catch (err: any) {
-					reject(new InsightError("performQuery Dataset Does Not Exist"));
-				}
-			}
-			let filteredCourses = this.executeNode(query["WHERE"]);
-			if (filteredCourses.length > 5000) {
-				reject(new ResultTooLargeError("performQuery > 5000 results"));
-			}
-			let columns = this.getFeatures(query);
-			let coursesSelectedColumns: any[] = [];
-			for (let course of filteredCourses) {
-				let courseObject: any = {};
-				for (let feature of features) {
-					if(columns.find((element) => element === feature)) {
-						let columnName = id + "_" + feature;
-						if (feature === "year") {
-							courseObject[columnName] = parseInt(course[keyDict[feature]], 10);
-						} else if (feature === "uuid") {
-							courseObject[columnName] = course[keyDict[feature]].toString();
-						} else {
-							courseObject[columnName] = course[keyDict[feature]];
+				let columns = this.getFeatures(query);
+				let coursesSelectedColumns: any[] = [];
+				for (let course of filteredCourses) {
+					let courseObject: any = {};
+					for (let feature of features) {
+						if(columns.find((element) => element === feature)) {
+							let columnName = id + "_" + feature;
+							if (feature === "year") {
+								courseObject[columnName] = parseInt(course[keyDict[feature]], 10);
+							} else if (feature === "uuid") {
+								courseObject[columnName] = course[keyDict[feature]].toString();
+							} else {
+								courseObject[columnName] = course[keyDict[feature]];
+							}
 						}
 					}
+					coursesSelectedColumns.push(courseObject);
 				}
-				coursesSelectedColumns.push(courseObject);
+				if (query.OPTIONS.ORDER) {
+					coursesSelectedColumns.sort(this.dynamicSort(query["OPTIONS"]["ORDER"]));
+				}
+				resolve(coursesSelectedColumns);
+			} catch (e) {
+				reject(e);
 			}
-			if (query.OPTIONS.ORDER) {
-				coursesSelectedColumns.sort(this.dynamicSort(query["OPTIONS"]["ORDER"]));
-			}
-			resolve(coursesSelectedColumns);
 		});
 	}
 }
