@@ -91,7 +91,7 @@ export function search(obj: any) {
 
 	while (stack.length > 0) {
 		node = stack.pop();
-		if (node.nodeName === "td") {
+		if (node.nodeName === "tbody") {
 			// Found it!
 			return node;
 		} else if (node.childNodes && node.childNodes.length) {

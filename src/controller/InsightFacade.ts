@@ -76,9 +76,15 @@ export default class InsightFacade implements IInsightFacade {
 			}).then ((files) => {
 				return parse5.parse(files[0]);
 			}).then ((doc) => {
-				console.log(search(doc));
+				return search(doc);
 			}).then ((PromisedDoc) => {
-				// console.log(PromisedDoc);
+				for (let i of PromisedDoc.childNodes) {
+					if (i.nodeName === "tr") {
+						// Gets Building Code
+						console.log(i["childNodes"]["3"]["childNodes"]["0"]["value"]);
+					}
+				}
+				resolve(PromisedDoc);
 			});
 		});
 	}
