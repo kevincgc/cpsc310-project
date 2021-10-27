@@ -1,10 +1,20 @@
-import {IInsightFacade, InsightDataset,	InsightDatasetKind,	InsightError, NotFoundError,
-	ResultTooLargeError} from "./IInsightFacade";
+import {
+	IInsightFacade,
+	InsightDataset,
+	InsightDatasetKind,
+	InsightError,
+	NotFoundError,
+	ResultTooLargeError
+} from "./IInsightFacade";
 import JSZip from "jszip";
 import {isValidQuery} from "./ValidateQuery";
-import {keyDict, filter, logic, features} from "./Const";
+import {features, filter, keyDict, logic} from "./Const";
+import {addDatasetValidate, getValidCourses, isValidId, parseJsonAsync,getFilesAsStringsRooms,
+	getValidJsons,getFilesAsStrings, search} from "./addDataset Helpers";
+import {dynamicSort, getFeatures} from "./preformQuery Helpers";
+
 const fs = require("fs-extra");
-import {addDatasetValidate, isValidId, isValidCourses, getValidCourses, parseJsonAsync} from "./addDataset Helpers";
+const parse5 = require("parse5");
 /**
  * This is the main programmatic entry point for the project.
  * Method documentation is in IInsightFacade
@@ -18,34 +28,6 @@ export default class InsightFacade implements IInsightFacade {
 		this.datasets = [];
 		this.currentCourses = [];
 		this.currentDatasetId = "";
-	}
-
-	public getFilesAsStrings(content: any): Promise<string[]> {
-		return new Promise<string[]>((resolve, reject) => {
-			const jsZip = new JSZip();
-			jsZip.loadAsync(content, {base64: true}).then((zip: JSZip) => {
-				const fileStrings: any[] = [];
-				zip.forEach((relativePath, file) => {
-					if (relativePath.startsWith("courses/")) {
-						fileStrings.push(file.async("text"));
-					}
-				});
-				resolve(fileStrings);
-			}).catch((e) => {
-				reject(new InsightError("addDataset Not A Valid Zip File"));
-			});
-		});
-	}
-
-	public async getValidJsons(files: string[]) {
-		let fileJsons: any[] = [];
-		for (let file of files) {
-			fileJsons.push(parseJsonAsync(file));
-		}
-		// Start of code based on https://stackoverflow.com/a/46024590
-		const results = await Promise.all(fileJsons.map((p) => p.catch((e: Error) => e)));
-		return results.filter((result) => !(result instanceof Error));
-		// End of code based on https://stackoverflow.com/a/46024590
 	}
 
 	public saveDataset(courses: any, id: string, kind: InsightDatasetKind) {
@@ -76,13 +58,45 @@ export default class InsightFacade implements IInsightFacade {
 	}
 
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
+		if (kind === InsightDatasetKind.Courses) {
+			return this.addDatasetCourses(id, kind, content);
+		} else {
+			return this.addDatasetRooms(id, kind, content);
+		}
+	}
+
+	private addDatasetRooms(id: string, kind: InsightDatasetKind, content: string) {
+		return new Promise<string[]>((resolve, reject) => {
+			const jsZip = new JSZip();
+			jsZip.loadAsync(content, {base64: true}).then((zip: JSZip) => {
+				return getFilesAsStringsRooms(content);
+			}).then((fileStrings) => {
+				console.log(fileStrings.length);
+				return Promise.all(fileStrings);
+			}).then ((files) => {
+				return parse5.parse(files[0]);
+			}).then ((doc) => {
+				return search(doc);
+			}).then ((PromisedDoc) => {
+				for (let i of PromisedDoc.childNodes) {
+					if (i.nodeName === "tr") {
+						// Gets Building Code
+						console.log(i["childNodes"]["3"]["childNodes"]["0"]["value"]);
+					}
+				}
+				resolve(PromisedDoc);
+			});
+		});
+	}
+
+	private addDatasetCourses(id: string, kind: InsightDatasetKind, content: string) {
 		return new Promise<string[]>((resolve, reject) => {
 			addDatasetValidate(id, this.datasets, kind).then(() => {
-				return this.getFilesAsStrings(content);
+				return getFilesAsStrings(content);
 			}).then((fileStrings) => {
 				return Promise.all(fileStrings);
 			}).then((files) => {
-				return this.getValidJsons(files);
+				return getValidJsons(files);
 			}).then((validJsons) => {
 				return getValidCourses(validJsons);
 			}).then((courses) => {
@@ -211,22 +225,6 @@ export default class InsightFacade implements IInsightFacade {
 		}
 	}
 
-	// Adapted from https://stackoverflow.com/a/4760279
-	private dynamicSort(key: any) {
-		return function (a: any, b: any) {
-			let result = (a[key] < b[key]) ? -1 : (a[key] > b[key]) ? 1 : 0;
-			return result;
-		};
-	}
-
-	public getFeatures (query: any) {
-		let columns = [];
-		for (let feature of query["OPTIONS"]["COLUMNS"]) {
-			columns.push(feature.split("_")[1]);
-		}
-		return columns;
-	}
-
 	public isDatasetInDatasets(id: any) {
 		if (this.datasets.length === 0) {
 			return false;
@@ -261,7 +259,7 @@ export default class InsightFacade implements IInsightFacade {
 			if (filteredCourses.length > 5000) {
 				reject(new ResultTooLargeError("performQuery > 5000 results"));
 			}
-			let columns = this.getFeatures(query);
+			let columns = getFeatures(query);
 			let coursesSelectedColumns: any[] = [];
 			for (let course of filteredCourses) {
 				let courseObject: any = {};
@@ -280,7 +278,7 @@ export default class InsightFacade implements IInsightFacade {
 				coursesSelectedColumns.push(courseObject);
 			}
 			if (query.OPTIONS.ORDER) {
-				coursesSelectedColumns.sort(this.dynamicSort(query["OPTIONS"]["ORDER"]));
+				coursesSelectedColumns.sort(dynamicSort(query["OPTIONS"]["ORDER"]));
 			}
 			resolve(coursesSelectedColumns);
 		});
