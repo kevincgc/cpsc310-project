@@ -15,8 +15,17 @@ import {
 	getValidJsons,
 	isValidId
 } from "./addDataset Helpers";
-import {apply, dynamicSort, getFeatures, getGroupKeys, group, sortByKeys, validateQuery} from "./performQuery Helpers";
-import {getDatasetInfo} from "./ValidateQuery Helpers";
+import {
+	apply,
+	datasetReduceToSelectedColumns, datasetReduceToValidColumns,
+	dynamicSort,
+	getFeatures,
+	getGroupKeys,
+	group,
+	sortByKeys,
+	validateQuery
+} from "./performQuery Helpers";
+import {getDatasetInfo, isString} from "./ValidateQuery Helpers";
 
 const fs = require("fs-extra");
 /**
@@ -224,37 +233,31 @@ export default class InsightFacade implements IInsightFacade {
 				let datasetInfo = getDatasetInfo(query);
 				this.loadDataset(datasetInfo.id, datasetInfo.kind);
 				let filteredDataset = this.executeNode(query["WHERE"]);
+				let dataset = [];
 				if (query["TRANSFORMATIONS"]) {
-					let groupKeys = getGroupKeys(query); // keys have underscore and id removed
-					let sortedByGroupsDataset = sortByKeys(filteredDataset, groupKeys);
+					let datasetSelectedColumns: any[] = datasetReduceToValidColumns(filteredDataset, datasetInfo.id,
+						datasetInfo.kind);
+					let groupKeys = query["TRANSFORMATIONS"]["GROUP"]; // keys have underscore and id
+					let sortedByGroupsDataset = sortByKeys(datasetSelectedColumns, groupKeys);
 					let groupedDataset = group(groupKeys, sortedByGroupsDataset);
 					let applyDataset = apply(query["TRANSFORMATIONS"]["APPLY"], groupedDataset, groupKeys);
+				} else {
+					let columns = getFeatures(query);
+					dataset = datasetReduceToSelectedColumns(filteredDataset, datasetInfo.id, datasetInfo.kind,
+						columns);
 				}
-				let columns = getFeatures(query);
-				let coursesSelectedColumns: any[] = [];
-				for (let course of filteredCourses) {
-					let courseObject: any = {};
-					for (let feature of features) {
-						if(columns.find((element: any) => element === feature)) {
-							let columnName = id + "_" + feature;
-							if (feature === "year") {
-								courseObject[columnName] = parseInt(course[keyDict[feature]], 10);
-							} else if (feature === "uuid") {
-								courseObject[columnName] = course[keyDict[feature]].toString();
-							} else {
-								courseObject[columnName] = course[keyDict[feature]];
-							}
-						}
-					}
-					coursesSelectedColumns.push(courseObject);
-				}
-				if (filteredDataset.length > 5000) {
+				if (dataset.length > 5000) {
 					reject(new ResultTooLargeError("performQuery > 5000 results"));
 				}
-				if (query["OPTIONS"]["ORDER"]) {
-					coursesSelectedColumns.sort(dynamicSort(query["OPTIONS"]["ORDER"]));
+				if (!query["OPTIONS"]["ORDER"]) {
+					resolve(dataset);
+				} else {
+					let orderedDataset: any = [];
+					if (isString(query["OPTIONS"]["ORDER"])) {
+						orderedDataset = dynamicSort(dataset);
+					}
+					resolve(orderedDataset);
 				}
-				resolve(coursesSelectedColumns);
 			} catch (e) {
 				reject(e);
 			}

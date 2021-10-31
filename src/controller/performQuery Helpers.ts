@@ -1,6 +1,7 @@
 import {isValidQuery} from "./ValidateQuery";
 import {InsightDatasetKind, InsightError} from "./IInsightFacade";
-import {keyDict} from "./Const";
+import {coursesFeatures, features, filter, keyDict, roomsFeatures} from "./Const";
+import Decimal from "decimal.js";
 
 
 // Adapted from https://stackoverflow.com/a/4760279
@@ -95,12 +96,25 @@ function applyRule(singleGroup: any[], rules: any) {
 		case "MIN":
 			value = singleGroup.reduce((p, c) => p[key] < c[key] ? p : c);
 			break;
-		case "SUM":
-			value = singleGroup.reduce((p, c) => p + c);
+		case "SUM": {
+			let sum: Decimal = new Decimal(0);
+			for (let element of singleGroup) {
+				let num = new Decimal(element[key]);
+				sum.add(num);
+			}
+			value = Number(sum.toFixed(2));
 			break;
-		case "AVG":
-			value = singleGroup.reduce((p, c) => p + c) / singleGroup.length;
+		}
+		case "AVG": {
+			let sum: Decimal = new Decimal(0);
+			for (let element of singleGroup) {
+				let num = new Decimal(element[key]);
+				sum.add(num);
+			}
+			let avg = sum.toNumber() / singleGroup.length;
+			value = Number(avg.toFixed(2));
 			break;
+		}
 		case "COUNT": {
 			value = singleGroup.length;
 			break;
@@ -126,7 +140,7 @@ export function apply(applyArray: any, groupedDataset: any[], groupKeys: any[]) 
 	for (let applyRuleElement of applyArray) {
 		let applyKey = Object.keys(applyRuleElement)[0];
 		let applyToken = Object.keys(applyRuleElement[applyKey])[0];
-		let key = applyRuleElement[applyKey][applyToken].split("_")[1];
+		let key = applyRuleElement[applyKey][applyToken];
 		let rule: ParsedApplyElement = { applyKey: applyKey, applyToken: applyToken, key: key};
 		rules.push(rule);
 	}
@@ -140,22 +154,32 @@ interface ParsedApplyElement{
 	applyKey: string, applyToken: string, key: string;
 }
 
-export function datasetReduceSelectedColumns(filteredCourses: any[], kind: InsightDatasetKind, columns: string[]) {
-	let coursesSelectedColumns: any[] = [];
-	for (let course of filteredCourses) {
-		let courseObject: any = {};
+export function datasetReduceToSelectedColumns(filteredDataset: any[], id: string, kind: InsightDatasetKind,
+	columns: string[]) {
+	let datasetSelectedColumns: any[] = [];
+	for (let dataPoint of filteredDataset) {
+		let datasetObject: any = {};
 		for (let feature of features) {
 			if(columns.find((element: any) => element === feature)) {
 				let columnName = id + "_" + feature;
 				if (feature === "year") {
-					courseObject[columnName] = parseInt(course[keyDict[feature]], 10);
+					datasetObject[columnName] = parseInt(dataPoint[keyDict[feature]], 10);
 				} else if (feature === "uuid") {
-					courseObject[columnName] = course[keyDict[feature]].toString();
+					datasetObject[columnName] = dataPoint[keyDict[feature]].toString();
 				} else {
-					courseObject[columnName] = course[keyDict[feature]];
+					datasetObject[columnName] = dataPoint[keyDict[feature]];
 				}
 			}
 		}
-		coursesSelectedColumns.push(courseObject);
+		datasetSelectedColumns.push(datasetObject);
+	}
+	return datasetSelectedColumns;
+}
+
+export function datasetReduceToValidColumns(filteredDataset: any[], id: string, kind: InsightDatasetKind) {
+	if(kind === InsightDatasetKind.Courses) {
+		return datasetReduceToSelectedColumns(filteredDataset, id, kind, coursesFeatures);
+	} else {
+		return datasetReduceToSelectedColumns(filteredDataset, id, kind, roomsFeatures);
 	}
 }

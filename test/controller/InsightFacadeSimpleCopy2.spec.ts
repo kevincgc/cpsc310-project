@@ -24,3328 +24,3328 @@ describe("tests", function() {
 		let facade: IInsightFacade = new InsightFacade();
 		let q = [
 			{
-				"courses_dept": "thtr",
-				"courses_year": 2014
+				courses_dept: "thtr",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "thtr",
-				"courses_year": 2011
+				courses_dept: "thtr",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "thtr",
-				"courses_year": 1900
+				courses_dept: "thtr",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "thtr",
-				"courses_year": 1900
+				courses_dept: "thtr",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "surg",
-				"courses_year": 2013
+				courses_dept: "surg",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "surg",
-				"courses_year": 2011
+				courses_dept: "surg",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "surg",
-				"courses_year": 1900
+				courses_dept: "surg",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "surg",
-				"courses_year": 1900
+				courses_dept: "surg",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "stat",
-				"courses_year": 2014
+				courses_dept: "stat",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "stat",
-				"courses_year": 1900
+				courses_dept: "stat",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2015
+				courses_dept: "spph",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2015
+				courses_dept: "spph",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2015
+				courses_dept: "spph",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2015
+				courses_dept: "spph",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2015
+				courses_dept: "spph",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2015
+				courses_dept: "spph",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2015
+				courses_dept: "spph",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2014
+				courses_dept: "spph",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2014
+				courses_dept: "spph",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2013
+				courses_dept: "spph",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2013
+				courses_dept: "spph",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2012
+				courses_dept: "spph",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2012
+				courses_dept: "spph",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2011
+				courses_dept: "spph",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2011
+				courses_dept: "spph",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2010
+				courses_dept: "spph",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2010
+				courses_dept: "spph",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2009
+				courses_dept: "spph",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 2009
+				courses_dept: "spph",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "spph",
-				"courses_year": 1900
+				courses_dept: "spph",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "span",
-				"courses_year": 2008
+				courses_dept: "span",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "span",
-				"courses_year": 1900
+				courses_dept: "span",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "sowk",
-				"courses_year": 2015
+				courses_dept: "sowk",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "sowk",
-				"courses_year": 2014
+				courses_dept: "sowk",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "sowk",
-				"courses_year": 2014
+				courses_dept: "sowk",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "sowk",
-				"courses_year": 2013
+				courses_dept: "sowk",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "sowk",
-				"courses_year": 2012
+				courses_dept: "sowk",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "sowk",
-				"courses_year": 2010
+				courses_dept: "sowk",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "sowk",
-				"courses_year": 2010
+				courses_dept: "sowk",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "sowk",
-				"courses_year": 2009
+				courses_dept: "sowk",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "sowk",
-				"courses_year": 1900
+				courses_dept: "sowk",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "sowk",
-				"courses_year": 1900
+				courses_dept: "sowk",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "sowk",
-				"courses_year": 1900
+				courses_dept: "sowk",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "rhsc",
-				"courses_year": 2009
+				courses_dept: "rhsc",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "rhsc",
-				"courses_year": 2008
+				courses_dept: "rhsc",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 2015
+				courses_dept: "psyc",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 2015
+				courses_dept: "psyc",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 2015
+				courses_dept: "psyc",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 2014
+				courses_dept: "psyc",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 2013
+				courses_dept: "psyc",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 2012
+				courses_dept: "psyc",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 2010
+				courses_dept: "psyc",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 2008
+				courses_dept: "psyc",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 2007
+				courses_dept: "psyc",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 2007
+				courses_dept: "psyc",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 1900
+				courses_dept: "psyc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 1900
+				courses_dept: "psyc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 1900
+				courses_dept: "psyc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 1900
+				courses_dept: "psyc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 1900
+				courses_dept: "psyc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 1900
+				courses_dept: "psyc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 1900
+				courses_dept: "psyc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 1900
+				courses_dept: "psyc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 1900
+				courses_dept: "psyc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "psyc",
-				"courses_year": 1900
+				courses_dept: "psyc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "plan",
-				"courses_year": 2011
+				courses_dept: "plan",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "plan",
-				"courses_year": 2010
+				courses_dept: "plan",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "plan",
-				"courses_year": 2010
+				courses_dept: "plan",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "plan",
-				"courses_year": 2008
+				courses_dept: "plan",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "plan",
-				"courses_year": 1900
+				courses_dept: "plan",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "plan",
-				"courses_year": 1900
+				courses_dept: "plan",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "plan",
-				"courses_year": 1900
+				courses_dept: "plan",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "plan",
-				"courses_year": 1900
+				courses_dept: "plan",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "phys",
-				"courses_year": 2015
+				courses_dept: "phys",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "phys",
-				"courses_year": 2015
+				courses_dept: "phys",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "phys",
-				"courses_year": 2010
+				courses_dept: "phys",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "phys",
-				"courses_year": 2010
+				courses_dept: "phys",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "phys",
-				"courses_year": 1900
+				courses_dept: "phys",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "phys",
-				"courses_year": 1900
+				courses_dept: "phys",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "phys",
-				"courses_year": 1900
+				courses_dept: "phys",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "phys",
-				"courses_year": 1900
+				courses_dept: "phys",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "phth",
-				"courses_year": 2014
+				courses_dept: "phth",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "phth",
-				"courses_year": 2013
+				courses_dept: "phth",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "phth",
-				"courses_year": 1900
+				courses_dept: "phth",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "phth",
-				"courses_year": 1900
+				courses_dept: "phth",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "phrm",
-				"courses_year": 2015
+				courses_dept: "phrm",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "phrm",
-				"courses_year": 1900
+				courses_dept: "phrm",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "phil",
-				"courses_year": 2010
+				courses_dept: "phil",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "phar",
-				"courses_year": 2014
+				courses_dept: "phar",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "phar",
-				"courses_year": 2014
+				courses_dept: "phar",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "phar",
-				"courses_year": 1900
+				courses_dept: "phar",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "pcth",
-				"courses_year": 1900
+				courses_dept: "pcth",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "path",
-				"courses_year": 2008
+				courses_dept: "path",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "onco",
-				"courses_year": 2013
+				courses_dept: "onco",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "onco",
-				"courses_year": 1900
+				courses_dept: "onco",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "obst",
-				"courses_year": 1900
+				courses_dept: "obst",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2016
+				courses_dept: "nurs",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2016
+				courses_dept: "nurs",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2015
+				courses_dept: "nurs",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2015
+				courses_dept: "nurs",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2015
+				courses_dept: "nurs",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2015
+				courses_dept: "nurs",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2014
+				courses_dept: "nurs",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2014
+				courses_dept: "nurs",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2014
+				courses_dept: "nurs",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2013
+				courses_dept: "nurs",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2013
+				courses_dept: "nurs",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2013
+				courses_dept: "nurs",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2013
+				courses_dept: "nurs",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2013
+				courses_dept: "nurs",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2012
+				courses_dept: "nurs",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2011
+				courses_dept: "nurs",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2011
+				courses_dept: "nurs",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2011
+				courses_dept: "nurs",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2011
+				courses_dept: "nurs",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2010
+				courses_dept: "nurs",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2010
+				courses_dept: "nurs",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2010
+				courses_dept: "nurs",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2010
+				courses_dept: "nurs",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2010
+				courses_dept: "nurs",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2010
+				courses_dept: "nurs",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2007
+				courses_dept: "nurs",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 2007
+				courses_dept: "nurs",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "nurs",
-				"courses_year": 1900
+				courses_dept: "nurs",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 2016
+				courses_dept: "musc",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 2015
+				courses_dept: "musc",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 2015
+				courses_dept: "musc",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 2014
+				courses_dept: "musc",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 2013
+				courses_dept: "musc",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 2012
+				courses_dept: "musc",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 2011
+				courses_dept: "musc",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 2011
+				courses_dept: "musc",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 2010
+				courses_dept: "musc",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 2010
+				courses_dept: "musc",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 2010
+				courses_dept: "musc",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 2009
+				courses_dept: "musc",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 2009
+				courses_dept: "musc",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 1900
+				courses_dept: "musc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 1900
+				courses_dept: "musc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 1900
+				courses_dept: "musc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 1900
+				courses_dept: "musc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 1900
+				courses_dept: "musc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 1900
+				courses_dept: "musc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 1900
+				courses_dept: "musc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 1900
+				courses_dept: "musc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 1900
+				courses_dept: "musc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 1900
+				courses_dept: "musc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 1900
+				courses_dept: "musc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "musc",
-				"courses_year": 1900
+				courses_dept: "musc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "mtrl",
-				"courses_year": 2011
+				courses_dept: "mtrl",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "mtrl",
-				"courses_year": 2011
+				courses_dept: "mtrl",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "mtrl",
-				"courses_year": 2010
+				courses_dept: "mtrl",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "mtrl",
-				"courses_year": 1900
+				courses_dept: "mtrl",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "mtrl",
-				"courses_year": 1900
+				courses_dept: "mtrl",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "mine",
-				"courses_year": 2013
+				courses_dept: "mine",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "mine",
-				"courses_year": 2013
+				courses_dept: "mine",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "mine",
-				"courses_year": 2012
+				courses_dept: "mine",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "mine",
-				"courses_year": 2009
+				courses_dept: "mine",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "mine",
-				"courses_year": 1900
+				courses_dept: "mine",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "mine",
-				"courses_year": 1900
+				courses_dept: "mine",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "mine",
-				"courses_year": 1900
+				courses_dept: "mine",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "midw",
-				"courses_year": 2015
+				courses_dept: "midw",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "midw",
-				"courses_year": 2014
+				courses_dept: "midw",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "midw",
-				"courses_year": 2013
+				courses_dept: "midw",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "midw",
-				"courses_year": 2012
+				courses_dept: "midw",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "midw",
-				"courses_year": 2011
+				courses_dept: "midw",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "midw",
-				"courses_year": 1900
+				courses_dept: "midw",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "midw",
-				"courses_year": 1900
+				courses_dept: "midw",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "midw",
-				"courses_year": 1900
+				courses_dept: "midw",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "midw",
-				"courses_year": 1900
+				courses_dept: "midw",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "midw",
-				"courses_year": 1900
+				courses_dept: "midw",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "micb",
-				"courses_year": 2015
+				courses_dept: "micb",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "micb",
-				"courses_year": 2013
+				courses_dept: "micb",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "micb",
-				"courses_year": 2009
+				courses_dept: "micb",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "micb",
-				"courses_year": 1900
+				courses_dept: "micb",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "micb",
-				"courses_year": 1900
+				courses_dept: "micb",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "micb",
-				"courses_year": 1900
+				courses_dept: "micb",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "medi",
-				"courses_year": 2014
+				courses_dept: "medi",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "medi",
-				"courses_year": 2014
+				courses_dept: "medi",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "medi",
-				"courses_year": 2010
+				courses_dept: "medi",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "medi",
-				"courses_year": 1900
+				courses_dept: "medi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "medi",
-				"courses_year": 1900
+				courses_dept: "medi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "medg",
-				"courses_year": 2009
+				courses_dept: "medg",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "medg",
-				"courses_year": 2007
+				courses_dept: "medg",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "medg",
-				"courses_year": 1900
+				courses_dept: "medg",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "medg",
-				"courses_year": 1900
+				courses_dept: "medg",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "mech",
-				"courses_year": 2011
+				courses_dept: "mech",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "mech",
-				"courses_year": 1900
+				courses_dept: "mech",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2016
+				courses_dept: "math",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2016
+				courses_dept: "math",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2015
+				courses_dept: "math",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2015
+				courses_dept: "math",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2015
+				courses_dept: "math",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2015
+				courses_dept: "math",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2015
+				courses_dept: "math",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2015
+				courses_dept: "math",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2013
+				courses_dept: "math",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2013
+				courses_dept: "math",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2012
+				courses_dept: "math",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2012
+				courses_dept: "math",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2011
+				courses_dept: "math",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2011
+				courses_dept: "math",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2010
+				courses_dept: "math",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2010
+				courses_dept: "math",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2010
+				courses_dept: "math",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2010
+				courses_dept: "math",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2009
+				courses_dept: "math",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2009
+				courses_dept: "math",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2009
+				courses_dept: "math",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2008
+				courses_dept: "math",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2007
+				courses_dept: "math",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 2007
+				courses_dept: "math",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "math",
-				"courses_year": 1900
+				courses_dept: "math",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "lled",
-				"courses_year": 2016
+				courses_dept: "lled",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "lled",
-				"courses_year": 1900
+				courses_dept: "lled",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "libr",
-				"courses_year": 2015
+				courses_dept: "libr",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "libr",
-				"courses_year": 1900
+				courses_dept: "libr",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 2015
+				courses_dept: "kin",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 2015
+				courses_dept: "kin",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 2015
+				courses_dept: "kin",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 2014
+				courses_dept: "kin",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 2014
+				courses_dept: "kin",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 2014
+				courses_dept: "kin",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 2013
+				courses_dept: "kin",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 2013
+				courses_dept: "kin",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 2013
+				courses_dept: "kin",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 2013
+				courses_dept: "kin",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 2013
+				courses_dept: "kin",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 2012
+				courses_dept: "kin",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 2012
+				courses_dept: "kin",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 2012
+				courses_dept: "kin",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 1900
+				courses_dept: "kin",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 1900
+				courses_dept: "kin",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 1900
+				courses_dept: "kin",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 1900
+				courses_dept: "kin",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 1900
+				courses_dept: "kin",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 1900
+				courses_dept: "kin",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 1900
+				courses_dept: "kin",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "kin",
-				"courses_year": 1900
+				courses_dept: "kin",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "hinu",
-				"courses_year": 2007
+				courses_dept: "hinu",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "hinu",
-				"courses_year": 1900
+				courses_dept: "hinu",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "hgse",
-				"courses_year": 2016
+				courses_dept: "hgse",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "hgse",
-				"courses_year": 2015
+				courses_dept: "hgse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "hgse",
-				"courses_year": 2014
+				courses_dept: "hgse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "hgse",
-				"courses_year": 2013
+				courses_dept: "hgse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "hgse",
-				"courses_year": 2013
+				courses_dept: "hgse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "hgse",
-				"courses_year": 1900
+				courses_dept: "hgse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "hgse",
-				"courses_year": 1900
+				courses_dept: "hgse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "hgse",
-				"courses_year": 1900
+				courses_dept: "hgse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "hgse",
-				"courses_year": 1900
+				courses_dept: "hgse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "hgse",
-				"courses_year": 1900
+				courses_dept: "hgse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "gpp",
-				"courses_year": 2015
+				courses_dept: "gpp",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "gpp",
-				"courses_year": 1900
+				courses_dept: "gpp",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "frst",
-				"courses_year": 2015
+				courses_dept: "frst",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "frst",
-				"courses_year": 2014
+				courses_dept: "frst",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "frst",
-				"courses_year": 1900
+				courses_dept: "frst",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "fnh",
-				"courses_year": 2015
+				courses_dept: "fnh",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "fish",
-				"courses_year": 2009
+				courses_dept: "fish",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "fish",
-				"courses_year": 1900
+				courses_dept: "fish",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "fipr",
-				"courses_year": 2015
+				courses_dept: "fipr",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "fipr",
-				"courses_year": 1900
+				courses_dept: "fipr",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2016
+				courses_dept: "etec",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2015
+				courses_dept: "etec",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2015
+				courses_dept: "etec",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2015
+				courses_dept: "etec",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2015
+				courses_dept: "etec",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2014
+				courses_dept: "etec",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2014
+				courses_dept: "etec",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2014
+				courses_dept: "etec",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2014
+				courses_dept: "etec",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2013
+				courses_dept: "etec",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2013
+				courses_dept: "etec",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2013
+				courses_dept: "etec",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2013
+				courses_dept: "etec",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2013
+				courses_dept: "etec",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2012
+				courses_dept: "etec",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2012
+				courses_dept: "etec",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2012
+				courses_dept: "etec",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2012
+				courses_dept: "etec",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2011
+				courses_dept: "etec",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2011
+				courses_dept: "etec",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2011
+				courses_dept: "etec",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2011
+				courses_dept: "etec",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2010
+				courses_dept: "etec",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 2008
+				courses_dept: "etec",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 1900
+				courses_dept: "etec",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 1900
+				courses_dept: "etec",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 1900
+				courses_dept: "etec",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 1900
+				courses_dept: "etec",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 1900
+				courses_dept: "etec",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 1900
+				courses_dept: "etec",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 1900
+				courses_dept: "etec",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 1900
+				courses_dept: "etec",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 1900
+				courses_dept: "etec",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 1900
+				courses_dept: "etec",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 1900
+				courses_dept: "etec",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 1900
+				courses_dept: "etec",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "etec",
-				"courses_year": 1900
+				courses_dept: "etec",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2016
+				courses_dept: "epse",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2016
+				courses_dept: "epse",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2016
+				courses_dept: "epse",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2016
+				courses_dept: "epse",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2015
+				courses_dept: "epse",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2014
+				courses_dept: "epse",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2013
+				courses_dept: "epse",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2012
+				courses_dept: "epse",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2011
+				courses_dept: "epse",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2010
+				courses_dept: "epse",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2010
+				courses_dept: "epse",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2010
+				courses_dept: "epse",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2010
+				courses_dept: "epse",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2010
+				courses_dept: "epse",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2010
+				courses_dept: "epse",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2010
+				courses_dept: "epse",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2010
+				courses_dept: "epse",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2010
+				courses_dept: "epse",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2010
+				courses_dept: "epse",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2010
+				courses_dept: "epse",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2010
+				courses_dept: "epse",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2010
+				courses_dept: "epse",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2010
+				courses_dept: "epse",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2009
+				courses_dept: "epse",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2008
+				courses_dept: "epse",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2008
+				courses_dept: "epse",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2008
+				courses_dept: "epse",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2007
+				courses_dept: "epse",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2007
+				courses_dept: "epse",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2007
+				courses_dept: "epse",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2007
+				courses_dept: "epse",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2007
+				courses_dept: "epse",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2007
+				courses_dept: "epse",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2007
+				courses_dept: "epse",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2007
+				courses_dept: "epse",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2007
+				courses_dept: "epse",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 2007
+				courses_dept: "epse",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "epse",
-				"courses_year": 1900
+				courses_dept: "epse",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "eosc",
-				"courses_year": 2014
+				courses_dept: "eosc",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "eosc",
-				"courses_year": 1900
+				courses_dept: "eosc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "elec",
-				"courses_year": 2015
+				courses_dept: "elec",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "elec",
-				"courses_year": 2015
+				courses_dept: "elec",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "elec",
-				"courses_year": 1900
+				courses_dept: "elec",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "eece",
-				"courses_year": 2015
+				courses_dept: "eece",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "eece",
-				"courses_year": 2013
+				courses_dept: "eece",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "eece",
-				"courses_year": 2009
+				courses_dept: "eece",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "eece",
-				"courses_year": 2008
+				courses_dept: "eece",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "eece",
-				"courses_year": 2007
+				courses_dept: "eece",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "eece",
-				"courses_year": 1900
+				courses_dept: "eece",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "eece",
-				"courses_year": 1900
+				courses_dept: "eece",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "eece",
-				"courses_year": 1900
+				courses_dept: "eece",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "eece",
-				"courses_year": 1900
+				courses_dept: "eece",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "eece",
-				"courses_year": 1900
+				courses_dept: "eece",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "educ",
-				"courses_year": 2016
+				courses_dept: "educ",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "educ",
-				"courses_year": 2015
+				courses_dept: "educ",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "educ",
-				"courses_year": 2015
+				courses_dept: "educ",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "educ",
-				"courses_year": 2014
+				courses_dept: "educ",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "educ",
-				"courses_year": 2014
+				courses_dept: "educ",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "educ",
-				"courses_year": 2013
+				courses_dept: "educ",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "educ",
-				"courses_year": 2013
+				courses_dept: "educ",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "educ",
-				"courses_year": 2012
+				courses_dept: "educ",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "educ",
-				"courses_year": 2011
+				courses_dept: "educ",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "educ",
-				"courses_year": 2011
+				courses_dept: "educ",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "educ",
-				"courses_year": 2011
+				courses_dept: "educ",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "educ",
-				"courses_year": 2008
+				courses_dept: "educ",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "educ",
-				"courses_year": 1900
+				courses_dept: "educ",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 2015
+				courses_dept: "edst",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 2015
+				courses_dept: "edst",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 2014
+				courses_dept: "edst",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 2014
+				courses_dept: "edst",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 2014
+				courses_dept: "edst",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 2014
+				courses_dept: "edst",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 2013
+				courses_dept: "edst",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 2011
+				courses_dept: "edst",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 2010
+				courses_dept: "edst",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 2007
+				courses_dept: "edst",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 1900
+				courses_dept: "edst",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 1900
+				courses_dept: "edst",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 1900
+				courses_dept: "edst",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 1900
+				courses_dept: "edst",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 1900
+				courses_dept: "edst",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 1900
+				courses_dept: "edst",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 1900
+				courses_dept: "edst",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 1900
+				courses_dept: "edst",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edst",
-				"courses_year": 1900
+				courses_dept: "edst",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 2015
+				courses_dept: "edcp",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 2015
+				courses_dept: "edcp",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 2013
+				courses_dept: "edcp",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 2013
+				courses_dept: "edcp",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 2013
+				courses_dept: "edcp",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 2012
+				courses_dept: "edcp",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 2011
+				courses_dept: "edcp",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 2011
+				courses_dept: "edcp",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 2010
+				courses_dept: "edcp",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 1900
+				courses_dept: "edcp",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 1900
+				courses_dept: "edcp",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 1900
+				courses_dept: "edcp",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 1900
+				courses_dept: "edcp",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 1900
+				courses_dept: "edcp",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "edcp",
-				"courses_year": 1900
+				courses_dept: "edcp",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "econ",
-				"courses_year": 2016
+				courses_dept: "econ",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "econ",
-				"courses_year": 2014
+				courses_dept: "econ",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "econ",
-				"courses_year": 2010
+				courses_dept: "econ",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "econ",
-				"courses_year": 2007
+				courses_dept: "econ",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "econ",
-				"courses_year": 1900
+				courses_dept: "econ",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "econ",
-				"courses_year": 1900
+				courses_dept: "econ",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "econ",
-				"courses_year": 1900
+				courses_dept: "econ",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "econ",
-				"courses_year": 1900
+				courses_dept: "econ",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "eced",
-				"courses_year": 2014
+				courses_dept: "eced",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "eced",
-				"courses_year": 2012
+				courses_dept: "eced",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "eced",
-				"courses_year": 1900
+				courses_dept: "eced",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "dhyg",
-				"courses_year": 2013
+				courses_dept: "dhyg",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "dhyg",
-				"courses_year": 2012
+				courses_dept: "dhyg",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "dent",
-				"courses_year": 2012
+				courses_dept: "dent",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "dent",
-				"courses_year": 1900
+				courses_dept: "dent",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2015
+				courses_dept: "crwr",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2015
+				courses_dept: "crwr",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2015
+				courses_dept: "crwr",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2014
+				courses_dept: "crwr",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2014
+				courses_dept: "crwr",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2014
+				courses_dept: "crwr",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2014
+				courses_dept: "crwr",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2014
+				courses_dept: "crwr",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2014
+				courses_dept: "crwr",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2014
+				courses_dept: "crwr",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2014
+				courses_dept: "crwr",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2014
+				courses_dept: "crwr",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2014
+				courses_dept: "crwr",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2013
+				courses_dept: "crwr",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2013
+				courses_dept: "crwr",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2013
+				courses_dept: "crwr",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2013
+				courses_dept: "crwr",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2013
+				courses_dept: "crwr",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2013
+				courses_dept: "crwr",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2013
+				courses_dept: "crwr",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2013
+				courses_dept: "crwr",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2013
+				courses_dept: "crwr",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2013
+				courses_dept: "crwr",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2013
+				courses_dept: "crwr",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2012
+				courses_dept: "crwr",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2012
+				courses_dept: "crwr",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2012
+				courses_dept: "crwr",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2012
+				courses_dept: "crwr",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 2012
+				courses_dept: "crwr",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 1900
+				courses_dept: "crwr",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 1900
+				courses_dept: "crwr",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 1900
+				courses_dept: "crwr",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 1900
+				courses_dept: "crwr",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 1900
+				courses_dept: "crwr",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 1900
+				courses_dept: "crwr",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 1900
+				courses_dept: "crwr",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 1900
+				courses_dept: "crwr",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "crwr",
-				"courses_year": 1900
+				courses_dept: "crwr",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cpsc",
-				"courses_year": 2014
+				courses_dept: "cpsc",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "cpsc",
-				"courses_year": 2013
+				courses_dept: "cpsc",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "cpsc",
-				"courses_year": 2011
+				courses_dept: "cpsc",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "cpsc",
-				"courses_year": 2007
+				courses_dept: "cpsc",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "cpsc",
-				"courses_year": 2007
+				courses_dept: "cpsc",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "cpsc",
-				"courses_year": 1900
+				courses_dept: "cpsc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cpsc",
-				"courses_year": 1900
+				courses_dept: "cpsc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cpsc",
-				"courses_year": 1900
+				courses_dept: "cpsc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cpsc",
-				"courses_year": 1900
+				courses_dept: "cpsc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cpsc",
-				"courses_year": 1900
+				courses_dept: "cpsc",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "comm",
-				"courses_year": 2012
+				courses_dept: "comm",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "comm",
-				"courses_year": 2010
+				courses_dept: "comm",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "comm",
-				"courses_year": 2007
+				courses_dept: "comm",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "comm",
-				"courses_year": 1900
+				courses_dept: "comm",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "comm",
-				"courses_year": 1900
+				courses_dept: "comm",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "comm",
-				"courses_year": 1900
+				courses_dept: "comm",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2016
+				courses_dept: "cnps",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2015
+				courses_dept: "cnps",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2015
+				courses_dept: "cnps",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2014
+				courses_dept: "cnps",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2014
+				courses_dept: "cnps",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2014
+				courses_dept: "cnps",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2013
+				courses_dept: "cnps",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2013
+				courses_dept: "cnps",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2013
+				courses_dept: "cnps",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2013
+				courses_dept: "cnps",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2012
+				courses_dept: "cnps",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2012
+				courses_dept: "cnps",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2012
+				courses_dept: "cnps",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2012
+				courses_dept: "cnps",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2012
+				courses_dept: "cnps",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2011
+				courses_dept: "cnps",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2011
+				courses_dept: "cnps",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2011
+				courses_dept: "cnps",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2011
+				courses_dept: "cnps",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2009
+				courses_dept: "cnps",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2008
+				courses_dept: "cnps",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 2008
+				courses_dept: "cnps",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cnps",
-				"courses_year": 1900
+				courses_dept: "cnps",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "civl",
-				"courses_year": 2012
+				courses_dept: "civl",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "civl",
-				"courses_year": 1900
+				courses_dept: "civl",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "chbe",
-				"courses_year": 2015
+				courses_dept: "chbe",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "chbe",
-				"courses_year": 2015
+				courses_dept: "chbe",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "chbe",
-				"courses_year": 2013
+				courses_dept: "chbe",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "chbe",
-				"courses_year": 1900
+				courses_dept: "chbe",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "chbe",
-				"courses_year": 1900
+				courses_dept: "chbe",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "chbe",
-				"courses_year": 1900
+				courses_dept: "chbe",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cell",
-				"courses_year": 2011
+				courses_dept: "cell",
+				courses_year: 2011
 			},
 			{
-				"courses_dept": "cell",
-				"courses_year": 2010
+				courses_dept: "cell",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "cell",
-				"courses_year": 1900
+				courses_dept: "cell",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "cell",
-				"courses_year": 1900
+				courses_dept: "cell",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "ceen",
-				"courses_year": 2013
+				courses_dept: "ceen",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "ccst",
-				"courses_year": 2010
+				courses_dept: "ccst",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "ccst",
-				"courses_year": 1900
+				courses_dept: "ccst",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "bmeg",
-				"courses_year": 2014
+				courses_dept: "bmeg",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "bmeg",
-				"courses_year": 2012
+				courses_dept: "bmeg",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "bmeg",
-				"courses_year": 1900
+				courses_dept: "bmeg",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "bmeg",
-				"courses_year": 1900
+				courses_dept: "bmeg",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "biol",
-				"courses_year": 2015
+				courses_dept: "biol",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "biol",
-				"courses_year": 1900
+				courses_dept: "biol",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "biof",
-				"courses_year": 2013
+				courses_dept: "biof",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "biof",
-				"courses_year": 1900
+				courses_dept: "biof",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 2016
+				courses_dept: "audi",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 2014
+				courses_dept: "audi",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 2014
+				courses_dept: "audi",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 2014
+				courses_dept: "audi",
+				courses_year: 2014
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 2013
+				courses_dept: "audi",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 2013
+				courses_dept: "audi",
+				courses_year: 2013
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 2012
+				courses_dept: "audi",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 2010
+				courses_dept: "audi",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 2010
+				courses_dept: "audi",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 2009
+				courses_dept: "audi",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 2009
+				courses_dept: "audi",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 2008
+				courses_dept: "audi",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 2007
+				courses_dept: "audi",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 1900
+				courses_dept: "audi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 1900
+				courses_dept: "audi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 1900
+				courses_dept: "audi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 1900
+				courses_dept: "audi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 1900
+				courses_dept: "audi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 1900
+				courses_dept: "audi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 1900
+				courses_dept: "audi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 1900
+				courses_dept: "audi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 1900
+				courses_dept: "audi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 1900
+				courses_dept: "audi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 1900
+				courses_dept: "audi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 1900
+				courses_dept: "audi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "audi",
-				"courses_year": 1900
+				courses_dept: "audi",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "arst",
-				"courses_year": 2012
+				courses_dept: "arst",
+				courses_year: 2012
 			},
 			{
-				"courses_dept": "arst",
-				"courses_year": 2008
+				courses_dept: "arst",
+				courses_year: 2008
 			},
 			{
-				"courses_dept": "arst",
-				"courses_year": 1900
+				courses_dept: "arst",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "arst",
-				"courses_year": 1900
+				courses_dept: "arst",
+				courses_year: 1900
 			},
 			{
-				"courses_dept": "apsc",
-				"courses_year": 2010
+				courses_dept: "apsc",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "apsc",
-				"courses_year": 2010
+				courses_dept: "apsc",
+				courses_year: 2010
 			},
 			{
-				"courses_dept": "apsc",
-				"courses_year": 2009
+				courses_dept: "apsc",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "apsc",
-				"courses_year": 2009
+				courses_dept: "apsc",
+				courses_year: 2009
 			},
 			{
-				"courses_dept": "apsc",
-				"courses_year": 2007
+				courses_dept: "apsc",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "apsc",
-				"courses_year": 2007
+				courses_dept: "apsc",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "apsc",
-				"courses_year": 2007
+				courses_dept: "apsc",
+				courses_year: 2007
 			},
 			{
-				"courses_dept": "adhe",
-				"courses_year": 2016
+				courses_dept: "adhe",
+				courses_year: 2016
 			},
 			{
-				"courses_dept": "adhe",
-				"courses_year": 2015
+				courses_dept: "adhe",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "aanb",
-				"courses_year": 2015
+				courses_dept: "aanb",
+				courses_year: 2015
 			},
 			{
-				"courses_dept": "aanb",
-				"courses_year": 1900
+				courses_dept: "aanb",
+				courses_year: 1900
 			}
 		];
 		let keys = ["courses_dept",	"courses_year"];
