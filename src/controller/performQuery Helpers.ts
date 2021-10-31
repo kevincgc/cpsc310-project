@@ -14,14 +14,14 @@ export function dynamicSort(key: any) {
 
 // keys have to be exact match to item[key] in array
 // Adapted from https://stackoverflow.com/a/41808830
-export function sortByKeys(array: any, keys: any) {
+export function sortByKeys(array: any, keys: any, dir: any = "DOWN") {
 	return array.sort(function (a: any, b: any) {
 		let r = 0;
 		keys.some(function (k: any) {
 			if (a[k] < b[k]) {
-				r = -1;
+				r = dir === "UP" ? -1 : 1;
 			} else if (a[k] > b[k]) {
-				r = 1;
+				r = dir === "UP" ? 1 : -1;
 			}
 			return r;
 		});
@@ -58,8 +58,6 @@ export function group(groupKeys: string[], sortedDataset: any[]) {
 	let attributes = [];
 	for (let key of groupKeys) {
 		attributes.push(sortedDataset[0][key]);
-		console.log(key);
-		console.log(sortedDataset[0][key]);
 	}
 	for (let item of sortedDataset) {
 		let isSameGroup = true;
@@ -87,20 +85,20 @@ export function group(groupKeys: string[], sortedDataset: any[]) {
 function applyRule(singleGroup: any[], rules: any) {
 	let applyToken = rules.applyToken;
 	let key = rules.key;
-	let value = 0;
+	let value = 1;
 	switch (applyToken) {
 		case "MAX":
 			// this is from: https://stackoverflow.com/a/52916675
-			value = singleGroup.reduce((p, c) => p[key] > c[key] ? p : c);
+			value = singleGroup.reduce((p, c) => p[key] > c[key] ? p : c)[key];
 			break;
 		case "MIN":
-			value = singleGroup.reduce((p, c) => p[key] < c[key] ? p : c);
+			value = singleGroup.reduce((p, c) => p[key] < c[key] ? p : c)[key];
 			break;
 		case "SUM": {
 			let sum: Decimal = new Decimal(0);
 			for (let element of singleGroup) {
 				let num = new Decimal(element[key]);
-				sum.add(num);
+				sum = sum.add(num);
 			}
 			value = Number(sum.toFixed(2));
 			break;
@@ -109,14 +107,18 @@ function applyRule(singleGroup: any[], rules: any) {
 			let sum: Decimal = new Decimal(0);
 			for (let element of singleGroup) {
 				let num = new Decimal(element[key]);
-				sum.add(num);
+				sum = sum.add(num);
 			}
 			let avg = sum.toNumber() / singleGroup.length;
 			value = Number(avg.toFixed(2));
 			break;
 		}
 		case "COUNT": {
-			value = singleGroup.length;
+			let set = new Set();
+			for (let element of singleGroup) {
+				set.add(element[key]);
+			}
+			value = set.size;
 			break;
 		}
 	}
@@ -176,8 +178,20 @@ export function datasetReduceToSelectedColumns(filteredDataset: any[], id: strin
 	return datasetSelectedColumns;
 }
 
+export function datasetReduceToSelectedColumnsSimple(filteredDataset: any[], columns: string[]) {
+	let datasetSelectedColumns: any[] = [];
+	for (let dataPoint of filteredDataset) {
+		let datasetObject: any = {};
+		for (let column of columns) {
+			datasetObject[column] = dataPoint[column];
+		}
+		datasetSelectedColumns.push(datasetObject);
+	}
+	return datasetSelectedColumns;
+}
+
 export function datasetReduceToValidColumns(filteredDataset: any[], id: string, kind: InsightDatasetKind) {
-	if(kind === InsightDatasetKind.Courses) {
+	if (kind === InsightDatasetKind.Courses) {
 		return datasetReduceToSelectedColumns(filteredDataset, id, kind, coursesFeatures);
 	} else {
 		return datasetReduceToSelectedColumns(filteredDataset, id, kind, roomsFeatures);

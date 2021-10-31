@@ -17,7 +17,7 @@ import {
 } from "./addDataset Helpers";
 import {
 	apply,
-	datasetReduceToSelectedColumns, datasetReduceToValidColumns,
+	datasetReduceToSelectedColumns, datasetReduceToSelectedColumnsSimple, datasetReduceToValidColumns,
 	dynamicSort,
 	getFeatures,
 	getGroupKeys,
@@ -240,7 +240,8 @@ export default class InsightFacade implements IInsightFacade {
 					let groupKeys = query["TRANSFORMATIONS"]["GROUP"]; // keys have underscore and id
 					let sortedByGroupsDataset = sortByKeys(datasetSelectedColumns, groupKeys);
 					let groupedDataset = group(groupKeys, sortedByGroupsDataset);
-					let applyDataset = apply(query["TRANSFORMATIONS"]["APPLY"], groupedDataset, groupKeys);
+					let appliedDataset = apply(query["TRANSFORMATIONS"]["APPLY"], groupedDataset, groupKeys);
+					dataset = datasetReduceToSelectedColumnsSimple(appliedDataset, query["OPTIONS"]["COLUMNS"]);
 				} else {
 					let columns = getFeatures(query);
 					dataset = datasetReduceToSelectedColumns(filteredDataset, datasetInfo.id, datasetInfo.kind,
@@ -254,7 +255,11 @@ export default class InsightFacade implements IInsightFacade {
 				} else {
 					let orderedDataset: any = [];
 					if (isString(query["OPTIONS"]["ORDER"])) {
-						orderedDataset = dynamicSort(dataset);
+						orderedDataset = dataset;
+						orderedDataset.sort(dynamicSort(query["OPTIONS"]["ORDER"]));
+					} else {
+						orderedDataset = sortByKeys(dataset, query["OPTIONS"]["ORDER"]["keys"],
+							query["OPTIONS"]["ORDER"]["dir"]);
 					}
 					resolve(orderedDataset);
 				}
