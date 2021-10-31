@@ -1,5 +1,6 @@
 import {InsightDataset, InsightDatasetKind, InsightError} from "./IInsightFacade";
 import JSZip from "jszip";
+import fs from "fs-extra";
 
 export function isValidCourses(jsonObject: JSON) {
 	if ("Title" in jsonObject &&
@@ -83,4 +84,39 @@ export function getValidCourses(validResults: any[]) {
 		}
 		resolve(courses);
 	});
+}
+export function  getFilesAsStrings(content: any): Promise<string[]> {
+	return new Promise<string[]>((resolve, reject) => {
+		const jsZip = new JSZip();
+		jsZip.loadAsync(content, {base64: true}).then((zip: JSZip) => {
+			const fileStrings: any[] = [];
+			zip.forEach((relativePath, file) => {
+				if (relativePath.startsWith("courses/")) {
+					fileStrings.push(file.async("text"));
+				}
+			});
+			resolve(fileStrings);
+		}).catch((e) => {
+			reject(new InsightError("addDataset Not A Valid Zip File"));
+		});
+	});
+}
+
+export async function getValidJsons(files: string[]) {
+	let fileJsons: any[] = [];
+	for (let file of files) {
+		fileJsons.push(parseJsonAsync(file));
+	}
+	// Start of code based on https://stackoverflow.com/a/46024590
+	const results = await Promise.all(fileJsons.map((p) => p.catch((e: Error) => e)));
+	return results.filter((result) => !(result instanceof Error));
+	// End of code based on https://stackoverflow.com/a/46024590
+}
+
+export function getAddedDatasets(datasets: any[]) {
+	let ids: string[] = [];
+	for (let dataset of datasets) {
+		ids.push(dataset.id);
+	}
+	return ids;
 }
