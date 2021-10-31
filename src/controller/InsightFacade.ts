@@ -18,11 +18,11 @@ import {
 import {
 	apply,
 	datasetReduceToSelectedColumns, datasetReduceToSelectedColumnsSimple, datasetReduceToValidColumns,
-	dynamicSort,
+	dynamicSort, executeNode,
 	getFeatures,
 	getGroupKeys,
-	group,
-	sortByKeys,
+	group, isDatasetInDatasets,
+	sortByKeys, sortDataset,
 	validateQuery
 } from "./performQuery Helpers";
 import {getDatasetInfo, isString} from "./ValidateQuery Helpers";
@@ -115,103 +115,9 @@ export default class InsightFacade implements IInsightFacade {
 		});
 	}
 
-	public executeFilter(object: any): any[] {
-		let courses: any[] = this.currentDataset;
-		let data = [];
-		let operator = "";
-		for (let key in object) {
-			operator = key;
-		}
-		for (let key in object[operator]) {
-			let field = key.split("_")[1];
-			switch (operator) {
-				case "IS": {
-					let wcStart: boolean = object[operator][key][0] === "*" ? true : false;
-					let wcEnd: boolean = object[operator][key][object[operator][key].length - 1] === "*" ? true : false;
-					if (wcStart && wcEnd && (object[operator][key].length === 1 ||
-						object[operator][key].length === 2)) {
-						data = courses;
-						break;
-					}
-					let definite = object[operator][key].replace(/[*]/g, "");
-					let regex = new RegExp("^" + (wcStart ? ".*" : "") + definite + (wcEnd ? ".*" : "") + "$");
-					data = courses.filter((a) => regex.test(a[keyDict[field]]));
-					break;
-				}
-				case "EQ":
-					data = courses.filter((a) => a[keyDict[field]] === object[operator][key]);
-					break;
-				case "GT":
-					data = courses.filter((a) => a[keyDict[field]] > object[operator][key]);
-					break;
-				case "LT":
-					data = courses.filter((a) => a[keyDict[field]] < object[operator][key]);
-					break;
-				case "NOT": {
-					let insideQueryResult = this.executeNode(object[operator]);
-					data = this.currentDataset.filter((val) => !insideQueryResult.includes(val));
-					break;
-				}
-			}
-		}
-		return data;
-	}
-
-	public executeLogic(object: any): any[] {
-		let results: any[] = [];
-		let operator = "";
-		for (let key in object) {
-			operator = key;
-		}
-		for (let key in object[operator]) {
-			results.push(this.executeNode(object[operator][key]));
-		}
-		let data: any[] = results[0];
-		if (operator === "AND") {
-			for (let result of results) {
-				data = data.filter((val) => result.includes(val));
-			}
-		}
-		if (operator === "OR") {
-			for (let result of results) {
-				let combined = data.concat(result);
-				combined = [...new Set([...data,...result])]; // from https://stackoverflow.com/a/38940354
-				data = combined;
-			}
-		}
-		return data;
-	}
-
-	public executeNode(object: any): any[] {
-		let operator = "null";
-		for (let key in object) {
-			operator = key;
-		}
-		if (filter.find((a) => a === operator)) {
-			return this.executeFilter(object);
-		} else if (logic.find((a) => a === operator)) {
-			return this.executeLogic(object);
-		} else {
-			return this.currentDataset;
-		}
-	}
-
-	public isDatasetInDatasets(id: string, kind: InsightDatasetKind) {
-		if (this.datasets.length === 0) {
-			return false;
-		}
-		let found = false;
-		for (let dataset of this.datasets) {
-			if (id === dataset.id && kind === dataset.kind) {
-				found = true;
-			}
-		}
-		return found;
-	}
-
 	public loadDataset(id: string, kind: InsightDatasetKind) {
 		if (id !== this.currentDatasetId) {
-			if (!this.isDatasetInDatasets(id, kind)) {
+			if (!isDatasetInDatasets(this.datasets, id, kind)) {
 				throw new InsightError("performQuery Dataset Does Not Exist");
 			}
 			try {
@@ -232,7 +138,7 @@ export default class InsightFacade implements IInsightFacade {
 				validateQuery(query);
 				let datasetInfo = getDatasetInfo(query);
 				this.loadDataset(datasetInfo.id, datasetInfo.kind);
-				let filteredDataset = this.executeNode(query["WHERE"]);
+				let filteredDataset = executeNode(query["WHERE"], this.currentDataset);
 				let dataset = [];
 				if (query["TRANSFORMATIONS"]) {
 					let datasetSelectedColumns: any[] = datasetReduceToValidColumns(filteredDataset, datasetInfo.id,
@@ -248,20 +154,12 @@ export default class InsightFacade implements IInsightFacade {
 						columns);
 				}
 				if (dataset.length > 5000) {
-					reject(new ResultTooLargeError("performQuery > 5000 results"));
+					throw new ResultTooLargeError("performQuery > 5000 results");
 				}
 				if (!query["OPTIONS"]["ORDER"]) {
 					resolve(dataset);
 				} else {
-					let orderedDataset: any = [];
-					if (isString(query["OPTIONS"]["ORDER"])) {
-						orderedDataset = dataset;
-						orderedDataset.sort(dynamicSort(query["OPTIONS"]["ORDER"]));
-					} else {
-						orderedDataset = sortByKeys(dataset, query["OPTIONS"]["ORDER"]["keys"],
-							query["OPTIONS"]["ORDER"]["dir"]);
-					}
-					resolve(orderedDataset);
+					resolve(sortDataset(query, dataset));
 				}
 			} catch (e) {
 				reject(e);

@@ -1,9 +1,8 @@
 import {isValidQuery} from "./ValidateQuery";
 import {InsightDatasetKind, InsightError} from "./IInsightFacade";
-import {coursesFeatures, features, filter, keyDict, roomsFeatures} from "./Const";
+import {coursesFeatures, features, filter, keyDict, logic, roomsFeatures} from "./Const";
 import Decimal from "decimal.js";
-
-
+import {isString} from "./ValidateQuery Helpers";
 // Adapted from https://stackoverflow.com/a/4760279
 export function dynamicSort(key: any) {
 	return function (a: any, b: any) {
@@ -11,7 +10,6 @@ export function dynamicSort(key: any) {
 		return result;
 	};
 }
-
 // keys have to be exact match to item[key] in array
 // Adapted from https://stackoverflow.com/a/41808830
 export function sortByKeys(array: any, keys: any, dir: any = "DOWN") {
@@ -50,7 +48,6 @@ export function validateQuery(query: any) {
 		throw new InsightError("performQuery Invalid Query Grammar");
 	}
 }
-
 // keys have to be exact match to item[key] in array
 export function group(groupKeys: string[], sortedDataset: any[]) {
 	let groups: any[][] = [];
@@ -81,7 +78,6 @@ export function group(groupKeys: string[], sortedDataset: any[]) {
 	}
 	return groups;
 }
-
 function applyRule(singleGroup: any[], rules: any) {
 	let applyToken = rules.applyToken;
 	let key = rules.key;
@@ -124,7 +120,6 @@ function applyRule(singleGroup: any[], rules: any) {
 	}
 	return value;
 }
-
 function applyRulesOnGroup(singleGroup: any[], rules: ParsedApplyElement[], groupKeys: any[]) {
 	let appliedItem: any = {};
 	for (let rule of rules) {
@@ -135,7 +130,6 @@ function applyRulesOnGroup(singleGroup: any[], rules: ParsedApplyElement[], grou
 	}
 	return appliedItem;
 }
-
 export function apply(applyArray: any, groupedDataset: any[], groupKeys: any[]) {
 	let appliedItemArray: any[] = [];
 	let rules: ParsedApplyElement[] = [];
@@ -151,11 +145,9 @@ export function apply(applyArray: any, groupedDataset: any[], groupKeys: any[]) 
 	}
 	return appliedItemArray;
 }
-
 interface ParsedApplyElement{
 	applyKey: string, applyToken: string, key: string;
 }
-
 export function datasetReduceToSelectedColumns(filteredDataset: any[], id: string, kind: InsightDatasetKind,
 	columns: string[]) {
 	let datasetSelectedColumns: any[] = [];
@@ -177,7 +169,6 @@ export function datasetReduceToSelectedColumns(filteredDataset: any[], id: strin
 	}
 	return datasetSelectedColumns;
 }
-
 export function datasetReduceToSelectedColumnsSimple(filteredDataset: any[], columns: string[]) {
 	let datasetSelectedColumns: any[] = [];
 	for (let dataPoint of filteredDataset) {
@@ -189,11 +180,110 @@ export function datasetReduceToSelectedColumnsSimple(filteredDataset: any[], col
 	}
 	return datasetSelectedColumns;
 }
-
 export function datasetReduceToValidColumns(filteredDataset: any[], id: string, kind: InsightDatasetKind) {
 	if (kind === InsightDatasetKind.Courses) {
 		return datasetReduceToSelectedColumns(filteredDataset, id, kind, coursesFeatures);
 	} else {
 		return datasetReduceToSelectedColumns(filteredDataset, id, kind, roomsFeatures);
+	}
+}
+export function isDatasetInDatasets(datasets: any, id: string, kind: InsightDatasetKind) {
+	if (datasets.length === 0) {
+		return false;
+	}
+	let found = false;
+	for (let dataset of datasets) {
+		if (id === dataset.id && kind === dataset.kind) {
+			found = true;
+		}
+	}
+	return found;
+}
+export function sortDataset(query: any, dataset: any) {
+	if (isString(query["OPTIONS"]["ORDER"])) {
+		let orderedDataset = dataset;
+		orderedDataset.sort(dynamicSort(query["OPTIONS"]["ORDER"]));
+		return orderedDataset;
+	} else {
+		return sortByKeys(dataset, query["OPTIONS"]["ORDER"]["keys"],
+			query["OPTIONS"]["ORDER"]["dir"]);
+	}
+}
+export function executeFilter(object: any, currentDataset: any[]): any[] {
+	let courses: any[] = currentDataset;
+	let data = [];
+	let operator = "";
+	for (let key in object) {
+		operator = key;
+	}
+	for (let key in object[operator]) {
+		let field = key.split("_")[1];
+		switch (operator) {
+			case "IS": {
+				let wcStart: boolean = object[operator][key][0] === "*" ? true : false;
+				let wcEnd: boolean = object[operator][key][object[operator][key].length - 1] === "*" ? true : false;
+				if (wcStart && wcEnd && (object[operator][key].length === 1 ||
+					object[operator][key].length === 2)) {
+					data = courses;
+					break;
+				}
+				let definite = object[operator][key].replace(/[*]/g, "");
+				let regex = new RegExp("^" + (wcStart ? ".*" : "") + definite + (wcEnd ? ".*" : "") + "$");
+				data = courses.filter((a) => regex.test(a[keyDict[field]]));
+				break;
+			}
+			case "EQ":
+				data = courses.filter((a) => a[keyDict[field]] === object[operator][key]);
+				break;
+			case "GT":
+				data = courses.filter((a) => a[keyDict[field]] > object[operator][key]);
+				break;
+			case "LT":
+				data = courses.filter((a) => a[keyDict[field]] < object[operator][key]);
+				break;
+			case "NOT": {
+				let insideQueryResult = executeNode(object[operator], currentDataset);
+				data = currentDataset.filter((val) => !insideQueryResult.includes(val));
+				break;
+			}
+		}
+	}
+	return data;
+}
+export function executeLogic(object: any, currentDataset: any[]): any[] {
+	let results: any[] = [];
+	let operator = "";
+	for (let key in object) {
+		operator = key;
+	}
+	for (let key in object[operator]) {
+		results.push(executeNode(object[operator][key], currentDataset));
+	}
+	let data: any[] = results[0];
+	if (operator === "AND") {
+		for (let result of results) {
+			data = data.filter((val) => result.includes(val));
+		}
+	}
+	if (operator === "OR") {
+		for (let result of results) {
+			let combined = data.concat(result);
+			combined = [...new Set([...data,...result])]; // from https://stackoverflow.com/a/38940354
+			data = combined;
+		}
+	}
+	return data;
+}
+export function executeNode(object: any, currentDataset: any[]) {
+	let operator = "null";
+	for (let key in object) {
+		operator = key;
+	}
+	if (filter.find((a) => a === operator)) {
+		return executeFilter(object, currentDataset);
+	} else if (logic.find((a) => a === operator)) {
+		return executeLogic(object, currentDataset);
+	} else {
+		return currentDataset;
 	}
 }
