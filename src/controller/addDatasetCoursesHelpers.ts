@@ -1,34 +1,8 @@
 import {InsightDataset, InsightDatasetKind, InsightError} from "./IInsightFacade";
+import {isValidCourses} from "./Const";
 import JSZip from "jszip";
 import fs from "fs-extra";
-
-export function isValidCourses(jsonObject: JSON) {
-	if ("Title" in jsonObject &&
-		"tier_eighty_five" in jsonObject &&
-		"tier_seventy_six" in jsonObject &&
-		"tier_zero" in jsonObject &&
-		"Campus" in jsonObject &&
-		"Stddev" in jsonObject &&
-		"Detail" in jsonObject &&
-		"tier_seventy_two" in jsonObject &&
-		"tier_sixty_four" in jsonObject &&
-		"tier_ninety" in jsonObject &&
-		"Session" in jsonObject &&
-		"Year" in jsonObject &&
-		"Pass" in jsonObject &&
-		"Fail" in jsonObject &&
-		"Subject" in jsonObject &&
-		"Course" in jsonObject &&
-		"Avg" in jsonObject &&
-		"Professor" in jsonObject &&
-		"Audit" in jsonObject &&
-		"id" in jsonObject &&
-		"Enrolled" in jsonObject) {
-		return true;
-	} else {
-		return false;
-	}
-}
+import http from "http";
 
 export function parseJsonAsync(jsonString: string): Promise<JSON> {
 	return new Promise((resolve, reject) => {
@@ -53,10 +27,6 @@ export function isValidId (id: string): boolean {
 export function addDatasetValidate(id: string,
 	datasets: InsightDataset[], kind: InsightDatasetKind) { // : [boolean, string] {
 	return new Promise<void>((resolve, reject) => {
-		const jsZip = new JSZip();
-		if (kind === InsightDatasetKind.Rooms) {
-			reject(new InsightError("addDataset InsightDatasetKind.Rooms not implemented"));
-		}
 		if (!isValidId(id)) {
 			reject(new InsightError("addDataset ID Can't Contain Underscore Or Be All Spaces"));
 		}
@@ -85,7 +55,7 @@ export function getValidCourses(validResults: any[]) {
 		resolve(courses);
 	});
 }
-export function  getFilesAsStrings(content: any): Promise<string[]> {
+export function  getCourseFilesAsStrings(content: any): Promise<string[]> {
 	return new Promise<string[]>((resolve, reject) => {
 		const jsZip = new JSZip();
 		jsZip.loadAsync(content, {base64: true}).then((zip: JSZip) => {
@@ -119,4 +89,27 @@ export function getAddedDatasets(datasets: any[]) {
 		ids.push(dataset.id);
 	}
 	return ids;
+}
+
+export async function getLatLong(address: string = "2211 Wesbrook Mall") {
+	const url = "http://cs310.students.cs.ubc.ca:11316/api/v1/project_team179/";
+	// From https://stackoverflow.com/a/50244236
+	const httpGet = (getUrl: any) => {
+		return new Promise((resolve, reject) => {
+			http.get(getUrl, (res: any) => {
+				res.setEncoding("utf8");
+				let returnedData = "";
+				res.on("data", (chunk: any) => returnedData += chunk);
+				res.on("end", () => resolve(returnedData));
+			}).on("error", reject);
+		});
+	};
+
+	const locationString = await httpGet(url + address.replace(/\s/g, "%20")) as string;
+	let location = await JSON.parse(locationString);
+	if (!location.error) {
+		return location;
+	} else {
+		throw new InsightError("getLatLong: " + location.error);
+	}
 }

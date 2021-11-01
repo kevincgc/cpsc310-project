@@ -1,33 +1,24 @@
+import { IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFoundError, ResultTooLargeError}
+	from "./IInsightFacade";
 import {
-	IInsightFacade,
-	InsightDataset,
-	InsightDatasetKind,
-	InsightError,
-	NotFoundError,
-	ResultTooLargeError
-} from "./IInsightFacade";
-import {filter, keyDict, logic} from "./Const";
+	addDatasetValidate, getAddedDatasets, getCourseFilesAsStrings, getValidCourses, getValidJsons, isValidId,
+	getLatLong} from "./addDatasetCoursesHelpers";
 import {
-	addDatasetValidate,
-	getAddedDatasets,
-	getFilesAsStrings,
-	getValidCourses,
-	getValidJsons,
-	isValidId
-} from "./addDataset Helpers";
-import {
-	apply,
-	datasetReduceToSelectedColumns, datasetReduceToSelectedColumnsSimple, datasetReduceToValidColumns,
-	dynamicSort, executeNode,
-	getFeatures,
-	getGroupKeys,
-	group, isDatasetInDatasets,
-	sortByKeys, sortDataset,
-	validateQuery
-} from "./performQuery Helpers";
-import {getDatasetInfo, isString} from "./ValidateQuery Helpers";
-
+	getRoomsFilesAsObjects,
+	getDataFromPromise,
+	parseIndex,
+	parseClassrooms,
+	findThenParseIndexFile, getValidClassrooms
+} from "./addDatasetRoomsHelpers";
+import { apply, datasetReduceToSelectedColumns,	datasetReduceToSelectedColumnsSimple, datasetReduceToValidColumns,
+	executeNode, getFeatures, group, isDatasetInDatasets, sortByKeys, sortDataset, validateQuery}
+	from "./performQuery Helpers";
+import {getDatasetInfo} from "./ValidateQuery Helpers";
+import path from "path";
+import {ChildNode, ParentNode} from "parse5";
+import {getRoomFileObjects} from "./addDatasetRoomsHelpers";
 const fs = require("fs-extra");
+const p5 = require("parse5");
 /**
  * This is the main programmatic entry point for the project.
  * Method documentation is in IInsightFacade
@@ -65,21 +56,40 @@ export default class InsightFacade implements IInsightFacade {
 
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		return new Promise<string[]>((resolve, reject) => {
-			addDatasetValidate(id, this.datasets, kind).then(() => {
-				return getFilesAsStrings(content);
-			}).then((fileStrings) => {
-				return Promise.all(fileStrings);
-			}).then((files) => {
-				return getValidJsons(files);
-			}).then((validJsons) => {
-				return getValidCourses(validJsons);
-			}).then((courses) => {
-				return this.saveDataset(courses, id, kind);
-			}).then(() => {
-				resolve(getAddedDatasets(this.datasets));
-			}).catch((e) => {
-				reject(e);
-			});
+			if (kind === InsightDatasetKind.Courses) {
+				addDatasetValidate(id, this.datasets, kind).then(() => {
+					return getCourseFilesAsStrings(content);
+				}).then((fileStrings) => {
+					return Promise.all(fileStrings);
+				}).then((files) => {
+					return getValidJsons(files);
+				}).then((validJsons) => {
+					return getValidCourses(validJsons);
+				}).then((courses) => {
+					return this.saveDataset(courses, id, kind);
+				}).then(() => {
+					resolve(getAddedDatasets(this.datasets));
+				}).catch((e) => {
+					reject(e);
+				});
+			} else if (kind === InsightDatasetKind.Rooms) {
+				addDatasetValidate(id, this.datasets, kind).then(() => {
+					return getRoomsFilesAsObjects(content);
+				}).then((fileObjects) => {
+					return getRoomFileObjects(fileObjects);
+				}).then(async (fileObjects) => {
+					let buildingInfoArray: any[] = await findThenParseIndexFile(fileObjects);
+					return getValidClassrooms(fileObjects, buildingInfoArray);
+				}).then((validClassrooms) => {
+					return this.saveDataset(validClassrooms, id, kind);
+				}).then(() => {
+					resolve(getAddedDatasets(this.datasets));
+				}).catch((e) => {
+					reject(e);
+				});
+			} else {
+				reject(new InsightError("addDataset Invalid InsightDatasetKind"));
+			}
 		});
 	}
 

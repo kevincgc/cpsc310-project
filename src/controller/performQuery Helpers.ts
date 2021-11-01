@@ -1,6 +1,6 @@
 import {isValidQuery} from "./ValidateQuery";
 import {InsightDatasetKind, InsightError} from "./IInsightFacade";
-import {coursesFeatures, features, filter, keyDict, logic, roomsFeatures} from "./Const";
+import {coursesFeatures, features, filter, keyDict, logic, ParsedApplyElement, roomsFeatures} from "./Const";
 import Decimal from "decimal.js";
 import {isString} from "./ValidateQuery Helpers";
 // Adapted from https://stackoverflow.com/a/4760279
@@ -144,9 +144,6 @@ export function apply(applyArray: any, groupedDataset: any[], groupKeys: any[]) 
 		appliedItemArray.push(applyRulesOnGroup(singleGroup, rules, groupKeys));
 	}
 	return appliedItemArray;
-}
-interface ParsedApplyElement{
-	applyKey: string, applyToken: string, key: string;
 }
 export function datasetReduceToSelectedColumns(filteredDataset: any[], id: string, kind: InsightDatasetKind,
 	columns: string[]) {

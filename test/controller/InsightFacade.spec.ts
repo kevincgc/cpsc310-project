@@ -525,7 +525,7 @@ describe("kevincgc c0 tests", function() {
 			clearDisk();
 			insightFacade = new InsightFacade();
 			await insightFacade.addDataset("courses", courses, InsightDatasetKind.Courses);
-			// await insightFacade.addDataset("rooms", rooms, InsightDatasetKind.Rooms);
+			await insightFacade.addDataset("rooms", rooms, InsightDatasetKind.Rooms);
 		});
 
 		testFolder<any, any[], PQErrorKind>(
