@@ -61,10 +61,10 @@ export function parseIndex(indexHTML: any): any[] {
 		// get long name
 		let longNameNode = getNode(node, "td", LONG_NAME_CLASS);
 		let aNode = getNode(longNameNode, "a", "", false);
-		buildingInfo["fullname"] = getNode(aNode, "#text", "", false).value;
+		buildingInfo["fullname"] = getNode(aNode, "#text", "", false).value.trim();
 		// get address
 		let addressNode = getNode(node, "td", ADDRESS_CLASS);
-		buildingInfo["address"] = getNode(addressNode, "#text", "", false).value;
+		buildingInfo["address"] = getNode(addressNode, "#text", "", false).value.trim();
 		buildingInfoArray.push(buildingInfo);
 
 	}
@@ -171,11 +171,12 @@ export async function getValidClassrooms(fileObjects: any[], buildingInfoArray: 
 					continue;
 				}
 				for (let classroom of classrooms) {
-					classroom.href = "http://students.ubc.ca/campus/discover/buildings-and-classrooms/"
-						+ info.path;
 					classroom.shortname = path.basename(file.path);
+					classroom.href = "http://students.ubc.ca/campus/discover/buildings-and-classrooms/room/"
+						+ classroom.shortname + "-" + classroom.number;
+					classroom.name = classroom.shortname + "_" + classroom.number;
 					classroom.lat = latLong.lat;
-					classroom.long = latLong.long;
+					classroom.lon = latLong.lon;
 					classroom.fullname = info.fullname;
 					classroom.address = info.address;
 				}
