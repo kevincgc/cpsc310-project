@@ -9,14 +9,14 @@ import {
 	parseIndex,
 	parseClassrooms,
 	findThenParseIndexFile, getValidClassrooms
-} from "./addDatasetRoomsHelpers";
+	,getRoomFileObjects} from "./addDatasetRoomsHelpers";
 import { apply, datasetReduceToSelectedColumns,	datasetReduceToSelectedColumnsSimple, datasetReduceToValidColumns,
 	executeNode, getFeatures, group, isDatasetInDatasets, sortByKeys, sortDataset, validateQuery}
 	from "./performQuery Helpers";
 import {getDatasetInfo} from "./ValidateQuery Helpers";
 import path from "path";
 import {ChildNode, ParentNode} from "parse5";
-import {getRoomFileObjects} from "./addDatasetRoomsHelpers";
+
 const fs = require("fs-extra");
 const p5 = require("parse5");
 /**
