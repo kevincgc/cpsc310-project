@@ -1,10 +1,24 @@
-import {IInsightFacade, InsightDataset,	InsightDatasetKind,	InsightError, NotFoundError,
-	ResultTooLargeError} from "./IInsightFacade";
-import JSZip from "jszip";
-import {isValidQuery} from "./ValidateQuery";
-import {keyDict, filter, logic, features} from "./Const";
+import { IInsightFacade, InsightDataset, InsightDatasetKind, InsightError, NotFoundError, ResultTooLargeError}
+	from "./IInsightFacade";
+import {
+	addDatasetValidate, getAddedDatasets, getCourseFilesAsStrings, getValidCourses, getValidJsons, isValidId,
+	getLatLong} from "./addDatasetCoursesHelpers";
+import {
+	getRoomsFilesAsObjects,
+	getDataFromPromise,
+	parseIndex,
+	parseClassrooms,
+	findThenParseIndexFile, getValidClassrooms
+	,getRoomFileObjects} from "./addDatasetRoomsHelpers";
+import { apply, datasetReduceToSelectedColumns,	datasetReduceToSelectedColumnsSimple, datasetReduceToValidColumns,
+	executeNode, getFeatures, group, isDatasetInDatasets, sortByKeys, sortDataset, validateQuery}
+	from "./performQuery Helpers";
+import {getDatasetInfo} from "./ValidateQuery Helpers";
+import path from "path";
+import {ChildNode, ParentNode} from "parse5";
+
 const fs = require("fs-extra");
-import {addDatasetValidate, isValidId, isValidCourses, getValidCourses, parseJsonAsync} from "./addDataset Helpers";
+const p5 = require("parse5");
 /**
  * This is the main programmatic entry point for the project.
  * Method documentation is in IInsightFacade
@@ -12,48 +26,23 @@ import {addDatasetValidate, isValidId, isValidCourses, getValidCourses, parseJso
  */
 export default class InsightFacade implements IInsightFacade {
 	public datasets: InsightDataset[];
-	public currentCourses: JSON[];
+	public currentDataset: JSON[];
 	public currentDatasetId: string;
+	public currentDatasetKind: InsightDatasetKind;
 	constructor() {
 		this.datasets = [];
-		this.currentCourses = [];
+		this.currentDataset = [];
 		this.currentDatasetId = "";
-	}
-
-	public getFilesAsStrings(content: any): Promise<string[]> {
-		return new Promise<string[]>((resolve, reject) => {
-			const jsZip = new JSZip();
-			jsZip.loadAsync(content, {base64: true}).then((zip: JSZip) => {
-				const fileStrings: any[] = [];
-				zip.forEach((relativePath, file) => {
-					if (relativePath.startsWith("courses/")) {
-						fileStrings.push(file.async("text"));
-					}
-				});
-				resolve(fileStrings);
-			}).catch((e) => {
-				reject(new InsightError("addDataset Not A Valid Zip File"));
-			});
-		});
-	}
-
-	public async getValidJsons(files: string[]) {
-		let fileJsons: any[] = [];
-		for (let file of files) {
-			fileJsons.push(parseJsonAsync(file));
-		}
-		// Start of code based on https://stackoverflow.com/a/46024590
-		const results = await Promise.all(fileJsons.map((p) => p.catch((e: Error) => e)));
-		return results.filter((result) => !(result instanceof Error));
-		// End of code based on https://stackoverflow.com/a/46024590
+		this.currentDatasetKind = InsightDatasetKind.Courses;
 	}
 
 	public saveDataset(courses: any, id: string, kind: InsightDatasetKind) {
 		return new Promise<void>((resolve, reject) => {
 			if (courses.length > 0) {
 				fs.outputJson("data/" + id + ".json", JSON.stringify(courses)).then(() => {
-					this.currentCourses = courses;
+					this.currentDataset = courses;
 					this.currentDatasetId = id;
+					this.currentDatasetKind = kind;
 					this.datasets.push({ id: id, kind: kind, numRows: courses.length });
 					resolve();
 				}).catch((e: any) => {
@@ -65,33 +54,42 @@ export default class InsightFacade implements IInsightFacade {
 		});
 	}
 
-	public getAddedDatasets() {
-		return new Promise<string[]>((resolve, reject) => {
-			let ids: string[] = [];
-			for (let dataset of this.datasets) {
-				ids.push(dataset.id);
-			}
-			resolve(ids);
-		});
-	}
-
 	public addDataset(id: string, content: string, kind: InsightDatasetKind): Promise<string[]> {
 		return new Promise<string[]>((resolve, reject) => {
-			addDatasetValidate(id, this.datasets, kind).then(() => {
-				return this.getFilesAsStrings(content);
-			}).then((fileStrings) => {
-				return Promise.all(fileStrings);
-			}).then((files) => {
-				return this.getValidJsons(files);
-			}).then((validJsons) => {
-				return getValidCourses(validJsons);
-			}).then((courses) => {
-				return this.saveDataset(courses, id, kind);
-			}).then(() => {
-				resolve(this.getAddedDatasets());
-			}).catch((e) => {
-				reject(e);
-			});
+			if (kind === InsightDatasetKind.Courses) {
+				addDatasetValidate(id, this.datasets, kind).then(() => {
+					return getCourseFilesAsStrings(content);
+				}).then((fileStrings) => {
+					return Promise.all(fileStrings);
+				}).then((files) => {
+					return getValidJsons(files);
+				}).then((validJsons) => {
+					return getValidCourses(validJsons);
+				}).then((courses) => {
+					return this.saveDataset(courses, id, kind);
+				}).then(() => {
+					resolve(getAddedDatasets(this.datasets));
+				}).catch((e) => {
+					reject(e);
+				});
+			} else if (kind === InsightDatasetKind.Rooms) {
+				addDatasetValidate(id, this.datasets, kind).then(() => {
+					return getRoomsFilesAsObjects(content);
+				}).then((fileObjects) => {
+					return getRoomFileObjects(fileObjects);
+				}).then(async (fileObjects) => {
+					let buildingInfoArray: any[] = await findThenParseIndexFile(fileObjects);
+					return getValidClassrooms(fileObjects, buildingInfoArray);
+				}).then((validClassrooms) => {
+					return this.saveDataset(validClassrooms, id, kind);
+				}).then(() => {
+					resolve(getAddedDatasets(this.datasets));
+				}).catch((e) => {
+					reject(e);
+				});
+			} else {
+				reject(new InsightError("addDataset Invalid InsightDatasetKind"));
+			}
 		});
 	}
 
@@ -127,162 +125,55 @@ export default class InsightFacade implements IInsightFacade {
 		});
 	}
 
-	public executeFilter(object: any): any[] {
-		let courses: any[] = this.currentCourses;
-		let data = [];
-		let operator = "";
-		for (let key in object) {
-			operator = key;
-		}
-		for (let key in object[operator]) {
-			let field = key.split("_")[1];
-			switch (operator) {
-				case "IS": {
-					let wcStart: boolean = object[operator][key][0] === "*" ? true : false;
-					let wcEnd: boolean = object[operator][key][object[operator][key].length - 1] === "*" ? true : false;
-					if (wcStart && wcEnd && (object[operator][key].length === 1 ||
-						object[operator][key].length === 2)) {
-						data = courses;
-						break;
-					}
-					let definite = object[operator][key].replace(/[*]/g, "");
-					let regex = new RegExp("^" + (wcStart ? ".*" : "") + definite + (wcEnd ? ".*" : "") + "$");
-					data = courses.filter((a) => regex.test(a[keyDict[field]]));
-					break;
-				}
-				case "EQ":
-					data = courses.filter((a) => a[keyDict[field]] === object[operator][key]);
-					break;
-				case "GT":
-					data = courses.filter((a) => a[keyDict[field]] > object[operator][key]);
-					break;
-				case "LT":
-					data = courses.filter((a) => a[keyDict[field]] < object[operator][key]);
-					break;
-				case "NOT": {
-					let insideQueryResult = this.executeNode(object[operator]);
-					data = this.currentCourses.filter((val) => !insideQueryResult.includes(val));
-					break;
-				}
+	public loadDataset(id: string, kind: InsightDatasetKind) {
+		if (id !== this.currentDatasetId) {
+			if (!isDatasetInDatasets(this.datasets, id, kind)) {
+				throw new InsightError("performQuery Dataset Does Not Exist");
 			}
-		}
-		return data;
-	}
-
-	public executeLogic(object: any): any[] {
-		let results: any[] = [];
-		let operator = "";
-		for (let key in object) {
-			operator = key;
-		}
-		for (let key in object[operator]) {
-			// results.push(this.executeNode(object, this.currentCourses));
-			results.push(this.executeNode(object[operator][key]));
-		}
-		let data: any[] = results[0];
-		if (operator === "AND") {
-			for (let result of results) {
-				data = data.filter((val) => result.includes(val));
+			try {
+				this.currentDataset = JSON.parse(fs.readJsonSync("data/" + id + ".json"));
+				this.currentDatasetId = id;
+				this.currentDatasetKind = kind;
+			} catch (err: any) {
+				throw new InsightError("performQuery Dataset Does Not Exist");
 			}
+		} else if (kind !== this.currentDatasetKind) {
+			throw new InsightError("performQuery Dataset ID does not match kind");
 		}
-		if (operator === "OR") {
-			for (let result of results) {
-				let combined = data.concat(result);
-				combined = [...new Set([...data,...result])];
-				data = combined;
-			}
-		}
-		return data;
-	}
-
-	public executeNode(object: any): any[] {
-		let operator = "null";
-		for (let key in object) {
-			operator = key;
-		}
-		if (filter.find((a) => a === operator)) {
-			return this.executeFilter(object);
-		} else if (logic.find((a) => a === operator)) {
-			return this.executeLogic(object);
-		} else if (operator === "null") {
-			return this.currentCourses;
-		} else {
-			return [];
-		}
-	}
-
-	// Adapted from https://stackoverflow.com/a/4760279
-	private dynamicSort(key: any) {
-		return function (a: any, b: any) {
-			let result = (a[key] < b[key]) ? -1 : (a[key] > b[key]) ? 1 : 0;
-			return result;
-		};
-	}
-
-	public getFeatures (query: any) {
-		let columns = [];
-		for (let feature of query["OPTIONS"]["COLUMNS"]) {
-			columns.push(feature.split("_")[1]);
-		}
-		return columns;
-	}
-
-	public isDatasetInDatasets(id: any) {
-		if (this.datasets.length === 0) {
-			return false;
-		}
-		let found = false;
-		for (let dataset of this.datasets) {
-			if (id === dataset.id) {
-				found = true;
-			}
-		}
-		return found;
 	}
 
 	public performQuery(query: any): Promise<any[]> {
 		return new Promise<any[]>((resolve, reject) => {
-			if (!isValidQuery(query)) {
-				reject(new InsightError("performQuery Invalid Query Grammar"));
-			}
-			let id = query["OPTIONS"]["COLUMNS"][0].split("_")[0];
-			if (id !== this.currentDatasetId) {
-				if (!this.isDatasetInDatasets(id)) {
-					reject(new InsightError("performQuery Dataset Does Not Exist"));
+			try {
+				validateQuery(query);
+				let datasetInfo = getDatasetInfo(query);
+				this.loadDataset(datasetInfo.id, datasetInfo.kind);
+				let filteredDataset = executeNode(query["WHERE"], this.currentDataset);
+				let dataset = [];
+				if (query["TRANSFORMATIONS"]) {
+					let datasetSelectedColumns: any[] = datasetReduceToValidColumns(filteredDataset, datasetInfo.id,
+						datasetInfo.kind);
+					let groupKeys = query["TRANSFORMATIONS"]["GROUP"]; // keys have underscore and id
+					let sortedByGroupsDataset = sortByKeys(datasetSelectedColumns, groupKeys);
+					let groupedDataset = group(groupKeys, sortedByGroupsDataset);
+					let appliedDataset = apply(query["TRANSFORMATIONS"]["APPLY"], groupedDataset, groupKeys);
+					dataset = datasetReduceToSelectedColumnsSimple(appliedDataset, query["OPTIONS"]["COLUMNS"]);
+				} else {
+					let columns = getFeatures(query);
+					dataset = datasetReduceToSelectedColumns(filteredDataset, datasetInfo.id, datasetInfo.kind,
+						columns);
 				}
-				try {
-					this.currentCourses = JSON.parse(fs.readJsonSync("data/" + id + ".json"));
-					this.currentDatasetId = id;
-				} catch (err: any) {
-					reject(new InsightError("performQuery Dataset Does Not Exist"));
+				if (dataset.length > 5000) {
+					throw new ResultTooLargeError("performQuery > 5000 results");
 				}
-			}
-			let filteredCourses = this.executeNode(query["WHERE"]);
-			if (filteredCourses.length > 5000) {
-				reject(new ResultTooLargeError("performQuery > 5000 results"));
-			}
-			let columns = this.getFeatures(query);
-			let coursesSelectedColumns: any[] = [];
-			for (let course of filteredCourses) {
-				let courseObject: any = {};
-				for (let feature of features) {
-					if(columns.find((element) => element === feature)) {
-						let columnName = id + "_" + feature;
-						if (feature === "year") {
-							courseObject[columnName] = parseInt(course[keyDict[feature]], 10);
-						} else if (feature === "uuid") {
-							courseObject[columnName] = course[keyDict[feature]].toString();
-						} else {
-							courseObject[columnName] = course[keyDict[feature]];
-						}
-					}
+				if (!query["OPTIONS"]["ORDER"]) {
+					resolve(dataset);
+				} else {
+					resolve(sortDataset(query, dataset));
 				}
-				coursesSelectedColumns.push(courseObject);
+			} catch (e) {
+				reject(e);
 			}
-			if (query.OPTIONS.ORDER) {
-				coursesSelectedColumns.sort(this.dynamicSort(query["OPTIONS"]["ORDER"]));
-			}
-			resolve(coursesSelectedColumns);
 		});
 	}
 }

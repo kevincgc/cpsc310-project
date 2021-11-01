@@ -1,0 +1,409 @@
+{
+  "title": "roomsAllApply",
+  "input": {
+    "WHERE": {},
+    "OPTIONS": {
+      "COLUMNS": [
+        "rooms_shortname",
+        "max",
+        "min",
+        "sum",
+        "cnt",
+        "avg"
+      ],
+      "ORDER": {
+        "dir": "DOWN",
+        "keys": [
+          "rooms_shortname"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "rooms_shortname"
+      ],
+      "APPLY": [
+        {
+          "max": {
+            "MAX": "rooms_seats"
+          }
+        },
+        {
+          "min": {
+            "MIN": "rooms_seats"
+          }
+        },
+        {
+          "sum": {
+            "SUM": "rooms_seats"
+          }
+        },
+        {
+          "avg": {
+            "AVG": "rooms_seats"
+          }
+        },
+        {
+          "cnt": {
+            "COUNT": "rooms_seats"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "rooms_shortname": "WOOD",
+      "max": 503,
+      "min": 10,
+      "sum": 1297,
+      "cnt": 10,
+      "avg": 81.06
+    },
+    {
+      "rooms_shortname": "WESB",
+      "max": 325,
+      "min": 102,
+      "sum": 427,
+      "cnt": 2,
+      "avg": 213.5
+    },
+    {
+      "rooms_shortname": "UCLL",
+      "max": 55,
+      "min": 30,
+      "sum": 163,
+      "cnt": 3,
+      "avg": 40.75
+    },
+    {
+      "rooms_shortname": "SWNG",
+      "max": 190,
+      "min": 27,
+      "sum": 1421,
+      "cnt": 5,
+      "avg": 64.59
+    },
+    {
+      "rooms_shortname": "SRC",
+      "max": 299,
+      "min": 299,
+      "sum": 897,
+      "cnt": 1,
+      "avg": 299
+    },
+    {
+      "rooms_shortname": "SPPH",
+      "max": 66,
+      "min": 12,
+      "sum": 166,
+      "cnt": 6,
+      "avg": 27.67
+    },
+    {
+      "rooms_shortname": "SOWK",
+      "max": 68,
+      "min": 12,
+      "sum": 201,
+      "cnt": 5,
+      "avg": 28.71
+    },
+    {
+      "rooms_shortname": "SCRF",
+      "max": 280,
+      "min": 20,
+      "sum": 1004,
+      "cnt": 7,
+      "avg": 45.64
+    },
+    {
+      "rooms_shortname": "PHRM",
+      "max": 236,
+      "min": 7,
+      "sum": 538,
+      "cnt": 5,
+      "avg": 48.91
+    },
+    {
+      "rooms_shortname": "PCOH",
+      "max": 40,
+      "min": 24,
+      "sum": 240,
+      "cnt": 2,
+      "avg": 30
+    },
+    {
+      "rooms_shortname": "OSBO",
+      "max": 442,
+      "min": 39,
+      "sum": 521,
+      "cnt": 3,
+      "avg": 173.67
+    },
+    {
+      "rooms_shortname": "ORCH",
+      "max": 72,
+      "min": 16,
+      "sum": 662,
+      "cnt": 5,
+      "avg": 31.52
+    },
+    {
+      "rooms_shortname": "MGYM",
+      "max": 40,
+      "min": 25,
+      "sum": 65,
+      "cnt": 2,
+      "avg": 32.5
+    },
+    {
+      "rooms_shortname": "MCML",
+      "max": 200,
+      "min": 6,
+      "sum": 573,
+      "cnt": 8,
+      "avg": 30.16
+    },
+    {
+      "rooms_shortname": "MCLD",
+      "max": 136,
+      "min": 40,
+      "sum": 503,
+      "cnt": 5,
+      "avg": 83.83
+    },
+    {
+      "rooms_shortname": "MATX",
+      "max": 106,
+      "min": 106,
+      "sum": 106,
+      "cnt": 1,
+      "avg": 106
+    },
+    {
+      "rooms_shortname": "MATH",
+      "max": 224,
+      "min": 25,
+      "sum": 495,
+      "cnt": 5,
+      "avg": 61.88
+    },
+    {
+      "rooms_shortname": "LSK",
+      "max": 205,
+      "min": 42,
+      "sum": 505,
+      "cnt": 4,
+      "avg": 126.25
+    },
+    {
+      "rooms_shortname": "LSC",
+      "max": 350,
+      "min": 125,
+      "sum": 825,
+      "cnt": 2,
+      "avg": 275
+    },
+    {
+      "rooms_shortname": "LASR",
+      "max": 94,
+      "min": 20,
+      "sum": 325,
+      "cnt": 5,
+      "avg": 54.17
+    },
+    {
+      "rooms_shortname": "IONA",
+      "max": 100,
+      "min": 50,
+      "sum": 150,
+      "cnt": 2,
+      "avg": 75
+    },
+    {
+      "rooms_shortname": "IBLC",
+      "max": 154,
+      "min": 8,
+      "sum": 568,
+      "cnt": 10,
+      "avg": 31.56
+    },
+    {
+      "rooms_shortname": "HENN",
+      "max": 257,
+      "min": 30,
+      "sum": 658,
+      "cnt": 5,
+      "avg": 109.67
+    },
+    {
+      "rooms_shortname": "HEBB",
+      "max": 375,
+      "min": 54,
+      "sum": 537,
+      "cnt": 2,
+      "avg": 134.25
+    },
+    {
+      "rooms_shortname": "GEOG",
+      "max": 225,
+      "min": 21,
+      "sum": 619,
+      "cnt": 7,
+      "avg": 77.38
+    },
+    {
+      "rooms_shortname": "FSC",
+      "max": 250,
+      "min": 18,
+      "sum": 621,
+      "cnt": 7,
+      "avg": 62.1
+    },
+    {
+      "rooms_shortname": "FRDM",
+      "max": 160,
+      "min": 160,
+      "sum": 160,
+      "cnt": 1,
+      "avg": 160
+    },
+    {
+      "rooms_shortname": "FORW",
+      "max": 63,
+      "min": 35,
+      "sum": 142,
+      "cnt": 3,
+      "avg": 47.33
+    },
+    {
+      "rooms_shortname": "FNH",
+      "max": 99,
+      "min": 12,
+      "sum": 263,
+      "cnt": 6,
+      "avg": 43.83
+    },
+    {
+      "rooms_shortname": "ESB",
+      "max": 350,
+      "min": 80,
+      "sum": 580,
+      "cnt": 3,
+      "avg": 193.33
+    },
+    {
+      "rooms_shortname": "EOSM",
+      "max": 50,
+      "min": 50,
+      "sum": 50,
+      "cnt": 1,
+      "avg": 50
+    },
+    {
+      "rooms_shortname": "DMP",
+      "max": 160,
+      "min": 40,
+      "sum": 440,
+      "cnt": 4,
+      "avg": 88
+    },
+    {
+      "rooms_shortname": "CIRS",
+      "max": 426,
+      "min": 426,
+      "sum": 426,
+      "cnt": 1,
+      "avg": 426
+    },
+    {
+      "rooms_shortname": "CHEM",
+      "max": 265,
+      "min": 90,
+      "sum": 913,
+      "cnt": 4,
+      "avg": 152.17
+    },
+    {
+      "rooms_shortname": "CHBE",
+      "max": 200,
+      "min": 60,
+      "sum": 354,
+      "cnt": 3,
+      "avg": 118
+    },
+    {
+      "rooms_shortname": "CEME",
+      "max": 100,
+      "min": 22,
+      "sum": 289,
+      "cnt": 6,
+      "avg": 48.17
+    },
+    {
+      "rooms_shortname": "BUCH",
+      "max": 275,
+      "min": 18,
+      "sum": 3190,
+      "cnt": 19,
+      "avg": 52.3
+    },
+    {
+      "rooms_shortname": "BRKX",
+      "max": 70,
+      "min": 24,
+      "sum": 94,
+      "cnt": 2,
+      "avg": 47
+    },
+    {
+      "rooms_shortname": "BIOL",
+      "max": 228,
+      "min": 16,
+      "sum": 336,
+      "cnt": 3,
+      "avg": 84
+    },
+    {
+      "rooms_shortname": "AUDX",
+      "max": 21,
+      "min": 20,
+      "sum": 41,
+      "cnt": 2,
+      "avg": 20.5
+    },
+    {
+      "rooms_shortname": "ANSO",
+      "max": 90,
+      "min": 26,
+      "sum": 186,
+      "cnt": 4,
+      "avg": 46.5
+    },
+    {
+      "rooms_shortname": "ANGU",
+      "max": 260,
+      "min": 16,
+      "sum": 1546,
+      "cnt": 15,
+      "avg": 55.21
+    },
+    {
+      "rooms_shortname": "ALRD",
+      "max": 94,
+      "min": 20,
+      "sum": 228,
+      "cnt": 4,
+      "avg": 45.6
+    },
+    {
+      "rooms_shortname": "AERL",
+      "max": 144,
+      "min": 144,
+      "sum": 144,
+      "cnt": 1,
+      "avg": 144
+    }
+  ]
+}
