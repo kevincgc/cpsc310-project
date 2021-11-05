@@ -102,6 +102,7 @@ export default class InsightFacade implements IInsightFacade {
 			for (let i = 0; i < this.datasets.length; i++) {
 				if (this.datasets[i].id === id) {
 					datasetExists = true;
+					this.currentDataset = this.currentDatasetId === id ? [] : this.currentDataset;
 					this.currentDatasetId = this.currentDatasetId === id ? "" : this.currentDatasetId;
 					this.datasets.splice(i, 1);
 				}

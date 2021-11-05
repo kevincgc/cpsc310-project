@@ -1,0 +1,41 @@
+{
+  "errorMsg": "TRANSFORMATIONS missing GROUP",
+  "title": "noGroupInTransformations",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_dept",
+        "courses_year",
+        "avgAvg"
+      ],
+      "ORDER": {
+        "dir": "UP",
+        "keys": [
+          "avgAvg",
+          "courses_dept",
+          "courses_year"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "APPLY": [
+        {
+          "avgAvg": {
+            "SUM": "courses_avg"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}
