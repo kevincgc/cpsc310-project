@@ -41,23 +41,23 @@ export function isValidRoomKey (input: string, id: string) {
 }
 
 export function isValidCourseMKey (input: string, id: string) {
-	const validMKeys = [/^[^_]+_avg$/, /[^_]+_pass$/, /[^_]+_fail$/, /[^_]+_audit$/, /[^_]+_year$/];
+	const validMKeys = [/^[^_]+_avg$/, /^[^_]+_pass$/, /^[^_]+_fail$/, /^[^_]+_audit$/, /^[^_]+_year$/];
 	return validMKeys.some((rx) => rx.test(input)) && input.split("_")[0] === id;
 }
 
 export function isValidCourseSKey (input: string, id: string) {
-	const validSKeys = [/^[^_]+_dept$/, /[^_]+_id$/, /[^_]+_instructor$/, /[^_]+_title$/, /[^_]+_uuid$/];
+	const validSKeys = [/^[^_]+_dept$/, /^[^_]+_id$/, /^[^_]+_instructor$/, /^[^_]+_title$/, /^[^_]+_uuid$/];
 	return validSKeys.some((rx) => rx.test(input)) && input.split("_")[0] === id;
 }
 
 export function isValidRoomMKey (input: string, id: string) {
-	const validMKeys = [/^[^_]+_lat$/, /[^_]+_lon$/, /[^_]+_seats$/];
+	const validMKeys = [/^[^_]+_lat$/, /^[^_]+_lon$/, /^[^_]+_seats$/];
 	return validMKeys.some((rx) => rx.test(input)) && input.split("_")[0] === id;
 }
 
 export function isValidRoomSKey (input: string, id: string) {
-	const validSKeys = [/^[^_]+_fullname$/, /[^_]+_shortname$/, /[^_]+_number$/, /[^_]+_name$/,
-		/[^_]+_address$/, /[^_]+_type$/, /[^_]+_furniture$/, /[^_]+_href$/];
+	const validSKeys = [/^[^_]+_fullname$/, /^[^_]+_shortname$/, /^[^_]+_number$/, /^[^_]+_name$/,
+		/^[^_]+_address$/, /^[^_]+_type$/, /^[^_]+_furniture$/, /^[^_]+_href$/];
 	return validSKeys.some((rx) => rx.test(input)) && input.split("_")[0] === id;
 }
 

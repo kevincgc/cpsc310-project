@@ -1,0 +1,51 @@
+{
+  "errorMsg": "Apply key cannot be empty string",
+  "title": "applyKeyEmptyString",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_year",
+        "courses_uuid",
+        "cpass",
+        ""
+      ],
+      "ORDER": {
+        "dir": "UP",
+        "keys": [
+          "courses_year",
+          "courses_uuid",
+          "cpass"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_year",
+        "courses_uuid"
+      ],
+      "APPLY": [
+        {
+          "": {
+            "SUM": "courses_pass"
+          }
+        },
+        {
+          "cpass": {
+            "SUM": "courses_fail"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

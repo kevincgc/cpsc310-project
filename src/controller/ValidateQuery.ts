@@ -84,10 +84,10 @@ function isValidFilter (input: any, id: string, kind: any) {
 	if (!(input instanceof Object)) {
 		return false;
 	}
-	let logic = isValidLogicComparison(input, id, kind);
-	let m = isValidMComparison(input, id, kind);
-	let s = isValidSComparison(input, id, kind);
-	let neg = isValidNegation(input, id, kind);
+	// let logic = isValidLogicComparison(input, id, kind);
+	// let m = isValidMComparison(input, id, kind);
+	// let s = isValidSComparison(input, id, kind);
+	// let neg = isValidNegation(input, id, kind);
 	return isValidLogicComparison(input, id, kind) || isValidMComparison(input, id, kind) ||
 		isValidSComparison(input, id, kind) || isValidNegation(input, id, kind);
 }
@@ -169,11 +169,11 @@ function isValidGroup(input: any, id: string, kind: InsightDatasetKind): boolean
 }
 
 function isValidApplyRule (input: any, id: string, kind: any): boolean {
-	if (!(count(input) === 1) || !(input instanceof Object)) {
+	if (!(count(input) === 1) || !(input instanceof Object) || isString(input)) {
 		return false;
 	}
 	let applyKey = Object.keys(input);
-	if (applyKey.length !== 1 || !(input[applyKey[0]] instanceof Object)) {
+	if (applyKey.length !== 1 || !(input[applyKey[0]] instanceof Object) || !applyKey[0].match(/^[^_]+$/)) {
 		return false;
 	}
 	let applyToken = Object.keys(input[applyKey[0]]);
@@ -190,9 +190,16 @@ function isValidApplyRule (input: any, id: string, kind: any): boolean {
 }
 
 export function isValidApply(input: any, id: string, kind: InsightDatasetKind): boolean {
+	// Apply is an array of objects
 	if (!(input instanceof Array)) {
 		return false;
 	}
+	for (let rule of input) {
+		if(!(rule instanceof Object) || isString(rule)){
+			return false;
+		}
+	}
+	// Apply does not contain duplicate keys
 	let applyKeys: string[] = [];
 	for (let rule of input) {
 		let applyKey = Object.keys(rule);
@@ -235,16 +242,26 @@ function isValidQuery(query: any): boolean {
 	if (!(query instanceof Object)) {
 		return false;
 	}
-	if(!query["WHERE"] || !query["OPTIONS"] || !query["OPTIONS"]["COLUMNS"] ||
-		query["OPTIONS"]["COLUMNS"].length === 0 || (!query["TRANSFORMATIONS"] && count(query) !== 2) ||
-		(query["TRANSFORMATIONS"] && count(query) !== 3) ||
-		(query["TRANSFORMATIONS"] && !query["TRANSFORMATIONS"]["APPLY"]) ||
-		(query["TRANSFORMATIONS"] && !query["TRANSFORMATIONS"]["GROUP"]) ||
-		(query["TRANSFORMATIONS"] && query["TRANSFORMATIONS"]["GROUP"].length === 0)) {
+	if(!query["WHERE"] || !query["OPTIONS"] || !query["OPTIONS"]["COLUMNS"]) {
+		return false;
+	} else if (query["OPTIONS"]["COLUMNS"].length === 0 || !isArray(query["OPTIONS"]["COLUMNS"]) ||
+		!isString(query["OPTIONS"]["COLUMNS"][0])) {
 		return false;
 	}
+	if (query["TRANSFORMATIONS"]) {
+		if  (count(query) !== 3 || !query["TRANSFORMATIONS"]["APPLY"] || !query["TRANSFORMATIONS"]["GROUP"]) {
+			return false;
+		} else if (!isArray(query["TRANSFORMATIONS"]["GROUP"]) || query["TRANSFORMATIONS"]["GROUP"].length === 0 ||
+			!isString(query["TRANSFORMATIONS"]["GROUP"][0])) {
+			return false;
+		}
+	} else {
+		if (count(query) !== 2) {
+			return false;
+		}
+	}
 	let datasetInfo = getDatasetInfo(query);
-	if (datasetInfo.err || datasetInfo.id.includes("_") || datasetInfo.id.match(/^[ ]+$/)) {
+	if (datasetInfo.err || datasetInfo.id.includes("_") || datasetInfo.id.match(/^[ ]*$/)) {
 		return false;
 	}
 	let kind: any = datasetInfo.kind;
@@ -261,10 +278,6 @@ function isValidQuery(query: any): boolean {
 		}
 	}
 	let columnKeys = getArrayKeys(query["OPTIONS"]["COLUMNS"]);
-	let where = isValidWhere(query["WHERE"], id, kind);
-	let options = isValidOptions(query["OPTIONS"], applyKeys, id, kind);
-	let transformations = (query["TRANSFORMATIONS"] ?
-		isValidTransformations(query["TRANSFORMATIONS"], columnKeys, id, kind) : true);
 	return isValidWhere(query["WHERE"], id, kind) && isValidOptions(query["OPTIONS"], applyKeys, id, kind) &&
 		(query["TRANSFORMATIONS"] ? isValidTransformations(query["TRANSFORMATIONS"], columnKeys, id, kind) : true);
 }
