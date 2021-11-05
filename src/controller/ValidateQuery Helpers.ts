@@ -10,23 +10,23 @@ export function count(obj: any) {
 
 export function isString(input: any): boolean {
 	if (input === null) {
-		return false;
+		throw new InsightError("null object");
 	}
 	return (typeof input === "string" || input instanceof String);
 }
 
 export function isArray(input: any): boolean {
 	if (input === null) {
-		return false;
+		throw new InsightError("null object");
 	}
 	return input instanceof Array;
 }
 
 export function isJsonObj(input: any, isCheckLen: boolean = true): boolean {
 	if (input === null) {
-		return false;
+		throw new InsightError("null object");
 	}
-	if (!(input instanceof Object && !isArray(input) && !isString(input))) {
+	if (!(input instanceof Object && !isArray(input) && !isString(input) && isNaN(input))) {
 		return false;
 	}
 	if (isCheckLen) {
@@ -108,9 +108,8 @@ export function getDatasetInfo(query: any) {
 }
 
 export function getArrayKeys(input: any): any[] {
-	let keys = [];
-	for (let key of input) {
-		keys.push(key);
+	if (!isArray(input)) {
+		throw new InsightError("not an array");
 	}
-	return keys;
+	return input;
 }

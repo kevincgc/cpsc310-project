@@ -173,7 +173,11 @@ export default class InsightFacade implements IInsightFacade {
 					resolve(sortDataset(query, dataset));
 				}
 			} catch (e) {
-				reject(new InsightError("err"));
+				if (e instanceof InsightError) {
+					reject(e);
+				} else {
+					reject(new InsightError("¯\\_(ツ)_/¯"));
+				}
 			}
 		});
 	}
