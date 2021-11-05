@@ -27,12 +27,22 @@ describe("tests", function() {
 		beforeEach(function () {
 			fs.removeSync("data");
 		});
+		let q = {
+			WHERE: {},
+			OPTIONS: {
+				COLUMNS: [
+					"courses_dept",
+					"courses_avg"
+				],
+				ORDER: "courses_avg"
+			}
+		};
 		it("should RDS pass add then remove", async function () {
 			this.timeout(10000);
 			// await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
 			// let f = facade as InsightFacade;
-			await facade.addDataset("courses", rooms, InsightDatasetKind.Rooms);
-
+			await facade.addDataset("courses", courses, InsightDatasetKind.Courses);
+			console.log(facade.performQuery(q));
 			// let a = getArrayKeys(q["OPTIONS"]["COLUMNS"]);
 			// // let b = f.executeFilter(q3, a);
 			// console.log(a.length);

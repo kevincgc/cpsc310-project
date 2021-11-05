@@ -1,20 +1,40 @@
-import {InsightDatasetKind} from "./IInsightFacade";
+import {InsightDatasetKind, InsightError} from "./IInsightFacade";
 
 // From https://stackoverflow.com/a/6283527
 export function count(obj: any) {
+	if (obj === null) {
+		throw new InsightError("null object");
+	}
 	return Object.keys(obj).length;
 }
 
 export function isString(input: any): boolean {
+	if (input === null) {
+		return false;
+	}
 	return (typeof input === "string" || input instanceof String);
 }
 
 export function isArray(input: any): boolean {
-	return (input instanceof Array);
+	if (input === null) {
+		return false;
+	}
+	return input instanceof Array;
 }
 
-export function isObject(input: any): boolean {
-	return (input instanceof Object);
+export function isJsonObj(input: any, isCheckLen: boolean = true): boolean {
+	if (input === null) {
+		return false;
+	}
+	if (!(input instanceof Object && !isArray(input) && !isString(input))) {
+		return false;
+	}
+	if (isCheckLen) {
+		if (Object.keys(input).length === 0) {
+			return false;
+		}
+	}
+	return true;
 }
 
 export function isValidKey (input: string, id: string, kind: InsightDatasetKind) {

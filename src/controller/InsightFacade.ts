@@ -165,7 +165,7 @@ export default class InsightFacade implements IInsightFacade {
 						columns);
 				}
 				if (dataset.length > 5000) {
-					throw new ResultTooLargeError("performQuery > 5000 results");
+					reject(new ResultTooLargeError("performQuery > 5000 results"));
 				}
 				if (!query["OPTIONS"]["ORDER"]) {
 					resolve(dataset);
@@ -173,7 +173,7 @@ export default class InsightFacade implements IInsightFacade {
 					resolve(sortDataset(query, dataset));
 				}
 			} catch (e) {
-				reject(e);
+				reject(new InsightError("err"));
 			}
 		});
 	}

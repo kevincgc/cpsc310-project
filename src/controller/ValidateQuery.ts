@@ -1,6 +1,6 @@
 import {InsightDatasetKind} from "./IInsightFacade";
 import {getArrayKeys, isArray, isValidKey, isValidMKey, isValidCourseKey, isValidRoomKey, isValidCourseMKey,
-	isValidCourseSKey, getDatasetInfo, count, isObject, isString, isValidRoomSKey, isValidSKey,
+	isValidCourseSKey, getDatasetInfo, count, isJsonObj, isString, isValidRoomSKey, isValidSKey,
 	isValidRoomMKey} from "./ValidateQuery Helpers";
 
 export {isValidQuery};
@@ -28,12 +28,12 @@ function isValidMComparison (input: any, id: string, kind: any): boolean {
 	if (!(input["LT"] || input["GT"] || input["EQ"])) {
 		return false;
 	}
-	if (!(count(input) === 1) || !(input instanceof Object)) {
+	if (!(count(input) === 1) || !isJsonObj(input)) {
 		return false;
 	}
 	let isValid = false;
 	for (let key in input) {
-		if (!(count(input[key]) === 1) || !(input[key] instanceof Object)) {
+		if (!(count(input[key]) === 1) || !isJsonObj(input[key])) {
 			return false;
 		}
 		for (let m in input[key]) {
@@ -48,17 +48,17 @@ function isValidSComparison (input: any, id: string, kind: any): boolean {
 	if (!input["IS"]) {
 		return false;
 	}
-	if (!(count(input) === 1) || !(input instanceof Object)) {
+	if (!(count(input) === 1) || !isJsonObj(input)) {
 		return false;
 	}
 	let isValid = false;
 	for (let key in input) {
-		if (!(count(input[key]) === 1) || !(input[key] instanceof Object)) {
+		if (!(count(input[key]) === 1) || !isJsonObj(input[key])) {
 			return false;
 		}
 		for (let m in input[key]) {
 			isValid = isValidSKey(m, id, kind);
-			isValid = isValid && (typeof input[key][m] === "string" || input[key][m] instanceof String);
+			isValid = isValid && isString(input[key][m]);
 			if (isValid) {
 				isValid = isValid && /^[*]?[^*]*[*]?$/.test(input[key][m]);
 			}
@@ -74,14 +74,14 @@ function isValidNegation (input: any, id: string, kind: any): boolean {
 	if (!(count(input) === 1)) {
 		return false;
 	}
-	if (!(input["NOT"] instanceof Object)){
+	if (!isJsonObj(input["NOT"])){
 		return false;
 	}
 	return isValidFilter(input["NOT"], id, kind);
 }
 
 function isValidFilter (input: any, id: string, kind: any) {
-	if (!(input instanceof Object)) {
+	if (!isJsonObj(input)) {
 		return false;
 	}
 	// let logic = isValidLogicComparison(input, id, kind);
@@ -93,7 +93,7 @@ function isValidFilter (input: any, id: string, kind: any) {
 }
 
 function isValidWhere (input: any, id: any, kind: any) {
-	if (!(input instanceof Object)) {
+	if (!isJsonObj(input, false)) {
 		return false;
 	}
 	if (count(input) > 1) {
@@ -103,11 +103,11 @@ function isValidWhere (input: any, id: any, kind: any) {
 }
 
 function isValidOrder (input: any, columnKeys: any[], id: any, kind: InsightDatasetKind): boolean {
-	if (typeof input === "string" || input instanceof String) {
-		if (isValidKey(input as string, id, kind) && columnKeys.includes(input)) {
+	if (isString(input)) {
+		if (columnKeys.includes(input)) {
 			return true;
 		}
-	} else if (input instanceof Object) {
+	} else if (isJsonObj(input)) {
 		let orderKeys = Object.keys(input);
 		if (orderKeys.length !== 2 || (!(isArray(input[orderKeys[0]]) && isString(input[orderKeys[1]])) &&
 			!(isString(input[orderKeys[0]]) && isArray(input[orderKeys[1]])))) {
@@ -149,7 +149,7 @@ function isValidOptions (input: any, applyKeys: any[], id: any, kind: any) {
 	if (!input["ORDER"] && !(count(input) === 1)) {
 		return false;
 	}
-	if (input["ORDER"] && !(isString(input["ORDER"]) || input["ORDER"] instanceof Object)) {
+	if (input["ORDER"] && !(isString(input["ORDER"]) || isJsonObj(input["ORDER"]))) {
 		return false;
 	}
 	let columnKeys = getArrayKeys(input["COLUMNS"]);
@@ -169,11 +169,11 @@ function isValidGroup(input: any, id: string, kind: InsightDatasetKind): boolean
 }
 
 function isValidApplyRule (input: any, id: string, kind: any): boolean {
-	if (!(count(input) === 1) || !(input instanceof Object) || isString(input)) {
+	if (!(count(input) === 1) || !isJsonObj(input)) {
 		return false;
 	}
 	let applyKey = Object.keys(input);
-	if (applyKey.length !== 1 || !(input[applyKey[0]] instanceof Object) || !applyKey[0].match(/^[^_]+$/)) {
+	if (applyKey.length !== 1 || !isJsonObj(input[applyKey[0]]) || !applyKey[0].match(/^[^_]+$/)) {
 		return false;
 	}
 	let applyToken = Object.keys(input[applyKey[0]]);
@@ -195,7 +195,7 @@ export function isValidApply(input: any, id: string, kind: InsightDatasetKind): 
 		return false;
 	}
 	for (let rule of input) {
-		if(!(rule instanceof Object) || isString(rule)){
+		if(!isJsonObj(rule)){
 			return false;
 		}
 	}
@@ -239,7 +239,7 @@ export function isValidTransformations(input: any, columnKeys: any[], id: string
 }
 
 function isValidQuery(query: any): boolean {
-	if (!(query instanceof Object)) {
+	if (!isJsonObj(query)) {
 		return false;
 	}
 	if(!query["WHERE"] || !query["OPTIONS"] || !query["OPTIONS"]["COLUMNS"]) {
