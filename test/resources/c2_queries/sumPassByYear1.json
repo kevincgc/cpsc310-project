@@ -1,0 +1,80 @@
+{
+  "title": "sumPassByYear1",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_year",
+        "cpass"
+      ],
+      "ORDER": "cpass"
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_year"
+      ],
+      "APPLY": [
+        {
+          "cpass": {
+            "SUM": "courses_pass"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_year": 2008,
+      "cpass": 162
+    },
+    {
+      "courses_year": 2007,
+      "cpass": 358
+    },
+    {
+      "courses_year": 2009,
+      "cpass": 408
+    },
+    {
+      "courses_year": 2016,
+      "cpass": 466
+    },
+    {
+      "courses_year": 2011,
+      "cpass": 706
+    },
+    {
+      "courses_year": 2010,
+      "cpass": 732
+    },
+    {
+      "courses_year": 2012,
+      "cpass": 1045
+    },
+    {
+      "courses_year": 2013,
+      "cpass": 1308
+    },
+    {
+      "courses_year": 2014,
+      "cpass": 1492
+    },
+    {
+      "courses_year": 2015,
+      "cpass": 1492
+    },
+    {
+      "courses_year": 1900,
+      "cpass": 6973
+    }
+  ]
+}

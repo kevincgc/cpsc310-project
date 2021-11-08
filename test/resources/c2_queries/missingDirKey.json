@@ -1,0 +1,40 @@
+{
+  "errorMsg": "ORDER missing 'dir' key",
+  "title": "missingDirKey",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_year",
+        "cpass"
+      ],
+      "ORDER": {
+        "keys": [
+          "cpass"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_year"
+      ],
+      "APPLY": [
+        {
+          "cpass": {
+            "SUM": "courses_pass"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

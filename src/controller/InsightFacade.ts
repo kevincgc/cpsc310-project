@@ -102,6 +102,7 @@ export default class InsightFacade implements IInsightFacade {
 			for (let i = 0; i < this.datasets.length; i++) {
 				if (this.datasets[i].id === id) {
 					datasetExists = true;
+					this.currentDataset = this.currentDatasetId === id ? [] : this.currentDataset;
 					this.currentDatasetId = this.currentDatasetId === id ? "" : this.currentDatasetId;
 					this.datasets.splice(i, 1);
 				}
@@ -164,7 +165,7 @@ export default class InsightFacade implements IInsightFacade {
 						columns);
 				}
 				if (dataset.length > 5000) {
-					throw new ResultTooLargeError("performQuery > 5000 results");
+					reject(new ResultTooLargeError("performQuery > 5000 results"));
 				}
 				if (!query["OPTIONS"]["ORDER"]) {
 					resolve(dataset);
@@ -172,7 +173,11 @@ export default class InsightFacade implements IInsightFacade {
 					resolve(sortDataset(query, dataset));
 				}
 			} catch (e) {
-				reject(e);
+				if (e instanceof InsightError) {
+					reject(e);
+				} else {
+					reject(new InsightError("¯\\_(ツ)_/¯"));
+				}
 			}
 		});
 	}

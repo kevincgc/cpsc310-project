@@ -1,0 +1,62 @@
+{
+  "errorMsg": "Invalid apply rule target key",
+  "title": "invalidSumArray",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_year",
+        "courses_uuid",
+        "cpass",
+        "cfail",
+        "caudit"
+      ],
+      "ORDER": {
+        "dir": "UP",
+        "keys": [
+          "courses_year",
+          "courses_uuid",
+          "cpass",
+          "cfail",
+          "caudit"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_year",
+        "courses_uuid"
+      ],
+      "APPLY": [
+        {
+          "cpass": {
+            "SUM": [
+              "courses_pass",
+              "courses_fail"
+            ]
+          }
+        },
+        {
+          "cfail": {
+            "SUM": "courses_fail"
+          }
+        },
+        {
+          "caudit": {
+            "SUM": "courses_audit"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": true,
+  "with": "InsightError"
+}

@@ -1,0 +1,5876 @@
+{
+  "title": "sumSeats",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "GT": {
+            "courses_avg": 93
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_year",
+        "courses_uuid",
+        "cpass",
+        "cfail",
+        "caudit"
+      ],
+      "ORDER": {
+        "dir": "UP",
+        "keys": [
+          "courses_year",
+          "courses_uuid",
+          "cpass",
+          "cfail",
+          "caudit"
+        ]
+      }
+    },
+    "TRANSFORMATIONS": {
+      "GROUP": [
+        "courses_year",
+        "courses_uuid"
+      ],
+      "APPLY": [
+        {
+          "cpass": {
+            "SUM": "courses_pass"
+          }
+        },
+        {
+          "cfail": {
+            "SUM": "courses_fail"
+          }
+        },
+        {
+          "caudit": {
+            "SUM": "courses_audit"
+          }
+        }
+      ]
+    }
+  },
+  "errorExpected": false,
+  "with": [
+    {
+      "courses_year": 1900,
+      "courses_uuid": "10017",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 2
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "10236",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "10935",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "11199",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "11632",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 6
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "11824",
+      "cpass": 78,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "12032",
+      "cpass": 218,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "12424",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "13118",
+      "cpass": 67,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "13142",
+      "cpass": 37,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "1386",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "13925",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "13939",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "14804",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "15250",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "15344",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "15346",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "15377",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "15388",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "1558",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "16400",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "16408",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "16691",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "16724",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "16984",
+      "cpass": 31,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "16986",
+      "cpass": 24,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "17246",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "17268",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "18467",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "19312",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "19491",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "19499",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "21701",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "25248",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "25739",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "25741",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "26261",
+      "cpass": 41,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "26288",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "2668",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "26779",
+      "cpass": 31,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "26786",
+      "cpass": 23,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "27471",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "27487",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "27652",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "27660",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "27726",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "28115",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "28152",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "28350",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "28878",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "28913",
+      "cpass": 35,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "28944",
+      "cpass": 46,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "29035",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 2
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "29223",
+      "cpass": 41,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "29247",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "29252",
+      "cpass": 36,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "29256",
+      "cpass": 24,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "29277",
+      "cpass": 40,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "29282",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "29329",
+      "cpass": 53,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "29331",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "29333",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "29339",
+      "cpass": 36,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "29416",
+      "cpass": 33,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "29972",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "30854",
+      "cpass": 53,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "3096",
+      "cpass": 121,
+      "cfail": 1,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "3127",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "31380",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 9
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "3149",
+      "cpass": 36,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "3176",
+      "cpass": 23,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "320",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "32013",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "32015",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "32071",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "3211",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "3216",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "3218",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "3246",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "3251",
+      "cpass": 41,
+      "cfail": 1,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "32658",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "3274",
+      "cpass": 25,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "3281",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "3285",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "32991",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "33081",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "33375",
+      "cpass": 37,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "33645",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "33663",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "33687",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "3372",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "33731",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "33761",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "33774",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "33781",
+      "cpass": 22,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "33788",
+      "cpass": 30,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "34188",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "34206",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "34240",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "35388",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "35871",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "35892",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "35898",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "35951",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "35964",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "35989",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "36415",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 2
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "38118",
+      "cpass": 41,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "38124",
+      "cpass": 58,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "38127",
+      "cpass": 70,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "38144",
+      "cpass": 22,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "38146",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "38153",
+      "cpass": 24,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "38192",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "38206",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "38223",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "38245",
+      "cpass": 50,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "38258",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "38262",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "38264",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "38266",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "39672",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "39856",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "39861",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "4010",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "4012",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "40341",
+      "cpass": 36,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "43300",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "43442",
+      "cpass": 47,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "43502",
+      "cpass": 2,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "43659",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "44337",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "44373",
+      "cpass": 29,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "44398",
+      "cpass": 34,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "44400",
+      "cpass": 26,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "44421",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "44427",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "44801",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "44817",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "44831",
+      "cpass": 37,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "44841",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "45708",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "45712",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "45906",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "46094",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "46359",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "46399",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "46414",
+      "cpass": 36,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "47428",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "47451",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "47465",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "47782",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "47835",
+      "cpass": 23,
+      "cfail": 0,
+      "caudit": 3
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "47847",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "49635",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "49656",
+      "cpass": 29,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "49670",
+      "cpass": 31,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "49678",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "49681",
+      "cpass": 24,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "49683",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "49774",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "49957",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "500",
+      "cpass": 29,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "50380",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "50433",
+      "cpass": 30,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "50570",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "50980",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "510",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "51009",
+      "cpass": 40,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "51831",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "52200",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "52413",
+      "cpass": 56,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "53027",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "5352",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "5358",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "5374",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "55027",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "55241",
+      "cpass": 27,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "55694",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "56528",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "56551",
+      "cpass": 34,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "5693",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "5709",
+      "cpass": 23,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "57512",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "58117",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "58497",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "5882",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "59043",
+      "cpass": 28,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "59140",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "59204",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "59506",
+      "cpass": 119,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "59529",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "59540",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "59792",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "59841",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "59880",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "60086",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "61187",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "61312",
+      "cpass": 2,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "61354",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "61391",
+      "cpass": 32,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "61395",
+      "cpass": 24,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "61421",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "61426",
+      "cpass": 27,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "61439",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "61445",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "61453",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "61476",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "61633",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "62273",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "6291",
+      "cpass": 70,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "6315",
+      "cpass": 25,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "6319",
+      "cpass": 23,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "63433",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "6348",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "63561",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "63574",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "6375",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "6377",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "6397",
+      "cpass": 54,
+      "cfail": 0,
+      "caudit": 2
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "6405",
+      "cpass": 26,
+      "cfail": 0,
+      "caudit": 3
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "6411",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "64729",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 5
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "65068",
+      "cpass": 92,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "65070",
+      "cpass": 82,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "65115",
+      "cpass": 22,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "65160",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "65162",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "65166",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "66059",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "66445",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "66447",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "66658",
+      "cpass": 81,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "6684",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "67368",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "67762",
+      "cpass": 45,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "67985",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "67987",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "68007",
+      "cpass": 24,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "68030",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "69104",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "69223",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "69254",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "69270",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "70477",
+      "cpass": 31,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "70491",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 3
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "70959",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "71156",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "71172",
+      "cpass": 35,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "7138",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "71564",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "72504",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "7255",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "72721",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "73136",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "73148",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "73166",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "73174",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "73458",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "73639",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "73641",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "73666",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "73672",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "73799",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "74884",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "74971",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "75177",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "7543",
+      "cpass": 32,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "75483",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "76298",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "76311",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "76329",
+      "cpass": 26,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "76357",
+      "cpass": 24,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "76401",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "76408",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "76410",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "76475",
+      "cpass": 40,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "76477",
+      "cpass": 26,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "77291",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "78042",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "78245",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "78258",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "78260",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "78270",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "78577",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "78662",
+      "cpass": 120,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "78718",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "78755",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "7933",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "79976",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "80143",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "80501",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "80768",
+      "cpass": 29,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "81006",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "81354",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "8223",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "82403",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "83049",
+      "cpass": 200,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "84888",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "85915",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "85958",
+      "cpass": 22,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "86024",
+      "cpass": 27,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "86796",
+      "cpass": 108,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "86842",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "86931",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "86933",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "86943",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "86963",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "86968",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "86975",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 9
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "87780",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "88095",
+      "cpass": 116,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "88118",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "88148",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "88152",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "88154",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "88514",
+      "cpass": 35,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "88766",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "89496",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "89830",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "89886",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "90203",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "90207",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "90211",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "90221",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "90223",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "90235",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "90604",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "90608",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "92053",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "92883",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "93108",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "93116",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "93699",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "93935",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "93964",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "94901",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "94986",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "95052",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "96186",
+      "cpass": 88,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "96194",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "96196",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "96215",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "96251",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "96262",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "96834",
+      "cpass": 38,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "98513",
+      "cpass": 148,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 1900,
+      "courses_uuid": "98843",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "13924",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "13938",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "18718",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "18722",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "18727",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "25738",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "25740",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "29415",
+      "cpass": 33,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "32657",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "35387",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "35390",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "47834",
+      "cpass": 23,
+      "cfail": 0,
+      "caudit": 3
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "58496",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "61353",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "71563",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "86881",
+      "cpass": 22,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "86901",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "86921",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "86930",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "86932",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "86942",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "86954",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "86962",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "86966",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "86974",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 9
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "88765",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "90603",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2007,
+      "courses_uuid": "90607",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "18528",
+      "cpass": 2,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "26287",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "29971",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "35950",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "35963",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "35988",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "39671",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "43658",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "55693",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "58848",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "59139",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "60085",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "75482",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "76508",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 6
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "80500",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2008,
+      "courses_uuid": "92112",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "10235",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "10582",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 4
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "17245",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "22439",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "22441",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "33760",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "33773",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "33779",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "33780",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "33787",
+      "cpass": 30,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "47727",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "47781",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "4860",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "5351",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "5357",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "5373",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "59840",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "65831",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "66058",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "66444",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "66446",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "74970",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "76235",
+      "cpass": 26,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "76254",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "76285",
+      "cpass": 22,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "76297",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "76309",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "76310",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "76327",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "76328",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "76355",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "76362",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "80144",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2009,
+      "courses_uuid": "87779",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "11198",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "19311",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "19490",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "19498",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "19858",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "19859",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "20190",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "27651",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "27659",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "27725",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "27754",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "33644",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "33662",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "35855",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "35870",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "35891",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "35897",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "3705",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "47846",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "49773",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "50432",
+      "cpass": 30,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "52412",
+      "cpass": 56,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "58116",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "61390",
+      "cpass": 32,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "61394",
+      "cpass": 24,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "61420",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "61424",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "61425",
+      "cpass": 22,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "61438",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "61444",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "61452",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "61475",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "61485",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "63560",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "63573",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "6683",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "68029",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "73135",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "73147",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "73165",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "73173",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "8222",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "89885",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "94900",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "96185",
+      "cpass": 88,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "96193",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "96195",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "96214",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "96250",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2010,
+      "courses_uuid": "96261",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "15343",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "15345",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "15376",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "15387",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "16388",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "16399",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "16407",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "2667",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "2676",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "28912",
+      "cpass": 35,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "28942",
+      "cpass": 29,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "28943",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "28972",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "28977",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "29012",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "29013",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "29034",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 2
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "31767",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "31768",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "31769",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "36414",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 2
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "4009",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "4011",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "49634",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "49650",
+      "cpass": 32,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "49655",
+      "cpass": 29,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "49668",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "49669",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "49677",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "49680",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "49682",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "50379",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "5692",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "5708",
+      "cpass": 23,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "57511",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "5880",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "5881",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "59791",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "61186",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "63432",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "64728",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 5
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "67367",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "79975",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "82387",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "82402",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "87588",
+      "cpass": 27,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "92052",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "93934",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2011,
+      "courses_uuid": "93963",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "14803",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "17267",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "18409",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "21700",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "26777",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "26785",
+      "cpass": 23,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "2701",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "2702",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "27470",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "27486",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29222",
+      "cpass": 41,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29235",
+      "cpass": 43,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29246",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29251",
+      "cpass": 36,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29255",
+      "cpass": 24,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29262",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29275",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29276",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29281",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29285",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29311",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29326",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29327",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29328",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29330",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29332",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29337",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29338",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "29342",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "3095",
+      "cpass": 121,
+      "cfail": 1,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "3116",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "3126",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "33012",
+      "cpass": 54,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "33079",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "3316",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "44336",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "44800",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "44816",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "44830",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "44840",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "45905",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "45914",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "46276",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "47427",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "54846",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "61632",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "67760",
+      "cpass": 34,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "70475",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "70476",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "70490",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 3
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "71155",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "71164",
+      "cpass": 2,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "71165",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "71170",
+      "cpass": 2,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "71171",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "72503",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "73457",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "78041",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "84887",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2012,
+      "courses_uuid": "86023",
+      "cpass": 27,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "12423",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "14332",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "15249",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "16690",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "16723",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "25247",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "28877",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3148",
+      "cpass": 36,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3175",
+      "cpass": 22,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3181",
+      "cpass": 25,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3210",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3215",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3228",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "32422",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3245",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3249",
+      "cpass": 25,
+      "cfail": 1,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3250",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3263",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3265",
+      "cpass": 22,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3272",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3280",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3284",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "33373",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "33374",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "33686",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "3371",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "33730",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "34187",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "34205",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "46358",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "46398",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "46405",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "46406",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "46407",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "46408",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "46409",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "46412",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "46413",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "47450",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "47464",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "4900",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "49956",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "53026",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "56527",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "56550",
+      "cpass": 34,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "56554",
+      "cpass": 35,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "579",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "580",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "59203",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "59505",
+      "cpass": 119,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "59527",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "59528",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "59530",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "59539",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "59879",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "66657",
+      "cpass": 81,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "71701",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "74883",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "76473",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "76476",
+      "cpass": 26,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "7932",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "80766",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "80767",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "85914",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "85957",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "87253",
+      "cpass": 31,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "88094",
+      "cpass": 116,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "88117",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "88147",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "88151",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "88153",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "89497",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "89498",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "89829",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "96815",
+      "cpass": 22,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "96816",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2013,
+      "courses_uuid": "96832",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "11631",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 6
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "11823",
+      "cpass": 78,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "1385",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "1557",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "16982",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "16985",
+      "cpass": 24,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "26253",
+      "cpass": 2,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "26254",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "26255",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "26257",
+      "cpass": 2,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "26258",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "26259",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "26260",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "28114",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "28150",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "319",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "32070",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "40340",
+      "cpass": 36,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "40346",
+      "cpass": 2,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "43299",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "43325",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "43439",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "43440",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "43501",
+      "cpass": 2,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "44372",
+      "cpass": 29,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "44393",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "44397",
+      "cpass": 34,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "44399",
+      "cpass": 26,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "44402",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "44420",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "44426",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "46093",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "62263",
+      "cpass": 31,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "62272",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "6280",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "6290",
+      "cpass": 35,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "6301",
+      "cpass": 57,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "6314",
+      "cpass": 25,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "6318",
+      "cpass": 23,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "6320",
+      "cpass": 25,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "6347",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "6374",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "6376",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "6394",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 2
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "6395",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "6396",
+      "cpass": 18,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "6404",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "6410",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "67984",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "67986",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "68006",
+      "cpass": 24,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "69103",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "69222",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "69253",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "69269",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "73798",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "7542",
+      "cpass": 32,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "76394",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "76400",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "76407",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "76409",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "78661",
+      "cpass": 120,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "78717",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "78754",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "81005",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "83047",
+      "cpass": 121,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "83048",
+      "cpass": 79,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "86656",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "86795",
+      "cpass": 108,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "86831",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "86841",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "92879",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "92880",
+      "cpass": 2,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2014,
+      "courses_uuid": "92881",
+      "cpass": 2,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "10934",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "12031",
+      "cpass": 218,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "18466",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "30565",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "30587",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "30852",
+      "cpass": 28,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "30853",
+      "cpass": 25,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "31379",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 9
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "32990",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38117",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38122",
+      "cpass": 33,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38123",
+      "cpass": 25,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38125",
+      "cpass": 35,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38134",
+      "cpass": 39,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38143",
+      "cpass": 22,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38145",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38152",
+      "cpass": 24,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38179",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38191",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38205",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38222",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38244",
+      "cpass": 13,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38251",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38257",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38261",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38263",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "38265",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "39826",
+      "cpass": 22,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "39831",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "39855",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "39860",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "45707",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "45711",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "499",
+      "cpass": 29,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "50493",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "50495",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "509",
+      "cpass": 7,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "50979",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "51008",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "55026",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "55240",
+      "cpass": 27,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "59042",
+      "cpass": 28,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "65066",
+      "cpass": 56,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "65067",
+      "cpass": 36,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "65069",
+      "cpass": 82,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "65114",
+      "cpass": 22,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "65159",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "65161",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "65165",
+      "cpass": 11,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "6623",
+      "cpass": 21,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "68539",
+      "cpass": 27,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "7137",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "7254",
+      "cpass": 8,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "72706",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "72720",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "72732",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "73638",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "73640",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "73665",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "73671",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "75158",
+      "cpass": 1,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "75160",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "75161",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "75176",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "77290",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "78244",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "78257",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "78259",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "88881",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "90202",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "90206",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "90210",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "90220",
+      "cpass": 9,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "90222",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "90234",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "93698",
+      "cpass": 6,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "94985",
+      "cpass": 14,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2015,
+      "courses_uuid": "95051",
+      "cpass": 16,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "10016",
+      "cpass": 3,
+      "cfail": 0,
+      "caudit": 2
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "13114",
+      "cpass": 40,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "13117",
+      "cpass": 67,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "13140",
+      "cpass": 17,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "13141",
+      "cpass": 20,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "1833",
+      "cpass": 12,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "19182",
+      "cpass": 33,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "28349",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "32012",
+      "cpass": 5,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "32014",
+      "cpass": 4,
+      "cfail": 0,
+      "caudit": 1
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "51830",
+      "cpass": 10,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "52199",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "78576",
+      "cpass": 19,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "88513",
+      "cpass": 35,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "93107",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "93115",
+      "cpass": 15,
+      "cfail": 0,
+      "caudit": 0
+    },
+    {
+      "courses_year": 2016,
+      "courses_uuid": "98512",
+      "cpass": 148,
+      "cfail": 0,
+      "caudit": 0
+    }
+  ]
+}

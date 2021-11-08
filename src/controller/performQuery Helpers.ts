@@ -96,7 +96,9 @@ function applyRule(singleGroup: any[], rules: any) {
 				let num = new Decimal(element[key]);
 				sum = sum.add(num);
 			}
-			value = Number(sum.toFixed(2));
+			let x = sum.toFixed(2);
+			let s = sum.toNumber();
+			value = Number(s.toFixed(2));
 			break;
 		}
 		case "AVG": {

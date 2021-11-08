@@ -18,7 +18,7 @@ export function parseJsonAsync(jsonString: string): Promise<JSON> {
 }
 
 export function isValidId (id: string): boolean {
-	if (id.includes("_") || id.match(/^[ ]+$/)) {
+	if (!id.match(/^[^_]+$/) || id.match(/^[ ]+$/)) {
 		return false;
 	}
 	return true;

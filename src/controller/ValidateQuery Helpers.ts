@@ -1,20 +1,40 @@
-import {InsightDatasetKind} from "./IInsightFacade";
+import {InsightDatasetKind, InsightError} from "./IInsightFacade";
 
 // From https://stackoverflow.com/a/6283527
 export function count(obj: any) {
+	if (obj === null) {
+		throw new InsightError("null object");
+	}
 	return Object.keys(obj).length;
 }
 
 export function isString(input: any): boolean {
+	if (input === null) {
+		throw new InsightError("null object");
+	}
 	return (typeof input === "string" || input instanceof String);
 }
 
 export function isArray(input: any): boolean {
-	return (input instanceof Array);
+	if (input === null) {
+		throw new InsightError("null object");
+	}
+	return input instanceof Array;
 }
 
-export function isObject(input: any): boolean {
-	return (input instanceof Object);
+export function isJsonObj(input: any, isCheckLen: boolean = true): boolean {
+	if (input === null) {
+		throw new InsightError("null object");
+	}
+	if (!(input instanceof Object && !isArray(input) && !isString(input) && isNaN(input))) {
+		return false;
+	}
+	if (isCheckLen) {
+		if (Object.keys(input).length === 0) {
+			return false;
+		}
+	}
+	return true;
 }
 
 export function isValidKey (input: string, id: string, kind: InsightDatasetKind) {
@@ -41,23 +61,23 @@ export function isValidRoomKey (input: string, id: string) {
 }
 
 export function isValidCourseMKey (input: string, id: string) {
-	const validMKeys = [/^[^_]+_avg$/, /[^_]+_pass$/, /[^_]+_fail$/, /[^_]+_audit$/, /[^_]+_year$/];
+	const validMKeys = [/^[^_]+_avg$/, /^[^_]+_pass$/, /^[^_]+_fail$/, /^[^_]+_audit$/, /^[^_]+_year$/];
 	return validMKeys.some((rx) => rx.test(input)) && input.split("_")[0] === id;
 }
 
 export function isValidCourseSKey (input: string, id: string) {
-	const validSKeys = [/^[^_]+_dept$/, /[^_]+_id$/, /[^_]+_instructor$/, /[^_]+_title$/, /[^_]+_uuid$/];
+	const validSKeys = [/^[^_]+_dept$/, /^[^_]+_id$/, /^[^_]+_instructor$/, /^[^_]+_title$/, /^[^_]+_uuid$/];
 	return validSKeys.some((rx) => rx.test(input)) && input.split("_")[0] === id;
 }
 
 export function isValidRoomMKey (input: string, id: string) {
-	const validMKeys = [/^[^_]+_lat$/, /[^_]+_lon$/, /[^_]+_seats$/];
+	const validMKeys = [/^[^_]+_lat$/, /^[^_]+_lon$/, /^[^_]+_seats$/];
 	return validMKeys.some((rx) => rx.test(input)) && input.split("_")[0] === id;
 }
 
 export function isValidRoomSKey (input: string, id: string) {
-	const validSKeys = [/^[^_]+_fullname$/, /[^_]+_shortname$/, /[^_]+_number$/, /[^_]+_name$/,
-		/[^_]+_address$/, /[^_]+_type$/, /[^_]+_furniture$/, /[^_]+_href$/];
+	const validSKeys = [/^[^_]+_fullname$/, /^[^_]+_shortname$/, /^[^_]+_number$/, /^[^_]+_name$/,
+		/^[^_]+_address$/, /^[^_]+_type$/, /^[^_]+_furniture$/, /^[^_]+_href$/];
 	return validSKeys.some((rx) => rx.test(input)) && input.split("_")[0] === id;
 }
 
@@ -88,9 +108,8 @@ export function getDatasetInfo(query: any) {
 }
 
 export function getArrayKeys(input: any): any[] {
-	let keys = [];
-	for (let key of input) {
-		keys.push(key);
+	if (!isArray(input)) {
+		throw new InsightError("not an array");
 	}
-	return keys;
+	return input;
 }
