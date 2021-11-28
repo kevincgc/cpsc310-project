@@ -16,13 +16,14 @@ describe("Facade D3", function () {
 
 	use(chaiHttp);
 
-	before(async function () {
+	before(function () {
 		rooms = getContentFromArchives("rooms.zip");
 		courses = getContentFromArchives("courses.zip");
 		clearDisk();
+		facade = new InsightFacade();
 		server = new Server(4321);
 		try {
-			await server.start();
+			return server.start();
 		} catch (error) {
 			console.log(error);
 			expect.fail("Server could not start");
