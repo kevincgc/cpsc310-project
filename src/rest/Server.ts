@@ -3,7 +3,6 @@ import * as http from "http";
 import cors from "cors";
 import InsightFacade from "../controller/InsightFacade";
 import {InsightDatasetKind, InsightError, NotFoundError} from "../controller/IInsightFacade";
-import {clearDisk, getContentFromArchives} from "../../test/resources/TestUtil";
 import fs from "fs-extra";
 import {isValidId} from "../controller/addDatasetCoursesHelpers";
 
@@ -195,13 +194,13 @@ export default class Server {
 	private static async init(req: Request, res: Response) {
 		try {
 			console.log(`Server::init(..) - params: ${JSON.stringify(req.params)}`);
-			let rooms = getContentFromArchives("rooms.zip");
-			let courses = getContentFromArchives("courses.zip");
-			clearDisk();
+			let rooms = fs.readFileSync("./test/resources/archives/kevincgc/rooms.zip").toString("base64");
+			let courses = fs.readFileSync("./test/resources/archives/kevincgc/courses.zip").toString("base64");
+			fs.removeSync("./data/");
 			let c: InsightDatasetKind = InsightDatasetKind.Courses;
 			let r: InsightDatasetKind = InsightDatasetKind.Rooms;
-			const cresponse = await Server.insightFacade.addDataset("courses", courses, c);
-			const rresponse = await Server.insightFacade.addDataset("rooms", rooms, r);
+			await Server.insightFacade.addDataset("courses", courses, c);
+			await Server.insightFacade.addDataset("rooms", rooms, r);
 			res.status(200).json({result: "success"});
 		} catch (err) {
 			console.log(err);
