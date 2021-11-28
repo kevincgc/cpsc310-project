@@ -6,19 +6,20 @@ import {clearDisk, getContentFromArchives} from "../resources/TestUtil";
 // import chai from "chai";
 import Response = ChaiHttp.Response;
 import {InsightDataset, InsightDatasetKind, InsightError} from "../../src/controller/IInsightFacade";
+import fs from "fs";
 
 describe("Facade D3", function () {
 	let facade: InsightFacade;
 	let server: Server;
-	let courses: string;
-	let rooms: string;
+	let courses: Buffer;
+	let rooms: Buffer;
 	const SERVER_URL = "http://localhost:4321";
 
 	use(chaiHttp);
 
 	before(function () {
-		rooms = getContentFromArchives("rooms.zip");
-		courses = getContentFromArchives("courses.zip");
+		rooms = fs.readFileSync("./test/resources/archives/kevincgc/rooms.zip");
+		courses = fs.readFileSync("./test/resources/archives/kevincgc/courses.zip");
 		clearDisk();
 		facade = new InsightFacade();
 		server = new Server(4321);
@@ -742,10 +743,39 @@ describe("Facade D3", function () {
 		}
 	});
 
-	it("POST restart server query", async function () {
+
+	it("GET restart server dataset", async function () {
+		this.timeout(5000);
 		await server.stop();
 		server = new Server(4444);
 		await server.start();
+		try {
+			return chai.request("http://localhost:4444")
+				.get("/datasets")
+				.then(function (res: Response) {
+					console.log(res.body.result);
+					// some logging here please!
+					expect(res.status).to.be.equal(200);
+					expect(res.body.result).to.be.an.instanceOf(Array);
+					expect(res.body.result).to.have.length(3);
+					const expectedDatasets: any = [
+						{ id: "courses", kind: "courses", numRows: 64612 },
+						{ id: "rooms", kind: "rooms", numRows: 364 },
+						{ id: "courses1", kind: "courses", numRows: 64612 }
+					];
+					expect(res.body.result).to.have.deep.members(expectedDatasets);
+				})
+				.catch(function (err: any) {
+					console.log(err);
+					expect.fail();
+				});
+		} catch (err) {
+			console.log(err);
+			// and some more logging here!
+		}
+	});
+
+	it("POST restart server query", async function () {
 		let q = {
 			WHERE: {
 				AND: [
@@ -822,36 +852,36 @@ describe("Facade D3", function () {
 		}
 	});
 
-	it("should test datasetNotInQueriedFacade", async function() {
-		this.timeout(10000);
-		clearDisk();
-		let insightFacade = new InsightFacade();
-		let insightFacade2 = new InsightFacade();
-		await insightFacade.addDataset("coursesx", courses, InsightDatasetKind.Courses);
-		await insightFacade2.addDataset("roomsx", rooms, InsightDatasetKind.Rooms);
-		let datasetNotInQueriedFacade = {
-			WHERE: {
-				GT: {
-					coursesx_avg: 97
-				}
-			},
-			OPTIONS: {
-				COLUMNS: [
-					"coursesx_dept",
-					"coursesx_avg"
-				],
-				ORDER: "coursesx_avg"
-			}
-		};
-		let returnedQuery;
-		try {
-			returnedQuery = await insightFacade2.performQuery(datasetNotInQueriedFacade);
-			expect.fail("Should have rejected!");
-		} catch (err) {
-			console.log(err);
-			expect(err).to.be.instanceof(InsightError);
-		}
-	});
+	// it("should test datasetNotInQueriedFacade", async function() {
+	// 	this.timeout(10000);
+	// 	clearDisk();
+	// 	let insightFacade = new InsightFacade();
+	// 	let insightFacade2 = new InsightFacade();
+	// 	await insightFacade.addDataset("coursesx", courses.toString("base64"), InsightDatasetKind.Courses);
+	// 	await insightFacade2.addDataset("roomsx", rooms.toString("base64"), InsightDatasetKind.Rooms);
+	// 	let datasetNotInQueriedFacade = {
+	// 		WHERE: {
+	// 			GT: {
+	// 				coursesx_avg: 97
+	// 			}
+	// 		},
+	// 		OPTIONS: {
+	// 			COLUMNS: [
+	// 				"coursesx_dept",
+	// 				"coursesx_avg"
+	// 			],
+	// 			ORDER: "coursesx_avg"
+	// 		}
+	// 	};
+	// 	let returnedQuery;
+	// 	try {
+	// 		returnedQuery = await insightFacade2.performQuery(datasetNotInQueriedFacade);
+	// 		expect.fail("Should have rejected!");
+	// 	} catch (err) {
+	// 		console.log(err);
+	// 		expect(err).to.be.instanceof(InsightError);
+	// 	}
+	// });
 
 	// it("POST init", function () {
 	// 	this.timeout(10000);

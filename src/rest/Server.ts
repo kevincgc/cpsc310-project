@@ -4,6 +4,8 @@ import cors from "cors";
 import InsightFacade from "../controller/InsightFacade";
 import {InsightDatasetKind, InsightError, NotFoundError} from "../controller/IInsightFacade";
 import {clearDisk, getContentFromArchives} from "../../test/resources/TestUtil";
+import fs from "fs-extra";
+import {isValidId} from "../controller/addDatasetCoursesHelpers";
 
 export default class Server {
 	private readonly port: number;
@@ -33,6 +35,7 @@ export default class Server {
 	 */
 	public start(): Promise<void> {
 		Server.insightFacade = new InsightFacade();
+		Server.loadDatasets();
 		return new Promise((resolve, reject) => {
 			console.info("Server::start() - start");
 			if (this.server !== undefined) {
@@ -49,6 +52,24 @@ export default class Server {
 				});
 			}
 		});
+	}
+
+	public static loadDatasets() {
+		if (fs.existsSync("./data/")) {
+			fs.readdirSync("./data/").forEach(async (file) => {
+				if (file.match(/^.+[-](rooms|courses)[.]json$/)) {
+					let str = file.split("-");
+					if (isValidId(str[0])) {
+						let str1 = str[1].split(".")[0];
+						if (str1 === "courses" || str1 === "rooms") {
+							let kind = str1 === "courses" ? InsightDatasetKind.Courses : InsightDatasetKind.Rooms;
+							let data = JSON.parse(fs.readJsonSync("data/" + file));
+							Server.insightFacade.addDatasetCached(str[0], data, kind);
+						}
+					}
+				}
+			});
+		}
 	}
 
 	/**
@@ -107,17 +128,13 @@ export default class Server {
 	private static async addDataset(req: Request, res: Response) {
 		try {
 			let kind: InsightDatasetKind = Server.getKind(req.params.kind);
-			let data = Buffer.from(req.body).toString();
+			let data = Buffer.from(req.body).toString("base64");
 			console.log(`Server::addDataset(..) - params: ${JSON.stringify(req.params)}`);
 			const response = await Server.insightFacade.addDataset(req.params.id, data, kind);
 			res.status(200).json({result: response});
 		} catch (err) {
 			console.log(err);
-			if (err instanceof InsightError) {
-				res.status(400).json({error: err});
-			} else {
-				throw err;
-			}
+			res.status(400).json({error: err});
 		}
 	}
 
@@ -128,12 +145,10 @@ export default class Server {
 			res.status(200).json({result: response});
 		} catch (err) {
 			console.log(err);
-			if (err instanceof InsightError) {
-				res.status(400).json({error: err});
-			} else if (err instanceof NotFoundError) {
+			if (err instanceof NotFoundError) {
 				res.status(404).json({error: err});
 			} else {
-				throw err;
+				res.status(400).json({error: err});
 			}
 		}
 	}
@@ -152,11 +167,7 @@ export default class Server {
 			res.status(200).json({result: response});
 		} catch (err) {
 			console.log(err);
-			if (err instanceof InsightError) {
-				res.status(400).json({error: err});
-			} else {
-				throw err;
-			}
+			res.status(400).json({error: err});
 		}
 	}
 
