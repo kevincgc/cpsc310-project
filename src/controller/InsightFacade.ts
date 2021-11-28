@@ -16,6 +16,7 @@ import { apply, datasetReduceToSelectedColumns,	datasetReduceToSelectedColumnsSi
 import {getDatasetInfo} from "./ValidateQuery Helpers";
 import path from "path";
 import {ChildNode, ParentNode} from "parse5";
+import {isValidCourses, isValidCoursesCache, isValidRoomsCache} from "./Const";
 
 const fs = require("fs-extra");
 const p5 = require("parse5");
@@ -26,7 +27,7 @@ const p5 = require("parse5");
  */
 export default class InsightFacade implements IInsightFacade {
 	public datasets: InsightDataset[];
-	public currentDataset: JSON[];
+	public currentDataset: any[];
 	public currentDatasetId: string;
 	public currentDatasetKind: InsightDatasetKind;
 	constructor() {
@@ -128,11 +129,18 @@ export default class InsightFacade implements IInsightFacade {
 
 	public loadDataset(id: string, kind: InsightDatasetKind) {
 		if (id !== this.currentDatasetId) {
-			if (!isDatasetInDatasets(this.datasets, id, kind)) {
-				throw new InsightError("performQuery Dataset Does Not Exist");
-			}
+			// if (!isDatasetInDatasets(this.datasets, id, kind)) {
+			// 	throw new InsightError("performQuery Dataset Does Not Exist");
+			// }
 			try {
 				this.currentDataset = JSON.parse(fs.readJsonSync("data/" + id + ".json"));
+				if (this.currentDataset.length === 0) {
+					throw new InsightError("performQuery Invalid Cached Data");
+				} else if (kind === InsightDatasetKind.Courses && !isValidCourses(this.currentDataset[0])) {
+					throw new InsightError("performQuery Dataset and query kind mismatch");
+				} else if (kind === InsightDatasetKind.Rooms && !isValidRoomsCache(this.currentDataset[0])) {
+					throw new InsightError("performQuery Dataset and query kind mismatch");
+				}
 				this.currentDatasetId = id;
 				this.currentDatasetKind = kind;
 			} catch (err: any) {

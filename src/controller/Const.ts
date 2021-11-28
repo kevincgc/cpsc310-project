@@ -75,3 +75,39 @@ export function isValidCourses(jsonObject: JSON) {
 		return false;
 	}
 }
+
+export function isValidCoursesCache(jsonObject: JSON) {
+	console.log(jsonObject);
+	if ("dept" in jsonObject &&
+		"id" in jsonObject &&
+		"avg" in jsonObject &&
+		"instructor" in jsonObject &&
+		"title" in jsonObject &&
+		"pass" in jsonObject &&
+		"fail" in jsonObject &&
+		"audit" in jsonObject &&
+		"uuid" in jsonObject &&
+		"year" in jsonObject) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+export function isValidRoomsCache(jsonObject: JSON) {
+	if ("fullname" in jsonObject &&
+		"shortname" in jsonObject &&
+		"number" in jsonObject &&
+		"name" in jsonObject &&
+		"address" in jsonObject &&
+		"lat" in jsonObject &&
+		"lon" in jsonObject &&
+		"seats" in jsonObject &&
+		"type" in jsonObject &&
+		"furniture" in jsonObject &&
+		"href" in jsonObject) {
+		return true;
+	} else {
+		return false;
+	}
+}
