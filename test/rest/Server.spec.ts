@@ -5,7 +5,7 @@ import chaiHttp from "chai-http";
 import {clearDisk, getContentFromArchives} from "../resources/TestUtil";
 // import chai from "chai";
 import Response = ChaiHttp.Response;
-import {InsightDataset, InsightDatasetKind} from "../../src/controller/IInsightFacade";
+import {InsightDataset, InsightDatasetKind, InsightError} from "../../src/controller/IInsightFacade";
 
 describe("Facade D3", function () {
 	let facade: InsightFacade;
@@ -821,6 +821,37 @@ describe("Facade D3", function () {
 		}
 	});
 
+	it("should test datasetNotInQueriedFacade", async function() {
+		this.timeout(10000);
+		clearDisk();
+		let insightFacade = new InsightFacade();
+		let insightFacade2 = new InsightFacade();
+		await insightFacade.addDataset("coursesx", courses, InsightDatasetKind.Courses);
+		await insightFacade2.addDataset("roomsx", rooms, InsightDatasetKind.Rooms);
+		let datasetNotInQueriedFacade = {
+			WHERE: {
+				GT: {
+					coursesx_avg: 97
+				}
+			},
+			OPTIONS: {
+				COLUMNS: [
+					"coursesx_dept",
+					"coursesx_avg"
+				],
+				ORDER: "coursesx_avg"
+			}
+		};
+		let returnedQuery;
+		try {
+			returnedQuery = await insightFacade2.performQuery(datasetNotInQueriedFacade);
+			expect.fail("Should have rejected!");
+		} catch (err) {
+			console.log(err);
+			expect(err).to.be.instanceof(InsightError);
+		}
+	});
+
 	// it("POST init", function () {
 	// 	this.timeout(10000);
 	// 	clearDisk();
@@ -842,3 +873,4 @@ describe("Facade D3", function () {
 	// 	}
 	// });
 });
+
