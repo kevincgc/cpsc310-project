@@ -16,6 +16,7 @@ import { apply, datasetReduceToSelectedColumns,	datasetReduceToSelectedColumnsSi
 import {getDatasetInfo} from "./ValidateQuery Helpers";
 import path from "path";
 import {ChildNode, ParentNode} from "parse5";
+import {isValidCourses, isValidCoursesCache, isValidRoomsCache} from "./Const";
 
 const fs = require("fs-extra");
 const p5 = require("parse5");
@@ -26,7 +27,7 @@ const p5 = require("parse5");
  */
 export default class InsightFacade implements IInsightFacade {
 	public datasets: InsightDataset[];
-	public currentDataset: JSON[];
+	public currentDataset: any[];
 	public currentDatasetId: string;
 	public currentDatasetKind: InsightDatasetKind;
 	constructor() {
@@ -39,7 +40,7 @@ export default class InsightFacade implements IInsightFacade {
 	public saveDataset(courses: any, id: string, kind: InsightDatasetKind) {
 		return new Promise<void>((resolve, reject) => {
 			if (courses.length > 0) {
-				fs.outputJson("data/" + id + ".json", JSON.stringify(courses)).then(() => {
+				fs.outputJson("data/" + id + "-" + kind + ".json", JSON.stringify(courses)).then(() => {
 					this.currentDataset = courses;
 					this.currentDatasetId = id;
 					this.currentDatasetKind = kind;
@@ -93,6 +94,10 @@ export default class InsightFacade implements IInsightFacade {
 		});
 	}
 
+	public addDatasetCached(id: string, content: any[], kind: InsightDatasetKind) {
+		this.datasets.push({ id: id, kind: kind, numRows: content.length });
+	}
+
 	public removeDataset(id: string): Promise<string> {
 		return new Promise<string>((resolve, reject) => {
 			if (!isValidId(id)) {
@@ -110,12 +115,15 @@ export default class InsightFacade implements IInsightFacade {
 			if (!datasetExists) {
 				reject(new NotFoundError("removeDataset Dataset Not Found"));
 			}
-			fs.remove("./data/" + id + ".json").then(() => {
-				if (!fs.existsSync("./data/" + id + ".json")) {
-					resolve(id);
-				} else {
-					reject(new InsightError("removeDataset Unable To Remove File"));
-				}
+			fs.remove("./data/" + id + "-" + "courses" + ".json").then(() => {
+				fs.remove("./data/" + id + "-" + "rooms" + ".json").then(() => {
+					if (!fs.existsSync("./data/" + id + "-" + "courses" + ".json") &&
+						!fs.existsSync("./data/" + id + "-" + "rooms" + ".json")) {
+						resolve(id);
+					} else {
+						reject(new InsightError("removeDataset Unable To Remove File"));
+					}
+				});
 			});
 		});
 	}
@@ -126,13 +134,36 @@ export default class InsightFacade implements IInsightFacade {
 		});
 	}
 
+	// public loadDataset(id: string, kind: InsightDatasetKind) {
+	// 	if (id !== this.currentDatasetId) {
+	// 		// if (!isDatasetInDatasets(this.datasets, id, kind)) {
+	// 		// 	throw new InsightError("performQuery Dataset Does Not Exist");
+	// 		// }
+	// 		try {
+	// 			this.currentDataset = JSON.parse(fs.readJsonSync("data/" + id + ".json"));
+	// 			if (this.currentDataset.length === 0) {
+	// 				throw new InsightError("performQuery Invalid Cached Data");
+	// 			} else if (kind === InsightDatasetKind.Courses && !isValidCourses(this.currentDataset[0])) {
+	// 				throw new InsightError("performQuery Dataset and query kind mismatch");
+	// 			} else if (kind === InsightDatasetKind.Rooms && !isValidRoomsCache(this.currentDataset[0])) {
+	// 				throw new InsightError("performQuery Dataset and query kind mismatch");
+	// 			}
+	// 			this.currentDatasetId = id;
+	// 			this.currentDatasetKind = kind;
+	// 		} catch (err: any) {
+	// 			throw new InsightError("performQuery Dataset Does Not Exist");
+	// 		}
+	// 	} else if (kind !== this.currentDatasetKind) {
+	// 		throw new InsightError("performQuery Dataset ID does not match kind");
+	// 	}
+	// }
 	public loadDataset(id: string, kind: InsightDatasetKind) {
 		if (id !== this.currentDatasetId) {
 			if (!isDatasetInDatasets(this.datasets, id, kind)) {
 				throw new InsightError("performQuery Dataset Does Not Exist");
 			}
 			try {
-				this.currentDataset = JSON.parse(fs.readJsonSync("data/" + id + ".json"));
+				this.currentDataset = JSON.parse(fs.readJsonSync("data/" + id + "-" + kind + ".json"));
 				this.currentDatasetId = id;
 				this.currentDatasetKind = kind;
 			} catch (err: any) {
