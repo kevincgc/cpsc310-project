@@ -131,9 +131,9 @@ export default class Server {
 			console.log(`Server::addDataset(..) - params: ${JSON.stringify(req.params)}`);
 			const response = await Server.insightFacade.addDataset(req.params.id, data, kind);
 			res.status(200).json({result: response});
-		} catch (err) {
+		} catch (err: any) {
 			console.log(err);
-			res.status(400).json({error: err});
+			res.status(400).json({error: err.message});
 		}
 	}
 
@@ -142,12 +142,12 @@ export default class Server {
 			console.log(`Server::removeDatasets(..) - params: ${JSON.stringify(req.params)}`);
 			const response = await Server.insightFacade.removeDataset(req.params.id);
 			res.status(200).json({result: response});
-		} catch (err) {
+		} catch (err: any) {
 			console.log(err);
 			if (err instanceof NotFoundError) {
-				res.status(404).json({error: err});
+				res.status(404).json({error: err.message});
 			} else {
-				res.status(400).json({error: err});
+				res.status(400).json({error: err.message});
 			}
 		}
 	}
@@ -164,9 +164,9 @@ export default class Server {
 			console.log(req.body);
 			const response = await Server.insightFacade.performQuery(req.body);
 			res.status(200).json({result: response});
-		} catch (err) {
+		} catch (err: any) {
 			console.log(err);
-			res.status(400).json({error: err});
+			res.status(400).json({error: err.message});
 		}
 	}
 
@@ -197,15 +197,16 @@ export default class Server {
 			let rooms = fs.readFileSync("./test/resources/archives/kevincgc/rooms.zip").toString("base64");
 			let courses = fs.readFileSync("./test/resources/archives/kevincgc/courses.zip").toString("base64");
 			fs.removeSync("./data/");
+			Server.insightFacade.clearLocal();
 			let c: InsightDatasetKind = InsightDatasetKind.Courses;
 			let r: InsightDatasetKind = InsightDatasetKind.Rooms;
 			await Server.insightFacade.addDataset("courses", courses, c);
 			await Server.insightFacade.addDataset("rooms", rooms, r);
 			res.status(200).json({result: "success"});
-		} catch (err) {
+		} catch (err: any) {
 			console.log(err);
 			if (err instanceof InsightError) {
-				res.status(400).json({error: err});
+				res.status(400).json({error: err.message});
 			} else {
 				throw err;
 			}

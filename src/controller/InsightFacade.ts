@@ -98,6 +98,12 @@ export default class InsightFacade implements IInsightFacade {
 		this.datasets.push({ id: id, kind: kind, numRows: content.length });
 	}
 
+	public clearLocal() {
+		this.datasets = [];
+		this.currentDataset = [];
+		this.currentDatasetId = "";
+	}
+
 	public removeDataset(id: string): Promise<string> {
 		return new Promise<string>((resolve, reject) => {
 			if (!isValidId(id)) {
@@ -182,31 +188,36 @@ export default class InsightFacade implements IInsightFacade {
 				this.loadDataset(datasetInfo.id, datasetInfo.kind);
 				let filteredDataset = executeNode(query["WHERE"], this.currentDataset);
 				let dataset = [];
-				if (query["TRANSFORMATIONS"]) {
-					let datasetSelectedColumns: any[] = datasetReduceToValidColumns(filteredDataset, datasetInfo.id,
-						datasetInfo.kind);
-					let groupKeys = query["TRANSFORMATIONS"]["GROUP"]; // keys have underscore and id
-					let sortedByGroupsDataset = sortByKeys(datasetSelectedColumns, groupKeys);
-					let groupedDataset = group(groupKeys, sortedByGroupsDataset);
-					let appliedDataset = apply(query["TRANSFORMATIONS"]["APPLY"], groupedDataset, groupKeys);
-					dataset = datasetReduceToSelectedColumnsSimple(appliedDataset, query["OPTIONS"]["COLUMNS"]);
+				if (filteredDataset.length === 0) {
+					resolve([]);
 				} else {
-					let columns = getFeatures(query);
-					dataset = datasetReduceToSelectedColumns(filteredDataset, datasetInfo.id, datasetInfo.kind,
-						columns);
-				}
-				if (dataset.length > 5000) {
-					reject(new ResultTooLargeError("performQuery > 5000 results"));
-				}
-				if (!query["OPTIONS"]["ORDER"]) {
-					resolve(dataset);
-				} else {
-					resolve(sortDataset(query, dataset));
+					if (query["TRANSFORMATIONS"]) {
+						let datasetSelectedColumns: any[] = datasetReduceToValidColumns(filteredDataset, datasetInfo.id,
+							datasetInfo.kind);
+						let groupKeys = query["TRANSFORMATIONS"]["GROUP"]; // keys have underscore and id
+						let sortedByGroupsDataset = sortByKeys(datasetSelectedColumns, groupKeys);
+						let groupedDataset = group(groupKeys, sortedByGroupsDataset);
+						let appliedDataset = apply(query["TRANSFORMATIONS"]["APPLY"], groupedDataset, groupKeys);
+						dataset = datasetReduceToSelectedColumnsSimple(appliedDataset, query["OPTIONS"]["COLUMNS"]);
+					} else {
+						let columns = getFeatures(query);
+						dataset = datasetReduceToSelectedColumns(filteredDataset, datasetInfo.id, datasetInfo.kind,
+							columns);
+					}
+					if (dataset.length > 5000) {
+						reject(new ResultTooLargeError("performQuery > 5000 results"));
+					}
+					if (!query["OPTIONS"]["ORDER"]) {
+						resolve(dataset);
+					} else {
+						resolve(sortDataset(query, dataset));
+					}
 				}
 			} catch (e) {
 				if (e instanceof InsightError) {
 					reject(e);
 				} else {
+					console.log(e);
 					reject(new InsightError("¯\\_(ツ)_/¯"));
 				}
 			}
