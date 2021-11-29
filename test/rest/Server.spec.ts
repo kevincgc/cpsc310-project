@@ -612,6 +612,91 @@ describe("Facade D3", function () {
 		}
 	});
 
+	it("POST 0 result query", function () {
+		let q = {
+			WHERE: {
+				AND: [
+					{
+						NOT:
+							{
+								EQ:
+									{
+										courses_year: 1900
+									}
+							}
+					},
+					{
+						NOT:
+							{
+								IS:
+									{
+										courses_instructor: ""
+									}
+							}
+					},
+					{
+						IS:
+							{
+								courses_dept: "cpsc"
+							}
+					},
+					{
+						IS:
+							{
+								courses_id: "499"
+							}
+					}
+				]
+
+			},
+			OPTIONS: {
+				COLUMNS: [
+					"courses_instructor",
+					"avg"
+				],
+				ORDER: {
+					dir: "DOWN",
+					keys: [
+						"avg"
+					]
+				}
+			},
+			TRANSFORMATIONS: {
+				GROUP: [
+					"courses_instructor"
+				],
+				APPLY: [
+					{
+						avg: {
+							AVG: "courses_avg"
+						}
+					}
+				]
+			}
+		};
+		let expected: any[] = [];
+		this.timeout(5000);
+		try {
+			return chai.request(SERVER_URL)
+				.post("/query")
+				.send(q)
+				.then(function (res: Response) {
+					console.log(res);
+					// some logging here please!
+					expect(res.status).to.be.equal(200);
+					expect(res.body.result).to.be.an.instanceOf(Array);
+					expect(res.body.result).to.have.length(0);
+				})
+				.catch(function (err: any) {
+					console.log(err);
+					expect.fail();
+				});
+		} catch (err) {
+			console.log(err);
+			// and some more logging here!
+		}
+	});
+
 	it("POST complex query", function () {
 		let q = {
 			WHERE: {
@@ -721,6 +806,37 @@ describe("Facade D3", function () {
 					"courses_avg"
 				],
 				ORDER: "courses_id"
+			}
+		};
+		this.timeout(5000);
+		try {
+			return chai.request(SERVER_URL)
+				.post("/query")
+				.send(q)
+				.then(function (res: Response) {
+					// some logging here please!
+					expect(res.status).to.be.equal(400);
+					console.log(res.body);
+				})
+				.catch(function (err: any) {
+					console.log(err);
+					expect.fail();
+				});
+		} catch (err) {
+			console.log(err);
+			// and some more logging here!
+		}
+	});
+
+	it("POST too big query", function () {
+		let q = {
+			WHERE: {},
+			OPTIONS: {
+				COLUMNS: [
+					"courses_dept",
+					"courses_avg"
+				],
+				ORDER: "courses_avg"
 			}
 		};
 		this.timeout(5000);

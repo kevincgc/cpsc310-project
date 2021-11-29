@@ -5,7 +5,9 @@
     "\\src",
     "\\test",
     "\\test\\controller",
-    "\\test\\resources"
+    "\\test\\resources",
+    "\\test\\rest"
   ],
+  "SelectedNode": "\\test\\rest\\Server.spec.ts",
   "PreviewInSolutionExplorer": false
 }
