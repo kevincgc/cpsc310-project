@@ -1,0 +1,27 @@
+{
+  "title": "wrong caps",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "IS": {
+            "courses_dept": "CPSC"
+          }
+        },
+        {
+          "IS": {
+            "courses_id": "221"
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "courses_instructor"
+      ],
+      "ORDER": "courses_instructor"
+    }
+  },
+  "errorExpected": false,
+  "with": []
+}

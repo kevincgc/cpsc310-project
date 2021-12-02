@@ -1,0 +1,23 @@
+{
+  "title": "wrong caps1",
+  "input": {
+    "WHERE": {
+      "AND": [
+        {
+          "IS": {
+            "rooms_shortname": "GeOG"
+          }
+        }
+      ]
+    },
+    "OPTIONS": {
+      "COLUMNS": [
+        "rooms_shortname",
+        "rooms_number"
+      ],
+      "ORDER": "rooms_number"
+    }
+  },
+  "errorExpected": false,
+  "with": []
+}
