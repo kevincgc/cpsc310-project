@@ -125,7 +125,6 @@ describe("tests", function() {
 				let data = getContentFromArchives("no_courses_folder.zip");
 				await facade.addDataset("courses", data, InsightDatasetKind.Courses);
 				let f = facade as InsightFacade;
-				console.log(f.currentCourses.length);
 				expect.fail("Should have rejected!");
 			} catch (err) {
 				console.log(err);

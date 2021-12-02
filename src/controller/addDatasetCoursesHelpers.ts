@@ -47,6 +47,7 @@ export function getValidCourses(validResults: any[]) {
 				if (course.Section === "overall") {
 					course.Year = 1900;
 				}
+				course.Year = Number(course.Year);
 				if (isValidCourses(course)) {
 					courses.push(course);
 				}
